@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_news"
+            android:title="@string/newsfeed_title" />
+
+        <item
+            android:id="@+id/nav_substitute_plan"
+            android:title="@string/substitute_plan_title" />
+
+        <item
+            android:id="@+id/nav_schedule"
+            android:title="Stundenplan" />
+
+        <!--<item android:title="@string/forum_section_title" android:textStyle="bold">
+            <menu>
+                <item
+                    android:id="@+id/nav_send"
+                    android:title="@string/forum_notification_title" />
+                <item
+                    android:id="@+id/nav_messages"
+                    android:title="@string/forum_messages_title"
+                    />
+            </menu>
+        </item>-->
+
+        <item android:title="@string/settings_section_title">
+            <menu>
+                <item
+                    android:id="@+id/nav_settings_account"
+                    android:title="@string/settings_account_title" />
+                <item
+                    android:id="@+id/nav_settings_notifications"
+                    android:title="@string/settings_notifications_title" />
+                <item
+                    android:id="@+id/nav_settings_datausage"
+                    android:title="@string/settings_datausage_title" />
+            </menu>
+        </item>
+
+        <item
+            android:title="@string/change_database_configuration"
+            android:id="@+id/nav_database" />
+    </group>
+
+</menu>

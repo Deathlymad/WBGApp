@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">WBGApp</string>
+
+    Nav Titles
+    <string name="newsfeed_title">Neuigkeiten</string>
+    <string name="substitute_plan_title">Vertretungsplan</string>
+    <string name="schedule_title">Stundenplan</string>
+
+    <!--<string name="forum_section_title">Forum</string>
+    <string name="forum_notification_title">Benachrichtungen</string>
+    <string name="forum_messages_title">Messages</string>-->
+
+    <string name="settings_section_title">Einstellungen</string>
+    <string name="settings_general_title">Login</string>
+    <string name="settings_account_title">Accounteinstellungen</string>
+    <string name="settings_notifications_title">Benachrichtigungseinstellungen</string>
+    <string name="settings_datausage_title">Datennutzung</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_login">Anmelden</string>
+
+    <string name="change_database_configuration">Datenbankkonnfigurationen ändern</string>
+
+    Elementinhalte:
+    <string name="TextLoginButton">Login</string>
+    <string name="registration_title">Log In</string>
+    <string name="settings_registration_desc">Melde dich hier mit deiner E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)</string>
+
+    Einstellungen:
+    Datennutzung:
+    <string name="settings_datausage_information">Hier kannst du die Datennutzung deiner App regulieren. Sollen Fotos sofort geladen werden, oder doch lieber erst beim Anwählen?</string>
+    <string name="settings_datausage_images">Bilder sollen automatisch vorab geladen und angezeigt werden. (erhöht den Datenverbrauch)</string>
+    <string name="settings_datausage_videos">Videos sollen automatisch vorab geladen und angezeigt werden. (erhöht Datenverbrauch massiv)</string>
+    Benachrichtigung:
+    <string name="settings_notification_information">Stelle hier ein, wie oft und zu welchen Zeitpunkten die App dich benachrichtigen soll.</string>
+    <string name="settings_notification_informationen_comment">Achtung: Viele Benachrichtigungen könnten die Laufzeit des Gerätes und die Akkulaufzeit negativ beeinflussen. </string>
+    <string name="settings_notification_general">Benachrichtigungen zulassen</string>
+    <string name="settings_notification_schedules_all">Die App soll mich zu jedem Termin erinnern.</string>
+    <string name="settings_notification_schedules__selected">Die App soll mich nur an Termine erinnern, die mich betreffen. (Auswahl)</string>
+    <string name="settings_notification_subsitute_plan">Bei neuen Vertretungen meiner Klasse/Jahrgangsstufe soll eine Benachrichtigung seitens der App erfolgen.</string>
+    <string name="settings_notification_news">Sobald ein neuer Newsartikel veröffentlicht wird, soll die App mich benachrichtigen. </string>
+    <string name="settings_notification_place_information">Art der Benachrichtigung:</string>
+    <string name="settings_notification_place_comment">Benachrichtigungen dieser Art müssen in den Systemeinstellungen des Handys ebenso aktiviert sein. </string>
+    <string name="settings_notification_place_statusbar">Benachrichtigungen in der Statusleiste anzeigen</string>
+    <string name="settings_notification_place_lockscreen">Benachrichtigungen auf dem Sperrbildschirm anzeigen</string>
+
+    Database Activity:
+    <string name="database_ip">IP Adresse:</string>
+    <string name="database_name">Datenbankname:</string>
+    <string name="database_username">Benutzername:</string>
+    <string name="database_password">Passwort:</string>
+    <string name="database_change_submit">Konfigurationen ändern</string>
+</resources>
