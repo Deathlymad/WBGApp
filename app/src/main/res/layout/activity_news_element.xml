@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ArtikelTitel 1"
+            android:id="@+id/article_title"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weiterlesen"
+            android:id="@+id/button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="#0b0d88"
+            android:clickable="true"
+            android:background="#79000000"
+            android:padding="5dp" />
+
+    </RelativeLayout>
+</ScrollView>
