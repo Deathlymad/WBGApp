@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="ArtikelTitel 1"
+            android:text="ArtikelTitel"
             android:id="@+id/article_title"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="5dp"

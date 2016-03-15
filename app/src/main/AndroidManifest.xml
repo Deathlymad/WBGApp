@@ -25,6 +25,9 @@
         <activity
             android:name=".activity.Schedules"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.NewsArticle"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <!--<activity android:name=".activity.forum.ForumMessages"
             android:theme="@style/AppTheme.NoActionBar"></activity>
