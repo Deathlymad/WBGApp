@@ -1,7 +1,7 @@
 package com.webteam.wbgapp.wbgapp.activity.forum;
 
 /**
- * Created by malte on 21.01.2016.
+ * Created by malte on 21.01.2016 .
  */
 /*
 public class ForumNotification extends ForumActivity {

@@ -14,8 +14,8 @@ import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 
 public class DatabaseHandler extends AsyncTask<IRequest, Void, String> {
 
-    public Exception ex;
-    public IRequest req;
+    private Exception ex;
+    private IRequest req;
 
     private String getData(String... req) throws IOException, URISyntaxException {
         HttpClient client = HttpClientBuilder.create().build();

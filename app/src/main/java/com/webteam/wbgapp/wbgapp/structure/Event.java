@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import java.util.Date;
 
 /**
- * Created by Deathlymad on 12.03.2016.
+ * Created by Deathlymad on 12.03.2016 .
  */
 public class Event implements IRequest {
     private int _id;
@@ -25,7 +25,7 @@ public class Event implements IRequest {
         _addTime = data.getInt("addTime");
         _startTime = Util.getDateFromTStamp(data.getLong("startTime"));
         _endTime = Util.getDateFromTStamp(data.getLong("endTime"));
-        _title = Util.convUnicode(data.getString("title"));
+        _title = Util.unescUnicode(data.getString("title"));
         new DatabaseHandler().execute(this);
     }
 

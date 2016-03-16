@@ -15,32 +15,69 @@ import android.widget.FrameLayout;
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.structure.SettingManager;
 
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 // import com.webteam.wbgapp.wbgapp.activity.forum.ForumMessages;
 // import com.webteam.wbgapp.wbgapp.activity.forum.ForumNotification;
 
 /**
- * Created by Deathlymad on 23.01.2016.
+ * Created by Deathlymad on 23.01.2016 .
  */
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected static final SettingManager settings = new SettingManager();
 
     protected abstract String getName();
+    protected abstract void save(FileOutputStream file) throws IOException;
+    protected abstract void load(FileInputStream file) throws IOException;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_layout);
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        try {
+            FileInputStream out = openFileInput(getName());
+            load(out);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        try {
+            FileOutputStream out = openFileOutput(getName(), Context.MODE_PRIVATE);
+            save(out);
+            settings.save(openFileOutput(SettingManager.FILE_NAME, Context.MODE_PRIVATE));
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         try {
+            FileOutputStream out = openFileOutput(getName(), Context.MODE_PRIVATE);
+            save(out);
             settings.save(openFileOutput(SettingManager.FILE_NAME, Context.MODE_PRIVATE));
-        } catch (FileNotFoundException e) {
+            out.flush();
+            out.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -55,12 +92,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -128,15 +167,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.nav_settings_datausage:
                 i = new Intent(this, SettingsDatausage.class);
                 break;
-
-            case R.id.nav_database:
-                i = new Intent(this, Database.class);
-                break;
         }
 
         startActivity(i);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

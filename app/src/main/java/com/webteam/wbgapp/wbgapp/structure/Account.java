@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by Deathlymad on 16.01.2016.
+ * Created by Deathlymad on 16.01.2016 .
  */
 public class Account {
 

@@ -40,10 +40,6 @@
                     android:title="@string/settings_datausage_title" />
             </menu>
         </item>
-
-        <item
-            android:title="@string/change_database_configuration"
-            android:id="@+id/nav_database" />
     </group>
 
 </menu>

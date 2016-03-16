@@ -9,8 +9,8 @@ import java.util.Map;
 public class SettingManager {
     public static final String FILE_NAME = "PersistentSettingData.bin";
 
-    private Account _currAccount; //needs to encrypt itself
-    private Map<String, String> _settings;
+    private static Account _currAccount; //needs to encrypt itself
+    private static Map<String, String> _settings;
 
     public SettingManager() {
         _currAccount = null;
