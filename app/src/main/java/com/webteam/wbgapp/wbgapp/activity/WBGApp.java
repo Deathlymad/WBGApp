@@ -136,10 +136,6 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
     private void addNewsToStack(News n)
     {
         _newsStack.add(n);
-        LinearLayout layout = (LinearLayout) findViewById(R.id.news_container);
-        TextView entry = n.addView(layout);
-        entry.setOnClickListener(this);
-        assert layout != null;
-        layout.addView(entry); //needs to be deleted upon clear of the stack
+        n.addView(this);
     }
 }

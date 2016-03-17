@@ -1,8 +1,13 @@
 package com.webteam.wbgapp.wbgapp.structure;
 
+import android.app.Activity;
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
 
 import org.json.JSONArray;
@@ -20,6 +25,8 @@ public class News implements IRequest{
     private String _title;
 
     private String _content;
+
+    private TextView _teaser;
 
     public News(JSONObject data) throws JSONException {
         _id = data.getInt("id");
@@ -63,9 +70,11 @@ public class News implements IRequest{
         return _title;
     }
 
-    public TextView addView(LinearLayout view) {
-        TextView Text = new TextView(view.getContext());
-        Text.append(_title);
-        return Text;
+    public <T extends View.OnClickListener> void addView(T view) {
+        LinearLayout container = (LinearLayout) ((Activity)view).findViewById(R.id.news_container);
+        TextView _teaser = new TextView(container.getContext());
+        _teaser.append(_title);
+        _teaser.setOnClickListener(view);
+        container.addView(_teaser);
     }
 }
