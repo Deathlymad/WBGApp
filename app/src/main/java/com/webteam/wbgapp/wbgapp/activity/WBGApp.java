@@ -14,6 +14,7 @@ import com.webteam.wbgapp.wbgapp.structure.News;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,18 +29,11 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        try {
-            setContentView(R.layout.activity_wbgapp);
-            assert ((SwipeRefreshLayout) findViewById(R.id.swipe_container)) != null;
-            ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setOnRefreshListener(this);
 
-            _newsStack = new ArrayList<>();
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_wbgapp);
-        }catch (NullPointerException e)
-        {
-            e.printStackTrace();
-        }
+        _newsStack = new ArrayList<>();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_wbgapp);
+        ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setOnRefreshListener(this);
     }
 
     @Override
@@ -90,7 +84,7 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
             try {
                 JSONArray arr = new JSONArray(s);
                 for (int i = 0; i < 10; i++)
-                    addNewsToStack(new News(arr.getJSONObject(i)));
+                    addNewsToStack(new News(new JSONObject(arr.getString(i))));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -99,14 +93,11 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
     @Override
     public void onRefresh(){
         try {
-            assert ((SwipeRefreshLayout) findViewById(R.id.swipe_container)) != null;
             ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(true);
-            assert ((SwipeRefreshLayout) findViewById(R.id.swipe_container)) != null;
             if (!((SwipeRefreshLayout) findViewById(R.id.swipe_container)).canChildScrollUp()) {
                 DatabaseHandler hand = new DatabaseHandler();
                 hand.execute(this);
             }
-            assert ((SwipeRefreshLayout) findViewById(R.id.swipe_container)) != null;
             ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(false);
         }catch(NullPointerException e)
         {
