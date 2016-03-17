@@ -36,14 +36,6 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
             _newsStack = new ArrayList<>();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_wbgapp);
-
-            for (News n : _newsStack) {
-                LinearLayout layout = (LinearLayout) findViewById(R.id.news_container);
-                TextView entry = n.addView(layout);
-                entry.setOnClickListener(this);
-                assert layout != null;
-                layout.addView(entry);
-            }
         }catch (NullPointerException e)
         {
             e.printStackTrace();
@@ -62,12 +54,7 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
         try {
             JSONArray newsList = new JSONArray(res);
             for (int i = 0; i < 10; i++) {
-                _newsStack.add(new News(newsList.getJSONObject(i)));
-                LinearLayout layout = (LinearLayout) findViewById(R.id.news_container);
-                TextView entry = _newsStack.get(i).addView(layout);
-                entry.setOnClickListener(this);
-                assert layout != null;
-                layout.addView(entry);
+                addNewsToStack(new News(newsList.getJSONObject(i)));
             }
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
@@ -103,7 +90,7 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
             try {
                 JSONArray arr = new JSONArray(s);
                 for (int i = 0; i < 10; i++)
-                    _newsStack.add(new News(arr.getJSONObject(i)));
+                    addNewsToStack(new News(arr.getJSONObject(i)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -144,5 +131,15 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
             i.putExtra(requestTitle, article.toString());
             startActivity(i);
         }
+    }
+
+    private void addNewsToStack(News n)
+    {
+        _newsStack.add(n);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.news_container);
+        TextView entry = n.addView(layout);
+        entry.setOnClickListener(this);
+        assert layout != null;
+        layout.addView(entry); //needs to be deleted upon clear of the stack
     }
 }

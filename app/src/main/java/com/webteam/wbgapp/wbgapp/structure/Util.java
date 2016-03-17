@@ -1,8 +1,8 @@
 package com.webteam.wbgapp.wbgapp.structure;
 
-import org.apache.commons.lang.StringEscapeUtils;
+        import org.apache.commons.lang.StringEscapeUtils;
 
-import java.util.Date;
+        import java.util.Date;
 
 class Util {
 
