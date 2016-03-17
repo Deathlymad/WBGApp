@@ -20,12 +20,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_login">Anmelden</string>
 
-    <string name="change_database_configuration">Datenbankkonnfigurationen ändern</string>
-
     Elementinhalte:
     <string name="TextLoginButton">Login</string>
     <string name="registration_title">Log In</string>
     <string name="settings_registration_desc">Melde dich hier mit deiner E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)</string>
+
+    Artikel anzeigen:
+    <string name="showmedia">Zu diesem Artikel sind Bilder/Videos vorhanden. Tippe hier, um die Elemente anzuzeigen.</string>
 
     Einstellungen:
     Datennutzung:
@@ -45,10 +46,5 @@
     <string name="settings_notification_place_statusbar">Benachrichtigungen in der Statusleiste anzeigen</string>
     <string name="settings_notification_place_lockscreen">Benachrichtigungen auf dem Sperrbildschirm anzeigen</string>
 
-    Database Activity:
-    <string name="database_ip">IP Adresse:</string>
-    <string name="database_name">Datenbankname:</string>
-    <string name="database_username">Benutzername:</string>
-    <string name="database_password">Passwort:</string>
-    <string name="database_change_submit">Konfigurationen ändern</string>
+
 </resources>
