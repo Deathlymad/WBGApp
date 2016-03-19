@@ -63,7 +63,6 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
 
     @Override
     protected void save(FileOutputStream file) throws IOException {
-        super.save(file);
         JSONArray arr = new JSONArray();
         if (!_newsStack.isEmpty())
             for (News n : _newsStack)
@@ -91,11 +90,6 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
                 e.printStackTrace();
             }
         }
-
-    @Override
-    protected void invalidate() {
-
-    }
 
     @Override
     public void onRefresh(){

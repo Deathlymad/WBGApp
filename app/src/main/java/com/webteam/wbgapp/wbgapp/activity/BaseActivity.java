@@ -31,23 +31,14 @@ import java.util.Scanner;
  */
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static List<String> _activityNameList = new ArrayList<>();
+    private static boolean _activityInvalidation = false;
 
     protected static final SettingManager settings = new SettingManager();
 
 
-    protected String getName()
-    {
-        return "Base Activity";
-    }
-    protected void save(FileOutputStream file) throws IOException
-    {
-        if (!_activityNameList.contains(getName()))
-            _activityNameList.add(getName());
-    }
+    protected abstract String getName();
+    protected abstract void save(FileOutputStream file) throws IOException;
     protected abstract void load(FileInputStream file) throws IOException;
-
-    protected abstract void invalidate();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,16 +164,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     private void saveFile()
     {
         try {
-            FileOutputStream out = openFileOutput("Base.bin", Context.MODE_PRIVATE);
-            PrintWriter pw = new PrintWriter(out);
-            for (String s : _activityNameList)
-                pw.println(s);
-            pw.close();
-
-            out = openFileOutput(getName(), Context.MODE_PRIVATE);
-            save(out);
-            out.flush();
-            out.close();
+            if (!_activityInvalidation) {
+                FileOutputStream out = openFileOutput(getName(), Context.MODE_PRIVATE);
+                save(out);
+                out.flush();
+                out.close();
+            } else
+                deleteFile(getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -191,14 +179,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     private void loadFile()
     {
         try {
-            FileInputStream in = openFileInput("Base.bin");
-            Scanner s = new Scanner(in);
-            _activityNameList.clear();
-            while (s.hasNext()){
-                _activityNameList.add(s.next());
-            }
-
-            in = openFileInput(getName());
+            FileInputStream in = openFileInput(getName());
             load(in);
             in.close();
         } catch (IOException e) {
@@ -208,13 +189,5 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     public void invalidateChaches()
     {
-        for (String s : _activityNameList)
-        {
-            File f = new File(getFilesDir() + s);
-            invalidate();
-            if (f.exists())
-                f.delete();
-        }
-        _activityNameList.clear();
     }
 }

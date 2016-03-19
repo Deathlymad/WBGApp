@@ -31,11 +31,6 @@ public class SettingsDatausage extends BaseActivity implements CompoundButton.On
     }
 
     @Override
-    protected void invalidate() {
-
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.activity_settings_datausage);
