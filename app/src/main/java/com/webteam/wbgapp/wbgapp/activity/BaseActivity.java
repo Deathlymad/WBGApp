@@ -156,13 +156,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         startActivity(i);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     private void saveFile()
     {
+
         try {
             if (!_activityInvalidation) {
                 FileOutputStream out = openFileOutput(getName(), Context.MODE_PRIVATE);
