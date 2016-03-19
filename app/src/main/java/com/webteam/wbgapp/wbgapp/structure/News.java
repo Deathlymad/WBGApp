@@ -2,8 +2,13 @@ package com.webteam.wbgapp.wbgapp.structure;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +19,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -26,7 +33,7 @@ public class News implements IRequest{
 
     private String _content;
 
-    private TextView _teaser;
+    private View _news;
 
     public News(JSONObject data) throws JSONException {
         _id = data.getInt("id");
@@ -56,7 +63,7 @@ public class News implements IRequest{
         JSONObject obj = new JSONObject();
         try {
             obj.put("id", _id);
-            obj.put("date", _date.getTime());
+            obj.put("date", Util.getTStampFromDate(_date.getTime()).getTime());
             obj.put("headline", Util.escUnicode(_title));
             obj.put("content", Util.escUnicode(_content));
         } catch (JSONException e) {
@@ -71,10 +78,17 @@ public class News implements IRequest{
     }
 
     public <T extends View.OnClickListener> void addView(T view) {
-        LinearLayout container = (LinearLayout) ((Activity)view).findViewById(R.id.news_container);
-        TextView _teaser = new TextView(container.getContext());
-        _teaser.append(_title);
+        LinearLayout container = (LinearLayout)((Activity)view).findViewById(R.id.news_container);
+        _news = ((Activity)view).getLayoutInflater().inflate(R.layout.activity_news_element, null);
+
+        TextView _teaser = (TextView)_news.findViewById(R.id.article_element_title);
+        _teaser.setText(_title);
         _teaser.setOnClickListener(view);
-        container.addView(_teaser);
+
+        TextView _teaserDate = (TextView)_news.findViewById(R.id.article_element_date);
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(_date.getTime());
+        _teaserDate.setText(date);
+
+        container.addView(_news);
     }
 }

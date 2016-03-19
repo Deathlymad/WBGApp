@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
@@ -62,6 +63,7 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
 
     @Override
     protected void save(FileOutputStream file) throws IOException {
+        super.save(file);
         JSONArray arr = new JSONArray();
         if (!_newsStack.isEmpty())
             for (News n : _newsStack)
@@ -89,6 +91,11 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
                 e.printStackTrace();
             }
         }
+
+    @Override
+    protected void invalidate() {
+
+    }
 
     @Override
     public void onRefresh(){

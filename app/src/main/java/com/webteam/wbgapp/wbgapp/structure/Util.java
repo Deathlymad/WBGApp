@@ -10,6 +10,10 @@ class Util {
     {
         return new Date(tstamp * 1000L);
     }
+    public static Date getTStampFromDate(long tstamp)
+    {
+        return new Date(tstamp / 1000L);
+    }
 
     public static String unescUnicode(String str)
     {
