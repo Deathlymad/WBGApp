@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class SubstitutePlan extends BaseActivity {
+public class SubstitutePlanActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {

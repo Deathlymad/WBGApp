@@ -7,23 +7,41 @@ import org.apache.commons.net.ftp.FTPReply;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 /**
- * Created by Deathlymad on 19.03.2016 .
+ * Created by Deathlymad on 19.03.2016.
  */
-public class FTPRequest extends Thread {
+public abstract class FTPRequest extends Thread {
 
-    String _url, _user, _pw, _file, _targetFile;
+    public void setUrl(String url) {
+        _url = url;
+    }
 
-    public FTPRequest (String URL, String user, String pw, String file, String TargetFile){
+    public void setUser(String user) {
+        _user = user;
+    }
+
+    public void setPw(String pw) {
+        _pw = pw;
+    }
+
+    String _url, _user, _pw;
+
+    public FTPRequest (String URL, String user, String pw){
         _url = URL;
         _user = user;
         _pw = pw;
-        _file = file;
-        _targetFile = TargetFile;
     }
 
+
+
+    protected abstract void getFiles(FTPClient client);
+
+    @Override
     public void run()
     {
+        if (_url == null || _user == null || _pw == null)
+            return;
         try {
             FTPClient mFTPClient = new FTPClient();
             // connecting to the host
@@ -42,9 +60,7 @@ public class FTPRequest extends Thread {
                 mFTPClient.enterLocalPassiveMode();
             }
 
-            FileOutputStream desFileStream = new FileOutputStream(_targetFile);
-            mFTPClient.retrieveFile(_file, desFileStream);
-            desFileStream.close();
+            getFiles(mFTPClient);
 
             mFTPClient.logout();
             mFTPClient.disconnect();

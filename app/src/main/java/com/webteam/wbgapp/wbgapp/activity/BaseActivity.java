@@ -15,14 +15,9 @@ import android.widget.FrameLayout;
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.structure.SettingManager;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 // import com.webteam.wbgapp.wbgapp.activity.forum.ForumMessages;
 // import com.webteam.wbgapp.wbgapp.activity.forum.ForumNotification;
 
@@ -127,7 +122,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 i = new Intent(this, WBGApp.class);
                 break;
             case R.id.nav_substitute_plan:
-                i = new Intent(this, SubstitutePlan.class);
+                i = new Intent(this, SubstitutePlanActivity.class);
                 break;
             case R.id.nav_schedule:
                 i = new Intent(this, Schedules.class);

@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SubstitutePlan"
+            android:name=".activity.SubstitutePlanActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.Schedules"

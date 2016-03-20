@@ -18,12 +18,13 @@ public class Account {
     private String _pwHash;
 
 
-    public Account(String user) {
+    public Account(String user, String pw) {
         _username = user;
+        _pwHash = encryptPassword(pw);
     }
 
-    public void login(String pw) {
-        _pwHash = encryptPassword(pw);
+    public String getLogin() {
+        return "&user=" + _username + "&pw=" + _pwHash;
     }
 
     public String getName() {
