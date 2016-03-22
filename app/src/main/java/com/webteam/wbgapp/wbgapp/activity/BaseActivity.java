@@ -2,6 +2,7 @@ package com.webteam.wbgapp.wbgapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,13 +14,10 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.webteam.wbgapp.wbgapp.R;
-import com.webteam.wbgapp.wbgapp.structure.SettingManager;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-// import com.webteam.wbgapp.wbgapp.activity.forum.ForumMessages;
-// import com.webteam.wbgapp.wbgapp.activity.forum.ForumNotification;
 
 /**
  * Created by Deathlymad on 23.01.2016 .
@@ -27,9 +25,6 @@ import java.io.IOException;
 public abstract class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static boolean _activityInvalidation = false;
-
-    protected static final SettingManager settings = new SettingManager();
-
 
     protected abstract String getName();
     protected abstract void save(FileOutputStream file) throws IOException;
@@ -184,5 +179,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     public void invalidateChaches()
     {
+        _activityInvalidation = true;
+    }
+
+    protected SharedPreferences getSettings()
+    {
+        return getSharedPreferences("Settings", MODE_PRIVATE);
     }
 }

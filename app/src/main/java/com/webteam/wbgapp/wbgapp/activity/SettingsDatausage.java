@@ -1,5 +1,6 @@
 package com.webteam.wbgapp.wbgapp.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -41,11 +42,14 @@ public class SettingsDatausage extends BaseActivity implements CompoundButton.On
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        SharedPreferences.Editor settings = getSettings().edit();
         switch (buttonView.getId()) {
             case R.id.data_images_on_off:
-                //settings.setPreloadImages(isChecked);
+                settings.putBoolean("loadImages", isChecked);
+                break;
             case R.id.data_videos_on_off:
-                //SettingManager.instance.setPreloadVideos(isChecked);
+                settings.putBoolean("loadVideos", isChecked);
+                break;
         }
     }
 
