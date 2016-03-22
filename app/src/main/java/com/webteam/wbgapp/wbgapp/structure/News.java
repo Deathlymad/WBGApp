@@ -1,25 +1,18 @@
 package com.webteam.wbgapp.wbgapp.structure;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
+import com.webteam.wbgapp.wbgapp.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

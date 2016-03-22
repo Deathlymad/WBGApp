@@ -1,4 +1,4 @@
-package com.webteam.wbgapp.wbgapp.structure;
+package com.webteam.wbgapp.wbgapp.util;
 
         import org.apache.commons.lang.StringEscapeUtils;
 
