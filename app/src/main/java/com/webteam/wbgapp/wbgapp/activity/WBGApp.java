@@ -3,6 +3,7 @@ package com.webteam.wbgapp.wbgapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Layout;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,11 +31,12 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-
         _newsStack = new ArrayList<>();
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wbgapp);
-        ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setOnRefreshListener(this);
+        super.onCreate(savedInstanceState);
+        View layout = findViewById(R.id.swipe_container);
+        if (layout != null)
+            ((SwipeRefreshLayout)layout).setOnRefreshListener(this);
     }
 
     @Override

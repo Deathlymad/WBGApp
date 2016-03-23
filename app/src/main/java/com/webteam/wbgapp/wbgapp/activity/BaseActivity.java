@@ -32,16 +32,15 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_layout);
         loadFile();
+        super.onCreate(savedInstanceState);
     }
 
     @Override
-    protected void onDestroy()
+    protected void onPause()
     {
         saveFile();
-        super.onDestroy();
+        super.onPause();
     }
 
     @Override
