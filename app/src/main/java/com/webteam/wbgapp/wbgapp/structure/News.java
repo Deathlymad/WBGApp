@@ -56,7 +56,7 @@ public class News implements IRequest{
         JSONObject obj = new JSONObject();
         try {
             obj.put("id", _id);
-            obj.put("date", Util.getTStampFromDate(_date.getTime()).getTime());
+            obj.put("date", Util.getTStampFromDate(_date));
             obj.put("headline", Util.escUnicode(_title));
             obj.put("content", Util.escUnicode(_content));
         } catch (JSONException e) {

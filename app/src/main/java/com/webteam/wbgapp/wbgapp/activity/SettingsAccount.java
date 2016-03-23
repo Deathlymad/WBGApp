@@ -43,9 +43,7 @@ public class SettingsAccount extends BaseActivity {
             String name = ((TextView) findViewById(R.id.settings_registration_user)).getText().toString();
             assert ((TextView) findViewById(R.id.settings_registration_password)) != null;
             String pw = ((TextView) findViewById(R.id.settings_registration_password)).getText().toString();
-            Account acc = new Account(name);
-            acc.login(pw);
-            settings.setCurrAccount(acc);
+            Account acc = new Account(name, pw);
         }catch (NullPointerException e) {
             e.printStackTrace();
         }
