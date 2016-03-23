@@ -65,9 +65,9 @@ public class Event implements IRequest {
         JSONObject obj = new JSONObject();
         try {
             obj.put("id", _id);
-            obj.put("addTime", Util.getTStampFromDate(_addTime.getTime()).getTime());
-            obj.put("startTime", Util.getTStampFromDate(_startTime.getTime()).getTime());
-            obj.put("endTime", Util.getTStampFromDate(_endTime.getTime()).getTime());
+            obj.put("addTime", Util.getTStampFromDate(_addTime));
+            obj.put("startTime", Util.getTStampFromDate(_startTime));
+            obj.put("endTime", Util.getTStampFromDate(_endTime));
             obj.put("title", Util.escUnicode(_title));
             obj.put("author", _author);
             obj.put("teaser", Util.escUnicode(_teaser));
