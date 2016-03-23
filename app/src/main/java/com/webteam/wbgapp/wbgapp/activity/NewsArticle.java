@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class NewsArticle extends BaseActivity {
 
-    private String _title;
+    private String _title = "";
 
     @Override
     protected String getName() {
@@ -38,7 +38,7 @@ public class NewsArticle extends BaseActivity {
         String extra = getIntent().getStringExtra(WBGApp.requestTitle);
 
         try {
-            _title = (new JSONObject(extra)).getString("title");
+            _title = (new JSONObject(extra)).getString("headline");
         } catch (JSONException e) {
             e.printStackTrace();
         }
