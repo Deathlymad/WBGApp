@@ -9,7 +9,7 @@ import java.util.Date;
 public class Util {
 
     public static Date getDateFromString(String s) throws ParseException {
-        return new SimpleDateFormat("yyyy-MM-dd").parse(s);
+        return new SimpleDateFormat("dd.MM.yyyy").parse(s);
     }
     public static Date getDateFromTStamp(long tstamp)
     {

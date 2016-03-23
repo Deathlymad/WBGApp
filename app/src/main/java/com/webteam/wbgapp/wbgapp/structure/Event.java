@@ -92,7 +92,7 @@ public class Event implements IRequest {
         _teaser.setOnClickListener(view);
 
         TextView _teaserDate = (TextView)_event.findViewById(R.id.article_element_date);//TODO: needs to Change
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(_startTime.getTime());
+        String date = new SimpleDateFormat("dd.MM.yyyy").format(_startTime.getTime());
         _teaserDate.setText(date);
 
         container.addView(_event);

@@ -44,6 +44,6 @@ public class NewsArticle extends BaseActivity {
         }
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wbgapp);
+        setContentView(R.layout.activity_news_show_article);
     }
 }
