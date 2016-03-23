@@ -79,7 +79,7 @@ public class News implements IRequest{
         _teaser.setOnClickListener(view);
 
         TextView _teaserDate = (TextView)_news.findViewById(R.id.article_element_date);
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(_date.getTime());
+        String date = new SimpleDateFormat("dd.MM.yyyy").format(_date.getTime());
         _teaserDate.setText(date);
 
         container.addView(_news);
