@@ -8,6 +8,9 @@ import java.util.Date;
 
 public class Util {
 
+    public static String getStringFromTStamp(long date) throws ParseException {
+        return new SimpleDateFormat("dd.MM.yyyy").format(getDateFromTStamp(date));
+    }
     public static Date getDateFromString(String s) throws ParseException {
         return new SimpleDateFormat("dd.MM.yyyy").parse(s);
     }
