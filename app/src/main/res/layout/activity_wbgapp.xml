@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/news_container"
             android:orientation="vertical"
-            android:paddingTop="50dp">
+            android:paddingTop="55dp">
         </LinearLayout>
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>
