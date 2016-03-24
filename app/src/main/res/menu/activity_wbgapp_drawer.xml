@@ -9,7 +9,7 @@
 
         <item
             android:id="@+id/nav_events"
-            android:title="Events" />
+            android:title="@string/events_title" />
 
         <item
             android:id="@+id/nav_substitute_plan"
@@ -17,7 +17,7 @@
 
         <item
             android:id="@+id/nav_schedule"
-            android:title="Stundenplan" />
+            android:title="@string/schedule_title" />
 
         <!--<item android:title="@string/forum_section_title" android:textStyle="bold">
             <menu>

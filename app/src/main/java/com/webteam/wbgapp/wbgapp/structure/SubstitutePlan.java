@@ -8,6 +8,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * Created by Deathlymad on 20.03.2016 .
  */
 public class SubstitutePlan {
+
     public enum SubstitutionType {
         Entfall,
         Betreuung,
@@ -72,6 +74,9 @@ public class SubstitutePlan {
         NodeList nodes = e.getElementsByTagName("vertretung");
         for (int i = 0; i < nodes.getLength(); i++)
             _plan.add(new SubstituteEntry((Element)nodes.item(i)));
+    }
+
+    public void save(FileOutputStream file) {
     }
 
     public void getSubstitutionByClass()

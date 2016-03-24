@@ -71,7 +71,7 @@ public class News implements IRequest{
 
     public <T extends View.OnClickListener> void addView(T view) {
         LinearLayout container = (LinearLayout)((Activity)view).findViewById(R.id.news_container);
-        _news = ((Activity)view).getLayoutInflater().inflate(R.layout.activity_news_element, null);
+        _news = ((Activity)view).getLayoutInflater().inflate(R.layout.display_news_element, null);
 
         TextView _teaser = (TextView)_news.findViewById(R.id.article_element_title);
         _teaser.setText(_title);

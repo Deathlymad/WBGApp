@@ -13,7 +13,6 @@ import com.webteam.wbgapp.wbgapp.util.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -84,7 +83,7 @@ public class Event implements IRequest {
 
     public <T extends View.OnClickListener> void addView(T view) {
         LinearLayout container = (LinearLayout)((Activity)view).findViewById(R.id.news_container);
-        _event = ((Activity)view).getLayoutInflater().inflate(R.layout.activity_events_element, null);
+        _event = ((Activity)view).getLayoutInflater().inflate(R.layout.display_event_element, null);
 
         TextView _teaser = (TextView)_event.findViewById(R.id.event_element_title);
         _teaser.setText(_title);

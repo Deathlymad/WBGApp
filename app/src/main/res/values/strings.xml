@@ -5,6 +5,7 @@
     <string name="newsfeed_title">Neuigkeiten</string>
     <string name="substitute_plan_title">Vertretungsplan</string>
     <string name="schedule_title">Stundenplan</string>
+    <string name="events_title">Events</string>
 
     <!--<string name="forum_section_title">Forum</string>
     <string name="forum_notification_title">Benachrichtungen</string>
