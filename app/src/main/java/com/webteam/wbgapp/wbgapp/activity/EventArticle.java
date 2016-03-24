@@ -15,10 +15,9 @@ import java.io.IOException;
 import java.text.ParseException;
 
 /**
- * Created by Deathlymad on 15.03.2016.
+ * Created by Deathlymad on 24.03.2016 .
  */
-public class NewsArticle extends BaseActivity {
-
+public class EventArticle extends BaseActivity {
     private String _title = "";
 
     @Override
@@ -38,24 +37,23 @@ public class NewsArticle extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String extra = getIntent().getStringExtra(WBGApp.requestTitle);
+        String extra = getIntent().getStringExtra(EventSchedule.requestTitle);
         JSONObject _extra = null;
         try {
             _extra = new JSONObject(extra);
-            _title = Util.unescUnicode(_extra.getString("headline"));
+            _title = _extra.getString("title");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_show_article);
+        setContentView(R.layout.activity_events_show_event);
 
-        ((TextView)findViewById(R.id.show_article_title)).setText(_title);
+        ((TextView)findViewById(R.id.event_show_title)).setText(_title);
 
         try {
-            ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + Util.getStringFromTStamp(Long.parseLong(_extra.getString("date"))));
-            ((TextView)findViewById(R.id.show_article_text)).setText(_extra.getString("content")); //TODO no value
-        } catch (JSONException | ParseException e) {
+            ((TextView)findViewById(R.id.event_show_title)).setText(_extra.getString("teaser")); //TODO no value
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
         }
     }

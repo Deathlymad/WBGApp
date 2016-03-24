@@ -8,6 +8,10 @@
             android:title="@string/newsfeed_title" />
 
         <item
+            android:id="@+id/nav_events"
+            android:title="Events" />
+
+        <item
             android:id="@+id/nav_substitute_plan"
             android:title="@string/substitute_plan_title" />
 

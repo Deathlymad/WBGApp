@@ -97,7 +97,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Intent i = new Intent();
+        Intent i;
 
         switch (id) {
             case R.id.nav_news:
@@ -108,6 +108,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 break;
             case R.id.nav_schedule:
                 i = new Intent(this, Schedules.class);
+                break;
+            case R.id.nav_events:
+                i = new Intent(this, EventSchedule.class);
                 break;
 
             /*
@@ -127,6 +130,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 break;
             case R.id.nav_settings_datausage:
                 i = new Intent(this, SettingsDatausage.class);
+                break;
+            default:
+                i = new Intent();
                 break;
         }
 

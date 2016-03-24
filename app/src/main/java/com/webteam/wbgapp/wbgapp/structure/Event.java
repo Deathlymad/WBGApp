@@ -31,10 +31,9 @@ public class Event implements IRequest {
 
     View _event;
 
-
     public Event(JSONObject data) throws JSONException {
         _id = data.getInt("id");
-        _addTime = Util.getDateFromTStamp(data.getInt("addTime"));
+        _addTime = Util.getDateFromTStamp(Util.readInt("addTime", data));
         _startTime = Util.getDateFromTStamp(data.getLong("startTime"));
         _endTime = Util.getDateFromTStamp(data.getLong("endTime"));
         _title = Util.unescUnicode(data.getString("title"));
@@ -85,15 +84,11 @@ public class Event implements IRequest {
 
     public <T extends View.OnClickListener> void addView(T view) {
         LinearLayout container = (LinearLayout)((Activity)view).findViewById(R.id.news_container);
-        _event = ((Activity)view).getLayoutInflater().inflate(R.layout.activity_news_element, null);
+        _event = ((Activity)view).getLayoutInflater().inflate(R.layout.activity_events_element, null);
 
-        TextView _teaser = (TextView)_event.findViewById(R.id.article_element_title);
+        TextView _teaser = (TextView)_event.findViewById(R.id.event_element_title);
         _teaser.setText(_title);
         _teaser.setOnClickListener(view);
-
-        TextView _teaserDate = (TextView)_event.findViewById(R.id.article_element_date);//TODO: needs to Change
-        String date = new SimpleDateFormat("dd.MM.yyyy").format(_startTime.getTime());
-        _teaserDate.setText(date);
 
         container.addView(_event);
     }

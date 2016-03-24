@@ -28,6 +28,10 @@
         <activity
             android:name=".activity.NewsArticle"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.EventArticle"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.EventSchedule"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <!--<activity android:name=".activity.forum.ForumMessages"
             android:theme="@style/AppTheme.NoActionBar"></activity>
