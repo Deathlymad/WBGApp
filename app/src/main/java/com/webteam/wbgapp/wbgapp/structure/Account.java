@@ -10,12 +10,12 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Account {
 
-    private String _username;
+    private final String _username;
     private String _email;
     private Integer _grade;
     private Integer _formselector;
     private String _name;
-    private String _pwHash;
+    private final String _pwHash;
 
 
     public Account(String user, String pw) {
@@ -29,10 +29,6 @@ public class Account {
 
     public String getName() {
         return _name;
-    }
-
-    public void save(FileOutputStream fileHandle) {
-
     }
 
     private String encryptPassword(String password) {

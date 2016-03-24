@@ -3,7 +3,6 @@ package com.webteam.wbgapp.wbgapp.net;
 import android.os.AsyncTask;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +13,7 @@ import java.net.URL;
  */
 public class AttachmentHandler  extends AsyncTask<IRequest, Void, String> {
 
-    IRequest req;
+    private IRequest req;
 
     private void pullAttachment(String serverPath, String filePath) throws IOException
     {
@@ -23,7 +22,7 @@ public class AttachmentHandler  extends AsyncTask<IRequest, Void, String> {
         InputStream in = new BufferedInputStream(url.openStream());
         FileOutputStream fos = new FileOutputStream(filePath);
         byte[] buf = new byte[1024];
-        int n=0;
+        int n;
         while (-1!=(n=in.read(buf)))
         {
             fos.write(buf, 0, n);

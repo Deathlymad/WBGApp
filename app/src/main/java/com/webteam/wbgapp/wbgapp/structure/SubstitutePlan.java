@@ -43,7 +43,7 @@ public class SubstitutePlan {
 
     private class SubstituteEntry
     {
-        String grade, teacher, time, subject, room, commentary;
+        private final String grade, teacher, time, subject, room, commentary;
         SubstitutePlan.SubstitutionType type;
 
         SubstituteEntry(Element n)
@@ -76,11 +76,11 @@ public class SubstitutePlan {
 
     public void getSubstitutionByClass()
     {
-
+        //
     }
 
     public void getSubstitutionByPlan()
     {
-
+        //
     }
 }

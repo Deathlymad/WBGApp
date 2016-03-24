@@ -13,7 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -79,8 +78,7 @@ public class News implements IRequest{
         _teaser.setOnClickListener(view);
 
         TextView _teaserDate = (TextView)_news.findViewById(R.id.article_element_date);
-        String date = new SimpleDateFormat("dd.MM.yyyy").format(_date.getTime());
-        _teaserDate.setText(date);
+        _teaserDate.setText(Util.getStrngFromDate(_date));
 
         container.addView(_news);
     }

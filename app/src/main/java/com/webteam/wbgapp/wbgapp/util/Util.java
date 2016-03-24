@@ -10,6 +10,8 @@ import java.util.Date;
 
 public class Util {
 
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
     public static int readInt(String name, JSONObject obj) throws JSONException
     {
         String nbr = obj.getString(name);
@@ -20,11 +22,15 @@ public class Util {
             return Integer.parseInt(nbr);
     }
 
-    public static String getStringFromTStamp(long date) throws ParseException {
-        return new SimpleDateFormat("dd.MM.yyyy").format(getDateFromTStamp(date));
+    public static String getStringFromTStamp(long date) {
+        return dateFormat.format(getDateFromTStamp(date));
+    }
+    public static String getStrngFromDate(Date d)
+    {
+        return dateFormat.format(d);
     }
     public static Date getDateFromString(String s) throws ParseException {
-        return new SimpleDateFormat("dd.MM.yyyy").parse(s);
+        return dateFormat.parse(s);
     }
     public static Date getDateFromTStamp(long tstamp)
     {

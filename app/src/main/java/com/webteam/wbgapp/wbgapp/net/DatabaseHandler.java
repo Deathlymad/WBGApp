@@ -17,7 +17,7 @@ public class DatabaseHandler extends AsyncTask<IRequest, Void, String> {
     private Exception ex;
     private IRequest req;
 
-    private String getData(String... req) throws IOException, URISyntaxException {
+    private String getData(String... req) throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
         String link = "http://wbgapp.malte-projects.de/webservice.php?type=";
         for (String s : req)
