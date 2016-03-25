@@ -35,8 +35,14 @@ public class SettingsDatausage extends BaseActivity implements CompoundButton.On
     public void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.activity_settings_datausage);
-        ((Switch) findViewById(R.id.data_images_on_off)).setOnCheckedChangeListener(this);
-        ((Switch) findViewById(R.id.data_videos_on_off)).setOnCheckedChangeListener(this);
+
+        SharedPreferences settings = getSettings();
+        Switch temp = ((Switch) findViewById(R.id.data_images_on_off));
+            temp.setChecked(settings.getBoolean("loadImages", false));
+            temp.setOnCheckedChangeListener(this);
+        temp = ((Switch) findViewById(R.id.data_videos_on_off));
+            temp.setChecked(settings.getBoolean("loadVideos", false));
+            temp.setOnCheckedChangeListener(this);
         findViewById(R.id.button_invalidate).setOnClickListener(this);
     }
 
@@ -51,6 +57,7 @@ public class SettingsDatausage extends BaseActivity implements CompoundButton.On
                 settings.putBoolean("loadVideos", isChecked);
                 break;
         }
+        settings.apply();
     }
 
     @Override

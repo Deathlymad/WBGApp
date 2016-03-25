@@ -4,8 +4,6 @@ import com.webteam.wbgapp.wbgapp.util.Util;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.FileOutputStream;
@@ -66,9 +64,9 @@ public class SubstitutePlan {
     public SubstitutePlan(Document xmlSubstitues) throws ParseException {
         Element e = xmlSubstitues.getDocumentElement();
         String date;
-        date = e.getAttribute("jahr") + "-";
-        date += e.getAttribute("monat") + "-";
-        date += e.getAttribute("tag");
+        date = e.getAttribute("tag") + ".";
+        date += e.getAttribute("monat") + ".";
+        date += e.getAttribute("jahr");
         _date = Util.getDateFromString(date);
 
         NodeList nodes = e.getElementsByTagName("vertretung");

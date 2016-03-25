@@ -35,13 +35,29 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.activity_settings_notification);
 
-        ((Switch) findViewById(R.id.notification_general_on_off)).setOnCheckedChangeListener(this);
-        ((Switch) findViewById(R.id.notification_news_on_off)).setOnCheckedChangeListener(this);
-        ((Switch) findViewById(R.id.notification_place_lockscreen_on_off)).setOnCheckedChangeListener(this);
-        ((Switch) findViewById(R.id.notification_place_statusbar_on_off)).setOnCheckedChangeListener(this);
-        ((Switch) findViewById(R.id.notification_schedules_all_on_off)).setOnCheckedChangeListener(this);      //TODO: Schedules need to be implemented
-        ((Switch) findViewById(R.id.notification_schedules_selected_on_off)).setOnCheckedChangeListener(this); //TODO: needs to be fully implemented
-        ((Switch) findViewById(R.id.notification_substitute_plan_on_off)).setOnCheckedChangeListener(this);
+        Switch temp;
+        SharedPreferences settings = getSettings();
+        temp = ((Switch) findViewById(R.id.notification_general_on_off));
+            temp.setChecked(settings.getBoolean("notificationGeneral", true));
+            temp.setOnCheckedChangeListener(this);
+        temp = ((Switch) findViewById(R.id.notification_news_on_off));
+            temp.setChecked(settings.getBoolean("notificationNews", false));
+            temp.setOnCheckedChangeListener(this);
+        temp = ((Switch) findViewById(R.id.notification_place_lockscreen_on_off));
+            temp.setChecked(settings.getBoolean("notificationLockscreen", false));
+            temp.setOnCheckedChangeListener(this);
+        temp = ((Switch) findViewById(R.id.notification_place_statusbar_on_off));
+            temp.setChecked(settings.getBoolean("notificationStatusbar", false));
+            temp.setOnCheckedChangeListener(this);
+        temp = ((Switch) findViewById(R.id.notification_schedules_all_on_off));
+            temp.setChecked(settings.getBoolean("notificationSchedules", false));
+            temp.setOnCheckedChangeListener(this);      //TODO: Schedules need to be implemented
+        temp = ((Switch) findViewById(R.id.notification_schedules_selected_on_off));
+            temp.setChecked(settings.getBoolean("notificationSchedulesSelect", false));
+            temp.setOnCheckedChangeListener(this); //TODO: needs to be fully implemented
+        temp = ((Switch) findViewById(R.id.notification_substitute_plan_on_off));
+            temp.setChecked(settings.getBoolean("notificationSubstitution", false));
+            temp.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -70,5 +86,6 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
                 settings.putBoolean("notificationSubstitution", isChecked);
                 break;
         }
+        settings.apply();
     }
 }

@@ -38,15 +38,9 @@ public class SettingsAccount extends BaseActivity {
     }
 
     public void login(View view) {
-        try {
-            assert ((TextView) findViewById(R.id.settings_registration_user)) != null;
-            String name = ((TextView) findViewById(R.id.settings_registration_user)).getText().toString();
-            assert ((TextView) findViewById(R.id.settings_registration_password)) != null;
-            String pw = ((TextView) findViewById(R.id.settings_registration_password)).getText().toString();
-            Account acc = new Account(name, pw);
-        }catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        String name = ((TextView) findViewById(R.id.settings_registration_user)).getText().toString();
+        String pw = ((TextView) findViewById(R.id.settings_registration_password)).getText().toString();
+        Account acc = new Account(name, pw);
     }
 }
 

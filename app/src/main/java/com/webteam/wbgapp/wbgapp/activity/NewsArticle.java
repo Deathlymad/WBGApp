@@ -54,7 +54,7 @@ public class NewsArticle extends BaseActivity {
 
         try {
             ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + Util.getStringFromTStamp(Long.parseLong(_extra.getString("date"))));
-            ((TextView)findViewById(R.id.show_article_text)).setText(_extra.getString("content")); //TODO no value //TODO Webservice vervollständigen (Malte)
+            ((TextView)findViewById(R.id.show_article_text)).setText(_extra.getString("content")); //TODO no value
         } catch (JSONException e) {
             e.printStackTrace();
         }
