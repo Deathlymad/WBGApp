@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * Created by malte on 29.03.2016.
  */
+
 public class MailInbox extends BaseActivity{
 
     @Override
