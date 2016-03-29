@@ -30,14 +30,14 @@
                 android:layout_marginLeft="5dp" />
 
             <TextView
-                android:layout_width="163dp"
+                android:layout_width="222dp"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_registration_desc"
                 android:id="@+id/settings_registration_desc"
                 android:layout_gravity="right|top"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="30dp" />
+                android:layout_marginBottom="0dp" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -47,7 +47,6 @@
                 android:id="@+id/settings_registration_user"
                 android:layout_gravity="center_horizontal|bottom"
                 android:singleLine="true"
-                android:text="E-Mail"
                 android:password="false"
                 android:phoneNumber="false"
                 android:linksClickable="false"
@@ -56,7 +55,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:textColor="@color/defaultLightgrey" />
+                android:textColor="@color/defaultLightgrey"
+                android:textStyle="italic"
+                android:textIsSelectable="false"
+                android:hint="E-Mail Adresse"/>
 
         </FrameLayout>
 
@@ -81,12 +83,13 @@
             android:singleLine="true"
             android:password="true"
             android:editable="true"
-            android:text="12345"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_below="@+id/settings_registration"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/defaultLightgrey" />
+            android:textColor="@color/defaultLightgrey"
+            android:textStyle="italic"
+            android:hint="*********"/>
 
     </RelativeLayout>
 </ScrollView>
