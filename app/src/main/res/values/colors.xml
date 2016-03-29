@@ -13,6 +13,7 @@
     <color name="DefaultDargrey">#333333</color>
     <color name="defaultGrey">#666666</color>
     <color name="defaultLightgrey">#999999</color>
+    <color name="defaultBlack">#000000</color>
     <color name="defaultText">#000000</color>
     <color name="defaultWhite">#FFFFFF</color>
 
