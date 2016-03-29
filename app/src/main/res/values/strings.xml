@@ -31,6 +31,10 @@
     <string name="TextLoginButton">Login</string>
     <string name="registration_title">Log In</string>
     <string name="settings_registration_desc">Melde dich hier mit deiner E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)</string>
+    <string name="mail_description">Alle deine E-Mails werden hier aufgelistet, sobald du dich mit deinem WBGym Account in der Ap angemeldet hast. </string>
+    <string name="mail_description_warning">E-Mails können hier nur gelesen und nicht geschrieben werden!</string>
+
+
 
     Artikel anzeigen:
     <string name="showmedia">Zu diesem Artikel sind Bilder/Videos vorhanden. Tippe hier, um die Elemente anzuzeigen.</string>
