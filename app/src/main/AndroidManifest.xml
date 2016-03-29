@@ -32,6 +32,8 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.EventSchedule"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.MailInbox"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <!--<activity android:name=".activity.forum.ForumMessages"
             android:theme="@style/AppTheme.NoActionBar"></activity>
