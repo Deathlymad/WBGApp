@@ -15,13 +15,11 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_datausage_images"
             android:id="@+id/data_images_on_off"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="120dp"
             android:layout_marginLeft="5dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/textView6" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -29,11 +27,11 @@
             android:text="@string/settings_datausage_videos"
             android:id="@+id/data_videos_on_off"
             android:layout_below="@+id/data_images_on_off"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="0dp"
+            android:layout_alignStart="@+id/data_images_on_off"
+            android:layout_alignEnd="@+id/data_images_on_off" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,6 +53,7 @@
             android:text="Invalidate Caches"
             android:id="@+id/button_invalidate"
             android:layout_below="@+id/data_videos_on_off"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
     </RelativeLayout>
 </ScrollView>
