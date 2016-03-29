@@ -30,10 +30,10 @@
         <!--<item android:title="@string/forum_section_title" android:textStyle="bold">
             <menu>
                 <item
-                    android:id="@+id/nav_send"
+                    android:id="@+id/nav_forum_notifications"
                     android:title="@string/forum_notification_title" />
                 <item
-                    android:id="@+id/nav_messages"
+                    android:id="@+id/nav_forum_messages"
                     android:title="@string/forum_messages_title"
                     />
             </menu>

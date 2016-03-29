@@ -1,7 +1,5 @@
 package com.webteam.wbgapp.wbgapp.net;
 
-import android.support.annotation.NonNull;
-
 import org.apache.commons.net.pop3.*;
 
 import java.io.IOException;
@@ -14,11 +12,21 @@ import java.nio.CharBuffer;
 public class EMailClient {
     private POP3Client client;
 
-    EMailClient() throws IOException
+    EMailClient(String user, String pw) throws IOException
     {
         client = new POP3Client();
-        client.connect("");
-        client.login("", "");
+        client.connect("w00b1389.kasserver.com");
+        client.login(user, pw);
+    }
+
+    public POP3MessageInfo[] getEMailData() throws IOException
+    {
+        return client.listMessages();
+    }
+
+    public int getEMailAmt() throws IOException
+    {
+        return getEMailData().length;
     }
 
     public CharBuffer getEmail(int id) throws IOException
@@ -33,7 +41,7 @@ public class EMailClient {
                 return buffer;
             else
                 System.err.println("Bytes disappeared while reading E-Mail O.o");
-                //bytes disappeared
+                //bytes disappeared,
         }
         return null;
     }

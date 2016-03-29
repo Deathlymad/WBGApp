@@ -8,6 +8,7 @@ import org.w3c.dom.NodeList;
 
 import java.io.FileOutputStream;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class SubstitutePlan {
     }
 
     private List<SubstituteEntry> _plan;
+    private ArrayList<Integer> classSort;
     private Date _date;
 
     public SubstitutePlan(Document xmlSubstitues) throws ParseException {
