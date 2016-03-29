@@ -15,10 +15,9 @@
             android:layout_height="197dp"
             android:padding="3dp"
             android:id="@+id/settings_registration"
-            android:layout_alignParentLeft="true"
             android:layout_marginLeft="0dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp">
+            android:layout_alignParentStart="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -30,13 +29,23 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp" />
 
+            <TextView
+                android:layout_width="163dp"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_registration_desc"
+                android:id="@+id/settings_registration_desc"
+                android:layout_gravity="right|top"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="30dp" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName|text"
                 android:ems="10"
                 android:id="@+id/settings_registration_user"
-                android:layout_gravity="left|center_vertical"
+                android:layout_gravity="center_horizontal|bottom"
                 android:singleLine="true"
                 android:text="E-Mail"
                 android:password="false"
@@ -45,30 +54,6 @@
                 android:editable="true"
                 android:clickable="false"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
-
-            <TextView
-                android:layout_width="163dp"
-                android:layout_height="86dp"
-                android:text="@string/settings_registration_desc"
-                android:id="@+id/settings_registration_desc"
-                android:layout_gravity="right|top"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="10dp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/settings_registration_password"
-                android:layout_gravity="left|bottom"
-                android:singleLine="true"
-                android:password="true"
-                android:editable="true"
-                android:text="12345"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp" />
 
@@ -81,10 +66,25 @@
             android:id="@+id/settings_registration_confirm"
             android:onClick="login"
             android:layout_column="9"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/settings_registration_password"
+            android:layout_alignEnd="@+id/settings_registration_password" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/settings_registration_password"
+            android:layout_gravity="left|bottom"
+            android:singleLine="true"
+            android:password="true"
+            android:editable="true"
+            android:text="12345"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_below="@+id/settings_registration"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="5dp" />
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 </ScrollView>
