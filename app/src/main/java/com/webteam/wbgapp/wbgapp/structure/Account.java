@@ -23,10 +23,6 @@ public class Account {
         _pwHash = encryptPassword(pw);
     }
 
-    public String getLogin() {
-        return "&user=" + _username + "&pw=" + _pwHash;
-    }
-
     public String getName() {
         return _name;
     }
