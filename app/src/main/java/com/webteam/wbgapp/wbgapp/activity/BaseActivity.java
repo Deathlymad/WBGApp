@@ -29,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     protected abstract String getName();
     protected abstract void save(FileOutputStream file) throws IOException;
     protected abstract void load(FileInputStream file) throws IOException;
+    protected boolean needsFile(){ return true;}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     private void saveFile()
     {
-
+        if (!needsFile())
+            return;
         try {
             if (!_activityInvalidation) {
                 FileOutputStream out = openFileOutput(getName(), Context.MODE_PRIVATE);
@@ -164,6 +166,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     private void loadFile()
     {
+        if (!needsFile())
+            return;
         try {
             FileInputStream in = openFileInput(getName());
             load(in);

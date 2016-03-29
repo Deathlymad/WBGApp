@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
 import com.webteam.wbgapp.wbgapp.util.Util;
 
@@ -31,11 +32,12 @@ public class News implements IRequest{
         _id = data.getInt("id");
         _date = Util.getDateFromTStamp(data.getLong("date"));
         _title = Util.unescUnicode(data.getString("headline"));
+        new DatabaseHandler().execute(this);
     }
 
     @Override
     public String[] getRequest() {
-        return new String[]{"articlecontent&id=" + _id + "&images=false"};
+        return new String[]{"newscontent&id=" + _id + "&images=false"};
     }
 
     @Override

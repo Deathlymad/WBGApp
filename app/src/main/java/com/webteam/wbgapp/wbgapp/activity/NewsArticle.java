@@ -25,6 +25,11 @@ public class NewsArticle extends BaseActivity {
     protected String getName() {
         return _title;
     }
+    @Override
+    protected boolean needsFile()
+    {
+        return false;
+    }
 
     @Override
     protected void save(FileOutputStream file) throws IOException {
@@ -54,7 +59,7 @@ public class NewsArticle extends BaseActivity {
 
         try {
             ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + Util.getStringFromTStamp(Long.parseLong(_extra.getString("date"))));
-            ((TextView)findViewById(R.id.show_article_text)).setText(_extra.getString("content")); //TODO no value
+            ((TextView)findViewById(R.id.show_article_text)).setText(new JSONObject(Util.unescUnicode(_extra.getString("content"))).getString("text"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
