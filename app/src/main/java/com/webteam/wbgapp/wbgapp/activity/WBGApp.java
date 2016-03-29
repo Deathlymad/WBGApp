@@ -154,8 +154,10 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.news_button_reload)
-        {
-            new NewsRequest(this, _newsStack.get(_newsStack.size() - 1).getTime());
+        {   if (_newsStack.size() > 0)
+                new NewsRequest(this, _newsStack.get(_newsStack.size() - 1).getTime());
+            else
+                new NewsRequest(this);
         }
         else {
             TextView entry = (TextView) v;
