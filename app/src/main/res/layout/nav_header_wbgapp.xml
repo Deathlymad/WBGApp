@@ -31,17 +31,16 @@
             android:id="@+id/textView4"
             android:layout_above="@+id/textView"
             android:layout_toRightOf="@+id/imageView"
-            android:layout_marginLeft="31dp"
             android:layout_marginStart="31dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:src="@drawable/logo"
+            android:src="@drawable/scan_transparent_white"
             android:focusable="false"
             android:adjustViewBounds="false"
             android:foregroundGravity="center"
