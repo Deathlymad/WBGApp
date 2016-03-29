@@ -30,7 +30,7 @@
     Elementinhalte:
     <string name="TextLoginButton">Login</string>
     <string name="registration_title">Log In</string>
-    <string name="settings_registration_desc">Melde dich hier mit deiner WbGym E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)\nDu musst dich nur einmal hier anmelden.</string>
+    <string name="settings_registration_desc">Melde dich hier mit deiner WbGym E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)\nDie Anmeldung erfolgt einmalig und wird dann gespeichert.</string>
     <string name="mail_description">Alle deine E-Mails werden hier aufgelistet, sobald du dich mit deinem WBGym Account in der App angemeldet hast. </string>
     <string name="mail_description_warning">E-Mails können hier nur gelesen und nicht geschrieben werden!</string>
 
