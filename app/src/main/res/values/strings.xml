@@ -15,6 +15,10 @@
     <string name="mail_section_title">E-Mails</string>
     <string name="mail_inbox">Posteingang</string>
 
+    Vertretungsplan:
+    <string name="subsitute_plan_condition">Der Vertretungsplan wird nur angezeigt, wenn du dich mit deinem WbGym Account angemeldet hast!</string>
+    <string name="subsitute_plan_description">Wische auf dem Bildschirm nach links oder rechts, um zu deiner Klassenstufe zu gelangen. </string>
+
     Forum:
     <!--<string name="forum_section_title">Forum</string>
     <string name="forum_notification_title">Benachrichtungen</string>

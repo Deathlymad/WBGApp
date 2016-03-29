@@ -15,4 +15,6 @@
     <color name="defaultLightgrey">#999999</color>
     <color name="defaultText">#000000</color>
     <color name="defaultWhite">#FFFFFF</color>
+
+    <color name="warning">#CE5454</color>
 </resources>
