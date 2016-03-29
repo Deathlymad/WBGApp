@@ -7,10 +7,16 @@
     <string name="schedule_title">Stundenplan</string>
     <string name="events_title">Events</string>
 
+    E-Mails:
+    <string name="mail_section_title">E-Mails</string>
+    <string name="mail_posteingang">Posteingang</string>
+
+    Forum:
     <!--<string name="forum_section_title">Forum</string>
     <string name="forum_notification_title">Benachrichtungen</string>
     <string name="forum_messages_title">Messages</string>-->
 
+    Einstellungen:
     <string name="settings_section_title">Einstellungen</string>
     <string name="settings_general_title">Login</string>
     <string name="settings_account_title">Accounteinstellungen</string>
