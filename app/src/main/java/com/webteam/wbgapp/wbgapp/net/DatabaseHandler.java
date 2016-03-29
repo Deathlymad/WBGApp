@@ -28,9 +28,9 @@ public class DatabaseHandler extends AsyncTask<IRequest, Void, String> {
         try {
             BufferedReader reader =new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
             String line;
-            reader.readLine(); //pull the meta charset first
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
-                sb.append(line);
+                    sb.append(line);
             }
         } catch (Exception e) { e.printStackTrace(); }
 
