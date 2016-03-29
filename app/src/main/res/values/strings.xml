@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WBGApp</string>
+    <string name="app_name">WbgApp</string>
 
     Nav Titles
     <string name="newsfeed_title">Neuigkeiten</string>
