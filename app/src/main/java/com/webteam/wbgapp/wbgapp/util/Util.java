@@ -25,7 +25,7 @@ public class Util {
     public static String getStringFromTStamp(long date) {
         return dateFormat.format(getDateFromTStamp(date));
     }
-    public static String getStrngFromDate(Date d)
+    public static String getStringFromDate(Date d)
     {
         return dateFormat.format(d);
     }

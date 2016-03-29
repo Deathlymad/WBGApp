@@ -69,8 +69,17 @@ public class News implements IRequest{
         return _title;
     }
 
+    public long getTime()
+    {
+        return Util.getTStampFromDate(_date);
+    }
+
+    public View getView()
+    {
+        return _news;
+    }
+
     public <T extends View.OnClickListener> void addView(T view) {
-        LinearLayout container = (LinearLayout)((Activity)view).findViewById(R.id.news_container);
         _news = ((Activity)view).getLayoutInflater().inflate(R.layout.display_news_element, null);
 
         TextView _teaser = (TextView)_news.findViewById(R.id.article_element_title);
@@ -78,8 +87,9 @@ public class News implements IRequest{
         _teaser.setOnClickListener(view);
 
         TextView _teaserDate = (TextView)_news.findViewById(R.id.article_element_date);
-        _teaserDate.setText(Util.getStrngFromDate(_date));
+        _teaserDate.setText(Util.getStringFromDate(_date));
 
-        container.addView(_news);
+        LinearLayout list = ((LinearLayout)((Activity)view).findViewById(R.id.news_container));
+        list.addView(_news, list.getChildCount() - 1);
     }
 }

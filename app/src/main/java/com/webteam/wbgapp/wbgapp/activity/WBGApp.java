@@ -1,12 +1,21 @@
 package com.webteam.wbgapp.wbgapp.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Layout;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
@@ -21,12 +30,58 @@ import org.json.JSONObject;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.ref.Reference;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+@TargetApi(Build.VERSION_CODES.M)
+public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private ArrayList<News> _newsStack;
     public static final String requestTitle = "com.webteam.wbgapp.wbgapp.NEWS";
+
+    private class NewsRequest implements IRequest
+    {
+        long _tstamp;
+        WBGApp ref;
+
+        public NewsRequest(WBGApp r)
+        {
+            ref = r;
+            _tstamp = Calendar.getInstance().getTimeInMillis();
+            DatabaseHandler hand = new DatabaseHandler();
+            hand.execute(this);
+        }
+
+        public NewsRequest(WBGApp r, long tStamp)
+        {
+            ref = r;
+            _tstamp = tStamp;
+            DatabaseHandler hand = new DatabaseHandler();
+            hand.execute(this);
+        }
+
+        @Override
+        public String[] getRequest() {
+            return new String[]{"news&tstamp=" + Long.toString(_tstamp)};
+        }
+
+        @Override
+        public void handleResults(String... result) {
+            String res = result[0];
+            try {
+                JSONArray newsList = new JSONArray(res);
+                for (int i = 0; i < 10; i++) {
+                    ref.addNewsToStack(new News(newsList.getJSONObject(i)));
+                }
+            } catch (JSONException | NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -35,27 +90,12 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
         setContentView(R.layout.activity_wbgapp);
         super.onCreate(savedInstanceState);
         View layout = findViewById(R.id.swipe_container);
-        if (layout != null)
-            ((SwipeRefreshLayout)layout).setOnRefreshListener(this);
-    }
 
-    @Override
-    public String[] getRequest() {
-        return new String[]{"news"};
-    }
 
-    @Override
-    public void handleResults(String... result) {
-        String res = result[0];
-        _newsStack.clear(); //rewrite NewsFeed
-        try {
-            JSONArray newsList = new JSONArray(res);
-            for (int i = 0; i < 10; i++) {
-                addNewsToStack(new News(newsList.getJSONObject(i)));
-            }
-        } catch (JSONException | NullPointerException e) {
-            e.printStackTrace();
-        }
+        Button bt = (Button)layout.findViewById(R.id.news_button_reload);
+        bt.setOnClickListener(this);
+
+        ((SwipeRefreshLayout)layout).setOnRefreshListener(this);
     }
 
     @Override
@@ -98,8 +138,11 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
         try {
             ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(true);
             if (!((SwipeRefreshLayout) findViewById(R.id.swipe_container)).canChildScrollUp()) {
-                DatabaseHandler hand = new DatabaseHandler();
-                hand.execute(this);
+                LinearLayout list = (LinearLayout)findViewById(R.id.news_container);
+                for (News n : _newsStack)
+                    list.removeViewInLayout(n.getView());
+                _newsStack.clear();
+                new NewsRequest(this);
             }
             ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(false);
         }catch(NullPointerException e)
@@ -110,20 +153,25 @@ public class WBGApp extends BaseActivity implements IRequest, SwipeRefreshLayout
 
     @Override
     public void onClick(View v) {
-        TextView entry = (TextView) v;
-        News article = null;
-        for (News n : _newsStack) //probably needs faster approach
+        if (v.getId() == R.id.news_button_reload)
+        {
+            new NewsRequest(this, _newsStack.get(_newsStack.size() - 1).getTime());
+        }
+        else {
+            TextView entry = (TextView) v;
+            News article = null;
+            for (News n : _newsStack) //probably needs faster approach
             {
                 String a = n.getTitle();
                 String b = entry.getText().toString();
-                if ( a.equals(b))
+                if (a.equals(b))
                     article = n;
             }
-        if (article != null)
-        {
-            Intent i = new Intent(this, NewsArticle.class);
-            i.putExtra(requestTitle, article.toString());
-            startActivity(i);
+            if (article != null) {
+                Intent i = new Intent(this, NewsArticle.class);
+                i.putExtra(requestTitle, article.toString());
+                startActivity(i);
+            }
         }
     }
 

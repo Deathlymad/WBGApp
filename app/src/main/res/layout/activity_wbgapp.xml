@@ -15,6 +15,10 @@
             android:id="@+id/news_container"
             android:orientation="vertical"
             android:paddingTop="55dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/news_button_reload"/>
         </LinearLayout>
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>
