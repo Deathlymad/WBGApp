@@ -19,6 +19,14 @@
             android:id="@+id/nav_schedule"
             android:title="@string/schedule_title" />
 
+        <item android:title="@string/mail_section_title">
+            <menu>
+                <item
+                    android:id="@+id/mail_inbox"
+                    android:title="@string/mail_inbox" />
+            </menu>
+        </item>
+
         <!--<item android:title="@string/forum_section_title" android:textStyle="bold">
             <menu>
                 <item

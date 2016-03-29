@@ -9,7 +9,7 @@
 
     E-Mails:
     <string name="mail_section_title">E-Mails</string>
-    <string name="mail_posteingang">Posteingang</string>
+    <string name="mail_inbox">Posteingang</string>
 
     Forum:
     <!--<string name="forum_section_title">Forum</string>
