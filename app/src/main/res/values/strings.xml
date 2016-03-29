@@ -7,6 +7,10 @@
     <string name="schedule_title">Stundenplan</string>
     <string name="events_title">Events</string>
 
+    News:
+    <string name="reload_button_news">ältere Artikel laden</string>
+    <string name="reload_button_events">weitere Events laden</string>
+
     E-Mails:
     <string name="mail_section_title">E-Mails</string>
     <string name="mail_inbox">Posteingang</string>

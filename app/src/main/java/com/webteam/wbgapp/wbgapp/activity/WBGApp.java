@@ -1,21 +1,11 @@
 package com.webteam.wbgapp.wbgapp.activity;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.Layout;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
@@ -35,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-@TargetApi(Build.VERSION_CODES.M)
 public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private ArrayList<News> _newsStack;

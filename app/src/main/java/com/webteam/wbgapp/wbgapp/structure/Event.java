@@ -89,6 +89,10 @@ public class Event implements IRequest {
         _teaser.setText(_title);
         _teaser.setOnClickListener(view);
 
-        container.addView(_event);
+        container.addView(_event, 0);
+    }
+
+    public long getTime() {
+        return Util.getTStampFromDate(_startTime);
     }
 }
