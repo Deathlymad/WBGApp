@@ -11,7 +11,6 @@ import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
 import com.webteam.wbgapp.wbgapp.structure.Event;
-import com.webteam.wbgapp.wbgapp.structure.News;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +26,8 @@ import java.util.Calendar;
  * Created by Deathlymad on 24.03.2016 .
  */
 public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+
+    //TODO: Bugfix: Bei "Weitere Events laden" -> Accounteinstellungen || News ????
 
     private ArrayList<Event> _eventStack;
     public static final String requestTitle = "com.webteam.wbgapp.wbgapp.EVENTS";
