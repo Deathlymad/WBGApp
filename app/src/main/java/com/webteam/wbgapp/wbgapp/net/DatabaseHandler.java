@@ -12,12 +12,11 @@ import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 
-public class DatabaseHandler extends AsyncTask<IRequest, Void, String> {
+public class DatabaseHandler extends AsyncTask<IRequest, Void, Void> {
 
-    private Exception ex;
-    private IRequest req;
+    private String s;
 
-    private String getData(String... req) throws IOException {
+    private void getData(String... req) throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
         String link = "http://wbgapp.malte-projects.de/webservice.php?type=";
         for (String s : req)
@@ -34,24 +33,18 @@ public class DatabaseHandler extends AsyncTask<IRequest, Void, String> {
             }
         } catch (Exception e) { e.printStackTrace(); }
 
-        return sb.toString();
+        s =  sb.toString();
     }
 
     @Override
-    protected String doInBackground(IRequest... params) {
+    protected Void doInBackground(IRequest... params) {
         try {
-            req = params[0];
-            return getData(req.getRequest());
-        } catch (Exception e) {
-           ex = e;
-        }
-        return null;
-    }
+            IRequest req = params[0];
+            getData(req.getRequest());
 
-    @Override
-    protected void onPostExecute(String res) {
-        super.onPostExecute(res);
-        if (req != null)
-            req.handleResults(res);
+            if (req != null)
+                req.handleResults(s);
+        } catch (Exception e) {}
+        return null;
     }
 }

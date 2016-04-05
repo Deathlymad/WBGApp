@@ -140,7 +140,10 @@ public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.On
     public void onClick(View v) {
         if (v.getId() == R.id.news_button_reload)
         {
-            new EventRequest(this, _eventStack.get(0).getTime());
+            if (_eventStack.size() > 0)
+                new EventRequest(this, _eventStack.get(0).getTime());
+            else
+                new EventRequest(this);
         } else
         {
             TextView entry = (TextView) v;

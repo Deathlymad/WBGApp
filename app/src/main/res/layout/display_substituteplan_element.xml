@@ -205,6 +205,6 @@
         android:layout_alignParentEnd="true"
         android:textColor="@color/defaultText"
         android:background="@color/defaultBlack"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp" /> <!-- Best sheGen of da World ^^ -->
 
 </RelativeLayout>
