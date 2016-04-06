@@ -107,8 +107,9 @@ public class SubstitutePlanActivity extends BaseActivity implements IRequest {
     public void handleResults(String... result) {
         try {
             JSONObject json = new JSONObject(result[0]);
-            puller = new PlanPuller(this, "http://wbgym.de/files/vertretungsplan/public/2016-04-05.xml");
-            puller.start();//json.getString("today")
+            String str = json.getString("today").toString();
+            puller = new PlanPuller(this, "http://wbgym.de/files/vertretungsplan/public/" + str.substring(str.lastIndexOf("/")));
+            puller.start();//
         } catch (JSONException e) {
             e.printStackTrace();
         }

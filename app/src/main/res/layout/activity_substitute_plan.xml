@@ -27,14 +27,15 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/sub_list"/>
+            android:id="@+id/sub_list"
+            android:layout_below="@id/textView5"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/subsitute_plan_condition"
             android:id="@+id/substitute_warning_text"
-            android:layout_below="@+id/textView5"
+            android:layout_below="@+id/sub_list"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
