@@ -1,11 +1,14 @@
 package com.webteam.wbgapp.wbgapp.structure;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.activity.NewsArticle;
+import com.webteam.wbgapp.wbgapp.activity.WBGApp;
 import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
 import com.webteam.wbgapp.wbgapp.util.Util;
@@ -19,16 +22,17 @@ import java.util.Date;
 /**
  * Created by Deathlymad on 16.01.2016.
  */
-public class News implements IRequest{
+public class News implements IRequest, View.OnClickListener {
     private int _id;
     private Date _date;
     private String _title;
-
+    private Activity _activity;
     private String _content;
 
-    private View _news;
+    public static final String requestTitle = "com.webteam.wbgapp.wbgapp.NEWS";
 
-    public News(JSONObject data) throws JSONException {
+    public News(Activity ac, JSONObject data) throws JSONException {
+        _activity = ac;
         _id = data.getInt("id");
         _date = Util.getDateFromTStamp(data.getLong("date"));
         _title = Util.unescUnicode(data.getString("headline"));
@@ -71,27 +75,18 @@ public class News implements IRequest{
         return _title;
     }
 
+    public String getDateString()
+    {
+        return Util.getStringFromDate(_date);
+    }
+
     public long getTime()
     {
         return Util.getTStampFromDate(_date);
     }
 
-    public View getView()
-    {
-        return _news;
-    }
-
-    public <T extends View.OnClickListener> void addView(T view) {
-        _news = ((Activity)view).getLayoutInflater().inflate(R.layout.display_news_element, null);
-
-        TextView _teaser = (TextView)_news.findViewById(R.id.article_element_title);
-        _teaser.setText(_title);
-        _teaser.setOnClickListener(view);
-
-        TextView _teaserDate = (TextView)_news.findViewById(R.id.article_element_date);
-        _teaserDate.setText(Util.getStringFromDate(_date));
-
-        LinearLayout list = ((LinearLayout)((Activity)view).findViewById(R.id.news_container));
-        list.addView(_news, list.getChildCount() - 1);
+    @Override
+    public void onClick(View v) {
+        ((WBGApp)_activity).createArticle(this);
     }
 }

@@ -81,18 +81,11 @@ public class Event implements IRequest {
         return _title;
     }
 
-    public <T extends View.OnClickListener> void addView(T view) {
-        LinearLayout container = (LinearLayout)((Activity)view).findViewById(R.id.news_container);
-        _event = ((Activity)view).getLayoutInflater().inflate(R.layout.display_event_element, null);
-
-        TextView _teaser = (TextView)_event.findViewById(R.id.event_element_title);
-        _teaser.setText(_title);
-        _teaser.setOnClickListener(view);
-
-        container.addView(_event, 0);
-    }
-
     public long getTime() {
         return Util.getTStampFromDate(_startTime);
+    }
+
+    public String getDateString() {
+        return Util.getStringFromDate(_startTime);
     }
 }

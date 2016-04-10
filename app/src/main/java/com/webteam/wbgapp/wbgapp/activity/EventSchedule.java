@@ -78,9 +78,6 @@ public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.On
     {
         _eventStack = new ArrayList<>();
         setContentView(R.layout.activity_wbgapp);
-        Button reloader = ((Button)findViewById(R.id.news_button_reload));
-        reloader.setText(R.string.reload_button_events);
-        reloader.setOnClickListener(this);
         super.onCreate(savedInstanceState);
         View layout = findViewById(R.id.swipe_container);
         if (layout != null)
@@ -139,35 +136,25 @@ public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.On
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.news_button_reload)
+        TextView entry = (TextView) v;
+        Event article = null;
+        for (Event n : _eventStack) //probably needs faster approach
         {
-            if (_eventStack.size() > 0)
-                new EventRequest(this, _eventStack.get(0).getTime());
-            else
-                new EventRequest(this);
-        } else
+            String a = n.getTitle();
+            String b = entry.getText().toString();
+            if ( a.equals(b))
+                article = n;
+        }
+        if (article != null)
         {
-            TextView entry = (TextView) v;
-            Event article = null;
-            for (Event n : _eventStack) //probably needs faster approach
-            {
-                String a = n.getTitle();
-                String b = entry.getText().toString();
-                if ( a.equals(b))
-                    article = n;
-            }
-            if (article != null)
-            {
-                Intent i = new Intent(this, EventArticle.class);
-                i.putExtra(requestTitle, article.toString());
-                startActivity(i);
-            }
+            Intent i = new Intent(this, EventArticle.class);
+            i.putExtra(requestTitle, article.toString());
+            startActivity(i);
         }
     }
 
     private void addEventToStack(Event e)
     {
         _eventStack.add( 0, e);
-        e.addView(this);
     }
 }

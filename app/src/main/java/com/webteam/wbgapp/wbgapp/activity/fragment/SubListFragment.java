@@ -76,10 +76,4 @@ public class SubListFragment extends android.support.v4.app.ListFragment{
             adapter = new SubListAdapter(getActivity(), R.layout.element_layout, R.id.TV_class, Substitutions == null ? new ArrayList<String>() : Substitutions);
         setListAdapter(adapter);
     }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Log.i("FragmentList", "Item clicked: " + id);
-    }
-
 }

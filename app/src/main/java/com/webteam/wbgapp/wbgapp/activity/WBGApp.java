@@ -6,9 +6,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.activity.fragment.NewsListAdapter;
 import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
 import com.webteam.wbgapp.wbgapp.structure.News;
@@ -25,10 +27,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    private ArrayList<News> _newsStack;
-    public static final String requestTitle = "com.webteam.wbgapp.wbgapp.NEWS";
+    private NewsListAdapter _newsStack;
 
     private class NewsRequest implements IRequest
     {
@@ -62,7 +63,9 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
             try {
                 JSONArray newsList = new JSONArray(res);
                 for (int i = 0; i < 10; i++) {
-                    ref.addNewsToStack(new News(newsList.getJSONObject(i)));
+                    JSONObject obj = newsList.getJSONObject(i);
+                    News n = new News( ref, obj);
+                    ref.addNews(n);
                 }
             } catch (JSONException | NullPointerException e) {
                 e.printStackTrace();
@@ -75,16 +78,11 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        _newsStack = new ArrayList<>();
+        _newsStack = new NewsListAdapter( this, R.layout.display_news_element, R.id.article_element_title, new ArrayList<News>());
         setContentView(R.layout.activity_wbgapp);
         super.onCreate(savedInstanceState);
-        View layout = findViewById(R.id.swipe_container);
-
-
-        Button bt = (Button)layout.findViewById(R.id.news_button_reload);
-        bt.setOnClickListener(this);
-
-        ((SwipeRefreshLayout)layout).setOnRefreshListener(this);
+        ((SwipeRefreshLayout)findViewById(R.id.swipe_container)).setOnRefreshListener(this);
+        ((ListView)findViewById(android.R.id.list)).setAdapter(_newsStack);
     }
 
     @Override
@@ -96,8 +94,8 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
     protected void save(FileOutputStream file) throws IOException {
         JSONArray arr = new JSONArray();
         if (!_newsStack.isEmpty())
-            for (News n : _newsStack)
-                arr.put(n.toString());
+            for (int i = 0; i < _newsStack.getCount(); i++)
+                arr.put(_newsStack.getItem(i).toString());
         file.write(arr.toString().getBytes());
     }
 
@@ -116,7 +114,7 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
             try {
                 JSONArray arr = new JSONArray(s);
                 for (int i = 0; i < 10; i++)
-                    addNewsToStack(new News(new JSONObject(arr.getString(i))));
+                    addNews(new News( this, new JSONObject( arr.getString(i))));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -127,10 +125,8 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
         try {
             ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(true);
             if (!((SwipeRefreshLayout) findViewById(R.id.swipe_container)).canChildScrollUp()) {
-                LinearLayout list = (LinearLayout)findViewById(R.id.news_container);
-                for (News n : _newsStack)
-                    list.removeViewInLayout(n.getView());
                 _newsStack.clear();
+                _newsStack.notifyDataSetChanged();
                 new NewsRequest(this);
             }
             ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(false);
@@ -140,35 +136,16 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.news_button_reload)
-        {   if (_newsStack.size() > 0)
-                new NewsRequest(this, _newsStack.get(_newsStack.size() - 1).getTime());
-            else
-                new NewsRequest(this);
-        }
-        else {
-            TextView entry = (TextView) v;
-            News article = null;
-            for (News n : _newsStack) //probably needs faster approach
-            {
-                String a = n.getTitle();
-                String b = entry.getText().toString();
-                if (a.equals(b))
-                    article = n;
-            }
-            if (article != null) {
-                Intent i = new Intent(this, NewsArticle.class);
-                i.putExtra(requestTitle, article.toString());
-                startActivity(i);
-            }
-        }
-    }
-
-    private void addNewsToStack(News n)
+    private void addNews(News n)
     {
         _newsStack.add(n);
-        n.addView(this);
+        _newsStack.notifyDataSetChanged();
+    }
+
+    public void createArticle(News n)
+    {
+        Intent i = new Intent( this, NewsArticle.class);
+        i.putExtra( News.requestTitle, toString());
+        startActivity(i);
     }
 }

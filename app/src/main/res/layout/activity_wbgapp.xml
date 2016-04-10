@@ -5,24 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/news_scroller"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:paddingTop="50dp">
+
+        <ListView android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/news_container"
-            android:orientation="vertical"
-            android:paddingTop="55dp">
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/news_button_reload"
-                android:text="@string/reload_button_news"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp" />
-        </LinearLayout>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="false"
+            android:paddingTop="50dp"/>
+        <!-- for the ListView-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/news_error"
+            android:id="@android:id/empty"
+            android:visibility="invisible"/>
+    </FrameLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

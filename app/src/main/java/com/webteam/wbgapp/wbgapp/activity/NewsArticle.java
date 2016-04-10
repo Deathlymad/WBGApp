@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.structure.News;
 import com.webteam.wbgapp.wbgapp.util.Util;
 
 import org.json.JSONException;
@@ -12,7 +13,6 @@ import org.json.JSONObject;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.ParseException;
 
 /**
  * Created by Deathlymad on 15.03.2016.
@@ -43,7 +43,7 @@ public class NewsArticle extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String extra = getIntent().getStringExtra(WBGApp.requestTitle);
+        String extra = getIntent().getStringExtra(News.requestTitle);
         JSONObject _extra = null;
         try {
             _extra = new JSONObject(extra);

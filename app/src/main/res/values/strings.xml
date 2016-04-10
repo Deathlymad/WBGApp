@@ -70,6 +70,7 @@
     <string name="settings_notification_place_statusbar">Benachrichtigungen in der Statusleiste anzeigen</string>
     <string name="settings_notification_place_lockscreen">Benachrichtigungen auf dem Sperrbildschirm anzeigen</string>
     <string name="sub_list_empty">Keine Vertretungen gefunden</string>
+    <string name="news_error">News konnten nicht geladen werden.</string>
 
 
 </resources>
