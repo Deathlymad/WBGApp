@@ -6,19 +6,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Created by Deathlymad on 20.03.2016 .
@@ -33,6 +27,13 @@ public class SubstitutePlan {
             list.add(getSubstitutionByClass(_class));
         }
         return list;
+    }
+
+    public boolean isCurrent() {
+        Calendar curr = Calendar.getInstance();
+        Calendar date = Calendar.getInstance();
+        date.setTime(_date);
+        return curr.get(Calendar.YEAR) == date.get(Calendar.YEAR) && curr.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR); //check if the date is today
     }
 
     public class SubstituteEntry
@@ -84,7 +85,6 @@ public class SubstitutePlan {
             type = n.getElementsByTagName("art").item(0).getTextContent();
         }
 
-
         public Element getElement(Document doc)
         {
             Element e = doc.createElement("vertretung");
@@ -130,9 +130,9 @@ public class SubstitutePlan {
     private ArrayList<Integer> classSort;
     private Date _date;
 
-    public SubstitutePlan(Document xmlSubstitues) throws ParseException {
+    public SubstitutePlan(Element xmlSubstitues) throws ParseException {
         _plan = new ArrayList<>();
-        Element e = xmlSubstitues.getDocumentElement();
+        Element e = xmlSubstitues;
         String date;
         date = e.getAttribute("tag") + ".";
         date += e.getAttribute("monat") + ".";
@@ -147,23 +147,18 @@ public class SubstitutePlan {
         }
     }
 
-    public void save(FileOutputStream file) {
-        try {
-            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-            Element root = doc.createElement("vertretungsplan");
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(_date);
-            root.setAttribute("tag", String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
-            root.setAttribute("monat", String.valueOf(cal.get(Calendar.MONTH)));
-            root.setAttribute("jahr", String.valueOf(cal.get(Calendar.YEAR)));
+    public Element toXML(Document doc) {
+        Element root = doc.createElement("vertretungsplan");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(_date);
+        root.setAttribute("tag", String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+        root.setAttribute("monat", String.valueOf(cal.get(Calendar.MONTH)));
+        root.setAttribute("jahr", String.valueOf(cal.get(Calendar.YEAR)));
 
-            for ( SubstituteEntry entry : _plan ) {
-                root.appendChild(entry.getElement(doc));
-            }
-
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+        for ( SubstituteEntry entry : _plan ) {
+            root.appendChild(entry.getElement(doc));
         }
+        return root;
     }
 
     public ArrayList<String> getSubstitutionByClass( String _class)
