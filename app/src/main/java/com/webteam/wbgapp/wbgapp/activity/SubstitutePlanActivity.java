@@ -10,6 +10,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+//TODO: Auf Umstellung des Webservices achten! Es wird jetzt der richtige Link zurückgegeben (WBGYM)
+
 public class SubstitutePlanActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {

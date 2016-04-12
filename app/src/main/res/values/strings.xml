@@ -22,7 +22,7 @@
 
     Vertretungsplan:
     <string name="subsitute_plan_condition"></string>
-    <string name="subsitute_plan_description">Wische auf dem Bildschirm nach links oder rechts, um zu deiner Klassenstufe zu gelangen. </string>
+    <string name="subsitute_plan_description">Wische auf dem Bildschirm nach links oder rechts, um zu den Vertretungen deiner Klassenstufe zu gelangen. </string>
     <string name="sp_class">Klasse:</string>
     <string name="sp_lesson">Stunde:</string>
     <string name="sp_type">Art:</string>

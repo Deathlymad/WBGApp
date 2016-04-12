@@ -9,7 +9,7 @@
     <color name="menulevel2">#666666</color>
 
     Default Werte:
-    <color name="defaultRed">#ff0000</color>
+    <color name="defaultRed">#FF0000</color>
     <color name="DefaultDargrey">#333333</color>
     <color name="defaultGrey">#666666</color>
     <color name="defaultLightgrey">#999999</color>
