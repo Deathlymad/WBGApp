@@ -16,7 +16,7 @@
     <string name="mail_inbox">Posteingang</string>
 
     Vertretungsplan:
-    <string name="subsitute_plan_condition">Der Vertretungsplan wird nur angezeigt, wenn du dich mit deinem WbGym Account angemeldet hast!</string>
+    <string name="subsitute_plan_condition"></string>
     <string name="subsitute_plan_description">Wische auf dem Bildschirm nach links oder rechts, um zu deiner Klassenstufe zu gelangen. </string>
     <string name="sp_class">Klasse:</string>
     <string name="sp_lesson">Stunde:</string>
@@ -44,13 +44,14 @@
 
     Elementinhalte:
     <string name="TextLoginButton">Login</string>
-    <string name="registration_title">Log In</string>
+    <string name="registration_title">Login</string>
     <string name="settings_registration_desc">Melde dich hier mit deiner WbGym E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)\nDie Anmeldung erfolgt einmalig und wird dann gespeichert.</string>
     <string name="mail_description">Alle deine E-Mails werden hier aufgelistet, sobald du dich mit deinem WBGym Account in der App angemeldet hast. </string>
     <string name="mail_description_warning">E-Mails können hier nur gelesen und nicht geschrieben werden!</string>
-
-    Artikel anzeigen:
     <string name="showmedia">Zu diesem Artikel sind Bilder/Videos vorhanden. Tippe hier, um die Elemente anzuzeigen.</string>
+    <string name="loading_error">Es konnten keine Inhalte zu diesem Artikel geladen werden. </string>
+    <string name="sub_list_empty">Keine Vertretungen gefunden</string>
+    <string name="news_error">News konnten nicht geladen werden.</string>
 
     Einstellungen:
     Datennutzung:
@@ -69,8 +70,7 @@
     <string name="settings_notification_place_comment">Benachrichtigungen dieser Art müssen in den Systemeinstellungen des Handys ebenso aktiviert sein. </string>
     <string name="settings_notification_place_statusbar">Benachrichtigungen in der Statusleiste anzeigen</string>
     <string name="settings_notification_place_lockscreen">Benachrichtigungen auf dem Sperrbildschirm anzeigen</string>
-    <string name="sub_list_empty">Keine Vertretungen gefunden</string>
-    <string name="news_error">News konnten nicht geladen werden.</string>
+
 
 
 </resources>

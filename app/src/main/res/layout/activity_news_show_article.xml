@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="50dp"
-        android:minHeight="300dp">
+        android:paddingBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -38,23 +38,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Inhalt des Artikels"
+            android:text="@string/loading_error"
             android:id="@+id/show_article_text"
             android:layout_below="@+id/show_article_date_infos"
             android:layout_marginTop="20dp"
             android:layout_alignStart="@+id/show_article_date_infos"
             android:layout_alignEnd="@+id/show_article_date_infos" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/showmedia"
-            android:id="@+id/show_article_images"
-            android:visibility="invisible"
-            android:layout_below="@+id/show_article_text"
-            android:layout_alignStart="@+id/show_article_text"
-            android:layout_marginTop="50dp" />
 
     </RelativeLayout>
 </ScrollView>
