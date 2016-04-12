@@ -11,6 +11,8 @@ import java.io.IOException;
 /**
  * Created by malte on 21.01.2016.
  */
+
+/*
 public class Schedules extends BaseActivity {
     @Override
     protected String getName() {
@@ -33,3 +35,4 @@ public class Schedules extends BaseActivity {
         setContentView(R.layout.activity_timetable);
     }
 }
+*/

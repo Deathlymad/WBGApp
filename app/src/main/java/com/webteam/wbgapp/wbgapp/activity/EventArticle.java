@@ -17,6 +17,11 @@ import java.text.ParseException;
 /**
  * Created by Deathlymad on 24.03.2016 .
  */
+
+//TODO: Aritkel untereinander anzeigen
+    // TODO: Button zum Laden weiterer Artikel einfügen und belegen
+    // TODO: Beim Tippen gleich activity anzeigen und dann erst Content laden
+
 public class EventArticle extends BaseActivity {
     private String _title = "";
 

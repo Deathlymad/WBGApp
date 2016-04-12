@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by malte on 29.03.2016.
  */
-
+/*
 public class MailInbox extends BaseActivity{
 
 
@@ -23,9 +23,11 @@ public class MailInbox extends BaseActivity{
     }
 
     @Override
+
     protected String getName() {
         return getString(R.string.mail_inbox);
     }
+
 
     @Override
     protected void save(FileOutputStream file) throws IOException {
@@ -37,3 +39,4 @@ public class MailInbox extends BaseActivity{
 
     }
 }
+*/

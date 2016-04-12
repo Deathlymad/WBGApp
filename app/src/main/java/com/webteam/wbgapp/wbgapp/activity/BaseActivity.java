@@ -108,17 +108,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.nav_substitute_plan:
                 i = new Intent(this, SubstitutePlanActivity.class);
                 break;
+            /*
             case R.id.nav_schedule:
                 i = new Intent(this, Schedules.class);
                 break;
+            */
             case R.id.nav_events:
                 i = new Intent(this, EventSchedule.class);
                 break;
+            /*
             case R.id.mail_inbox:
                 i = new Intent(this, MailInbox.class);
                 break;
-
-            /*
             case R.id.nav_send:
                 i = new Intent(this, ForumNotification.class);
                 break;
@@ -126,7 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 i = new Intent(this, ForumMessages.class);
                 break;
              */
-
+            /*
             case R.id.nav_settings_account:
                 i = new Intent(this, SettingsAccount.class);
                 break;
@@ -136,6 +137,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.nav_settings_datausage:
                 i = new Intent(this, SettingsDatausage.class);
                 break;
+            */
             default:
                 i = new Intent();
                 break;

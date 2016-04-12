@@ -15,6 +15,7 @@
             android:id="@+id/nav_substitute_plan"
             android:title="@string/substitute_plan_title" />
 
+        <!--
         <item
             android:id="@+id/nav_schedule"
             android:title="@string/schedule_title" />
@@ -26,6 +27,7 @@
                     android:title="@string/mail_inbox" />
             </menu>
         </item>
+        -->
 
         <!--<item android:title="@string/forum_section_title" android:textStyle="bold">
             <menu>
@@ -37,8 +39,9 @@
                     android:title="@string/forum_messages_title"
                     />
             </menu>
-        </item>-->
-
+        </item>
+        -->
+        <!--
         <item android:title="@string/settings_section_title">
             <menu>
                 <item
@@ -52,6 +55,7 @@
                     android:title="@string/settings_datausage_title" />
             </menu>
         </item>
+        -->
     </group>
 
 </menu>
