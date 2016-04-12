@@ -101,6 +101,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
         Intent i;
 
+        //TODO: Vertretungsplan für den nächsten Tag einbinden.
         switch (id) {
             case R.id.nav_news:
                 i = new Intent(this, WBGApp.class);
