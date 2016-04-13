@@ -7,6 +7,9 @@
     Nav Titles
     <string name="newsfeed_title">Neuigkeiten</string>
     <string name="substitute_plan_title">Vertretungsplan</string>
+    <string name="subtitute_plan_section_title">Vertretungsplan für...</string>
+    <string name="substitute_plan_title_today">Heute</string>
+    <string name="substitute_plan_title_next">den nächsten Unterrichtstag</string>
     <!--<string name="schedule_title">Stundenplan</string>-->
     <string name="events_title">Events</string>
 
