@@ -90,7 +90,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             startActivity(i);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -98,7 +97,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         Intent i;
 
         //TODO: Vertretungsplan für den nächsten Tag einbinden.
