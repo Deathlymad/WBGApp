@@ -4,6 +4,8 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
+    // TODO: Android 6 supporten! (Entsprechend auf 6 umstellen)
+
     defaultConfig {
         applicationId "com.webteam.wbgapp.wbgapp"
         minSdkVersion 17
