@@ -42,4 +42,16 @@ public class NewsListAdapter extends ArrayAdapter<News> {
 
         return v;
     }
+
+    public News get(int id)
+    {
+        int i = 0;
+        while (i < getCount())
+        {
+            if (get(i).getID() == id)
+                return get(i);
+            i++;
+        }
+        return null;
+    }
 }

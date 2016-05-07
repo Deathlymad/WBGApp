@@ -3,14 +3,18 @@ package com.webteam.wbgapp.wbgapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AbsListView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.activity.fragment.EventListAdapter;
 import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
 import com.webteam.wbgapp.wbgapp.structure.Event;
+import com.webteam.wbgapp.wbgapp.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,9 +31,7 @@ import java.util.Calendar;
  */
 public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
-    //TODO: Bugfix: Bei "Weitere Events laden" -> Accounteinstellungen || News ????
-
-    private ArrayList<Event> _eventStack;
+    private EventListAdapter _eventStack;
     public static final String requestTitle = "com.webteam.wbgapp.wbgapp.EVENTS";
 
     private class EventRequest implements IRequest
@@ -63,26 +65,63 @@ public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.On
             String res = result[0];
             _eventStack.clear(); //rewrite eventStack
             try {
-                JSONArray eventList = new JSONArray(res);
+                JSONArray eventList = new JSONArray(new JSONObject(Util.unescUnicode(res)));
                 for (int i = 0; i < 10; i++) {
                     addEventToStack(new Event(eventList.getJSONObject(i)));
                 }
             } catch (JSONException | NullPointerException e) {
                 e.printStackTrace();
+                Log.i("Event JSON Parser", Util.unescUnicode(res));
             }
         }
 
     }
+
+    private class EventScrollHandler implements AbsListView.OnScrollListener
+    {
+
+        private EventSchedule ref = null;
+
+        public EventScrollHandler(EventSchedule reference)
+        {
+            ref = reference;
+        }
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            if (totalItemCount <= firstVisibleItem + visibleItemCount)
+                ref.pullNextHeap();
+        }
+    }
+
+    private void pullNextHeap() {
+        if (_eventStack.getCount() == 0)
+            new EventRequest(this);
+        else
+            new EventRequest(this, _eventStack.getItem(_eventStack.getCount() - 1).getTime());
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        _eventStack = new ArrayList<>();
+        _eventStack = new EventListAdapter(this, R.layout.display_news_element, R.id.article_element_title, new ArrayList<Event>());
         setContentView(R.layout.activity_wbgapp);
         super.onCreate(savedInstanceState);
         View layout = findViewById(R.id.swipe_container);
         if (layout != null)
             ((SwipeRefreshLayout)layout).setOnRefreshListener(this);
 
+
+        ListView list = (ListView)findViewById(android.R.id.list);
+        if (list == null)
+            throw new NullPointerException("Event List couldn't be Resolved.");
+        list.setAdapter(_eventStack);
+        list.setOnScrollListener(new EventScrollHandler(this));
     }
 
     @Override
@@ -94,8 +133,8 @@ public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.On
     protected void save(FileOutputStream file) throws IOException {
         JSONArray arr = new JSONArray();
         if (!_eventStack.isEmpty())
-            for (Event n : _eventStack)
-                arr.put(n.toString());
+            for (int i = 0; i < _eventStack.getCount(); i++)
+                arr.put(_eventStack.getItem(i).toString());
         file.write(arr.toString().getBytes());
     }
 
@@ -122,28 +161,28 @@ public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.On
 
     @Override
     public void onRefresh(){
-        try {
-            ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(true);
-            if (!((SwipeRefreshLayout) findViewById(R.id.swipe_container)).canChildScrollUp()) {
-                new  EventRequest(this);
-            }
-            ((SwipeRefreshLayout) findViewById(R.id.swipe_container)).setRefreshing(false);
-        }catch(NullPointerException e)
-        {
-            e.printStackTrace();
+        SwipeRefreshLayout layout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        if ( layout == null)
+            throw new NullPointerException("No RefreshLayout");
+        layout.setRefreshing(true);
+        if (!layout.canChildScrollUp()) {
+            _eventStack.clear();
+            _eventStack.notifyDataSetChanged();
+            new EventRequest(this);
         }
+        layout.setRefreshing(false);
     }
 
     @Override
     public void onClick(View v) {
         TextView entry = (TextView) v;
         Event article = null;
-        for (Event n : _eventStack) //probably needs faster approach
+        for (int i = 0; i < _eventStack.getCount(); i++) //probably needs faster approach
         {
-            String a = n.getTitle();
+            String a = _eventStack.getItem(i).getTitle();
             String b = entry.getText().toString();
             if ( a.equals(b))
-                article = n;
+                article = _eventStack.getItem(i);
         }
         if (article != null)
         {
@@ -155,6 +194,6 @@ public class EventSchedule extends BaseActivity implements SwipeRefreshLayout.On
 
     private void addEventToStack(Event e)
     {
-        _eventStack.add( 0, e);
+        _eventStack.add( e);
     }
 }

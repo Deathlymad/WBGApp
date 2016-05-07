@@ -15,6 +15,7 @@ import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 public class DatabaseHandler extends AsyncTask<IRequest, Void, Void> {
 
     private String s;
+    private IRequest req = null;
 
     private void getData(String... req) throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
@@ -25,7 +26,7 @@ public class DatabaseHandler extends AsyncTask<IRequest, Void, Void> {
         HttpResponse response = client.execute(request);
         StringBuilder sb = new StringBuilder();
         try {
-            BufferedReader reader =new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 65728);
             String line;
             reader.readLine();
             while ((line = reader.readLine()) != null) {
@@ -39,12 +40,18 @@ public class DatabaseHandler extends AsyncTask<IRequest, Void, Void> {
     @Override
     protected Void doInBackground(IRequest... params) {
         try {
-            IRequest req = params[0];
+            req = params[0];
             getData(req.getRequest());
 
             if (req != null)
                 req.handleResults(s);
         } catch (Exception e) {}
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void obj)
+    {
+        req.handleResults(s);
     }
 }

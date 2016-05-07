@@ -28,8 +28,6 @@ public class Event implements IRequest {
     private String _teaser;
     private String _location;
 
-    private View _event;
-
     public Event(JSONObject data) throws JSONException {
         _id = data.getInt("id");
         _addTime = Util.getDateFromTStamp(Util.readInt("addTime", data));

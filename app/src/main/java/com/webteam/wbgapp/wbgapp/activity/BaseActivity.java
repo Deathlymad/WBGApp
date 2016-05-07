@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.net.BackgroundService;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -97,7 +98,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Intent i;
+        Intent i = null;
 
         //TODO: Vertretungsplan für den nächsten Tag einbinden.
         switch (id) {
@@ -138,11 +139,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 break;
             */
             default:
-                i = new Intent();
                 break;
         }
-
-        startActivity(i);
+        if (i != null)
+            startActivity(i);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

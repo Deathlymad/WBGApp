@@ -1,6 +1,7 @@
 package com.webteam.wbgapp.wbgapp.structure;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import com.webteam.wbgapp.wbgapp.activity.NewsArticle;
 import com.webteam.wbgapp.wbgapp.activity.WBGApp;
 import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
+import com.webteam.wbgapp.wbgapp.util.Constants;
 import com.webteam.wbgapp.wbgapp.util.Util;
 
 import org.json.JSONArray;
@@ -26,17 +28,22 @@ public class News implements IRequest, View.OnClickListener {
     private int _id;
     private Date _date;
     private String _title;
-    private Activity _activity;
+    private Context _context;
     private String _content;
 
-    public static final String requestTitle = "com.webteam.wbgapp.wbgapp.NEWS";
-
-    public News(Activity ac, JSONObject data) throws JSONException {
-        _activity = ac;
+    public News(Context context, JSONObject data) throws JSONException {
+        _context = context;
         _id = data.getInt("id");
         _date = Util.getDateFromTStamp(data.getLong("date"));
         _title = Util.unescUnicode(data.getString("headline"));
-        new DatabaseHandler().execute(this);
+        try {
+            _content = Util.unescUnicode(data.getString("content"));
+        } catch(JSONException e) //for some reason JSON couldn't be read data needs to be pulled
+        {
+            Intent i = new Intent(Constants.INTENT_GET_NEWS_CONTENT); // move to NewsArticle
+            i.putExtra("id", _id);
+            context.startService(i);
+        }
     }
 
     @Override
@@ -85,8 +92,19 @@ public class News implements IRequest, View.OnClickListener {
         return Util.getTStampFromDate(_date);
     }
 
+    public void setContent(String data)
+    {
+        _content = data;
+    }
+
     @Override
     public void onClick(View v) {
-        ((WBGApp)_activity).createArticle(this);
+        Intent i = new Intent( _context, NewsArticle.class);
+        i.putExtra(Constants.NEWS_ARTICLE_DATA, toString());
+        _context.startActivity(i);
+    }
+
+    public int getID() {
+        return _id;
     }
 }

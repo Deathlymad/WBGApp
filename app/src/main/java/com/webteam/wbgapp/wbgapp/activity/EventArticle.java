@@ -19,7 +19,6 @@ import java.text.ParseException;
  */
 
 //TODO: Aritkel untereinander anzeigen
-    // TODO: Button zum Laden weiterer Artikel einfügen und belegen
     // TODO: Beim Tippen gleich activity anzeigen und dann erst Content laden
 
 public class EventArticle extends BaseActivity {
@@ -57,7 +56,7 @@ public class EventArticle extends BaseActivity {
         ((TextView)findViewById(R.id.event_show_title)).setText(_title);
 
         try {
-            ((TextView)findViewById(R.id.event_show_title)).setText(_extra.getString("teaser")); //TODO no value
+            ((TextView)findViewById(R.id.event_show_title)).setText(_extra.getString("teaser"));
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
         }

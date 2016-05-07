@@ -38,13 +38,13 @@ public class EventListAdapter extends ArrayAdapter<Event> {
         }
 
 
-        Event _news = getItem(position);
+        Event _event = getItem(position);
 
         TextView _teaser = (TextView)v.findViewById(R.id.article_element_title);
-        _teaser.setText(_news.getTitle());
+        _teaser.setText(_event.getTitle());
 
         TextView _teaserDate = (TextView)v.findViewById(R.id.article_element_date);
-        _teaserDate.setText(_news.getDateString());
+        _teaserDate.setText(_event.getDateString());
         return v;
     }
 }

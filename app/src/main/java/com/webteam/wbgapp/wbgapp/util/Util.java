@@ -47,13 +47,16 @@ public class Util {
         return deleteSpecialChars(StringEscapeUtils.unescapeHtml(StringEscapeUtils.unescapeJava(str)));
     }
     public static String escUnicode(String str) {
-        return StringEscapeUtils.escapeHtml(StringEscapeUtils.escapeJava(str));
+        return StringEscapeUtils.escapeJava(StringEscapeUtils.escapeHtml(str));
     }
     public static String deleteSpecialChars(String text)
     {
-        Pattern p = Pattern.compile("(&lt;(.*?)&gt;)");//remove HTML leftovers
+        Pattern p = Pattern.compile("(<(.*?)>)");//remove HTML leftovers
         Pattern p1 = Pattern.compile(Pattern.quote("{{") + "(.*?)" + Pattern.quote("}}"));//remove Contao Hyperlinks
+
         Matcher m = p.matcher(text);
-        return p1.matcher(m.replaceAll("")).replaceAll("");
+        return p1.matcher(m.replaceAll("")) //removes p
+                .replaceAll("") //removes p1
+                .replaceAll("\\[nbsp\\]", " "); //removes protected space
     }
 }
