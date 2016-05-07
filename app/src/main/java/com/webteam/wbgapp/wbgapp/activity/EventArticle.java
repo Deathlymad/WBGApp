@@ -19,7 +19,8 @@ import java.text.ParseException;
  */
 
 //TODO: Aritkel untereinander anzeigen
-    // TODO: Beim Tippen gleich activity anzeigen und dann erst Content laden
+// TODO: Beim Tippen gleich activity anzeigen und dann erst Content laden
+// TODO: Beim runterziehen Liste aktualisieren
 
 public class EventArticle extends BaseActivity {
     private String _title = "";

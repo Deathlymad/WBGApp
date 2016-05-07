@@ -1,81 +1,73 @@
 <resources>
+    Allgemeines:
     <string name="app_name">WbgApp</string>
-
-    Nav Titles
-    <string name="newsfeed_title">Neuigkeiten</string>
-    <string name="substitute_plan_title">Vertretungsplan</string>
-    <string name="subtitute_plan_section_title">Vertretungsplan für...</string>
-    <string name="substitute_plan_title_today">Heute</string>
-    <string name="substitute_plan_title_next">den nächsten Unterrichtstag</string>
-    <!--<string name="schedule_title">Stundenplan</string>-->
-    <string name="events_title">Events</string>
-
-    News:
-    <string name="reload_button_news">ältere Artikel laden</string>
-    <string name="reload_button_events">weitere Events laden</string>
-
-    <!--
-    E-Mails:
-    <string name="mail_section_title">E-Mails</string>
-    <string name="mail_inbox">Posteingang</string>
-    -->
-
-    Vertretungsplan:
-    <string name="subsitute_plan_condition"></string>
-    <string name="subsitute_plan_description">Wische auf dem Bildschirm nach links oder rechts, um zu den Vertretungen deiner Klassenstufe zu gelangen. </string>
-    <string name="sp_class">Klasse:</string>
-    <string name="sp_lesson">Stunde:</string>
-    <string name="sp_type">Art:</string>
-    <string name="sp_substitute_teacher">Vertretungslehrer:</string>
-    <string name="sp_substitute_subject">Vertretungsfach:</string>
-    <string name="sp_substitute_room">Vertretungsraum:</string>
-    <string name="sp_remark">Bemerkungen:</string>
-
-    Forum:
-    <!--<string name="forum_section_title">Forum</string>
-    <string name="forum_notification_title">Benachrichtungen</string>
-    <string name="forum_messages_title">Messages</string>-->
-
-    Einstellungen:
-    <string name="settings_section_title">Einstellungen</string>
+    <string name="action_login">Anmelden</string>
     <string name="settings_general_title">Login</string>
+
+    Nav Titles:
+    <string name="newsfeed_title">Neuigkeiten</string>
+    <string name="events_title">Events</string>
+    <string name="substitute_plan_title">Vertretungsplan</string>
+    <string name="subtitute_plan_section_title">Vertretungsplan für...</string> <!-- Wird momentan nicht genutzt -->
+    <string name="substitute_plan_title_today">Heute</string> <!-- Wird momentan nicht genutzt -->
+    <string name="substitute_plan_title_next">den nächsten Unterrichtstag</string> <!-- Wird momentan nicht genutzt -->
+    <!--<string name="schedule_title">Stundenplan</string>--> <!-- Wird momentan nicht genutzt -->
+    <string name="mail_section_title">E-Mails</string> <!-- Wird momentan nicht genutzt -->
+    <string name="mail_inbox">Posteingang</string> <!-- Wird momentan nicht genutzt -->
+    <string name="forum_section_title">Forum</string> <!-- Wird momentan nicht genutzt -->
+    <string name="forum_notification_title">Benachrichtungen</string> <!-- Wird momentan nicht genutzt -->
+    <string name="forum_messages_title">Messages</string> <!-- Wird momentan nicht genutzt -->
+    <string name="settings_section_title">Einstellungen</string>
     <string name="settings_account_title">Accounteinstellungen</string>
     <string name="settings_notifications_title">Benachrichtigungseinstellungen</string>
     <string name="settings_datausage_title">Datennutzung</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_login">Anmelden</string>
+    Elemten in/auf Seiten:
+        News:
+        <string name="reload_button_news">ältere Artikel laden</string>
+        <string name="reload_button_events">weitere Events laden</string>
+        <string name="loading_error">Es konnten keine Inhalte zu diesem Artikel geladen werden. </string>
+        <string name="showmedia">Zu diesem Artikel sind Bilder/Videos vorhanden. Tippe hier, um die Elemente anzuzeigen.</string>
+        <string name="news_error">News konnten nicht geladen werden.</string>
+        Events:
 
-    Elementinhalte:
-    <string name="TextLoginButton">Login</string>
-    <string name="registration_title">Login</string>
-    <string name="settings_registration_desc">Melde dich hier mit deiner WbGym E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)\nDie Anmeldung erfolgt einmalig und wird dann gespeichert.</string>
-    <string name="mail_description">Alle deine E-Mails werden hier aufgelistet, sobald du dich mit deinem WBGym Account in der App angemeldet hast. </string>
-    <string name="mail_description_warning">E-Mails können hier nur gelesen und nicht geschrieben werden!</string>
-    <string name="showmedia">Zu diesem Artikel sind Bilder/Videos vorhanden. Tippe hier, um die Elemente anzuzeigen.</string>
-    <string name="loading_error">Es konnten keine Inhalte zu diesem Artikel geladen werden. </string>
-    <string name="sub_list_empty">Keine Vertretungen gefunden</string>
-    <string name="news_error">News konnten nicht geladen werden.</string>
+        Einstellungen:
+            Account:
+            <string name="settings_registration_desc">Melde dich hier mit deiner WbGym E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)\nDie Anmeldung erfolgt einmalig und wird dann gespeichert.</string>
+            <string name="TextLoginButton">Login</string>
+            <string name="registration_title">Login</string>
+            Datennutzung:
+            <string name="settings_datausage_information">Hier kannst du die Datennutzung deiner App regulieren. Sollen Fotos sofort geladen werden, oder doch lieber erst beim Anwählen?</string>
+            <string name="settings_datausage_images">Bilder sollen automatisch vorab geladen und angezeigt werden. (erhöht den Datenverbrauch)</string>
+            <string name="settings_datausage_videos">Videos sollen automatisch vorab geladen und angezeigt werden. (erhöht Datenverbrauch massiv)</string>
+            Benachrichtigung:
+            <string name="settings_notification_information">Stelle hier ein, wie oft und zu welchen Zeitpunkten die App dich benachrichtigen soll.</string>
+            <string name="settings_notification_informationen_comment">Achtung: Viele Benachrichtigungen könnten die Laufzeit des Gerätes und die Akkulaufzeit negativ beeinflussen. </string>
+            <string name="settings_notification_general">Benachrichtigungen zulassen</string>
+            <string name="settings_notification_schedules_all">Die App soll mich zu jedem Termin erinnern.</string>
+            <string name="settings_notification_schedules__selected">Die App soll mich nur an Termine erinnern, die mich betreffen. (Auswahl)</string>
+            <string name="settings_notification_subsitute_plan">Bei neuen Vertretungen meiner Klasse/Jahrgangsstufe soll eine Benachrichtigung seitens der App erfolgen.</string>
+            <string name="settings_notification_news">Sobald ein neuer Newsartikel veröffentlicht wird, soll die App mich benachrichtigen. </string>
+            <string name="settings_notification_place_information">Art der Benachrichtigung:</string>
+            <string name="settings_notification_place_comment">Benachrichtigungen dieser Art müssen in den Systemeinstellungen des Handys ebenso aktiviert sein. </string>
+            <string name="settings_notification_place_statusbar">Benachrichtigungen in der Statusleiste anzeigen</string>
+            <string name="settings_notification_place_lockscreen">Benachrichtigungen auf dem Sperrbildschirm anzeigen</string>
+        Vertretungsplan:
+        <string name="subsitute_plan_condition"></string>
+        <string name="subsitute_plan_description">Wische auf dem Bildschirm nach links oder rechts, um zu den Vertretungen deiner Klassenstufe zu gelangen. </string>
+        <string name="sp_class">Klasse:</string>
+        <string name="sp_lesson">Stunde:</string>
+        <string name="sp_type">Art:</string>
+        <string name="sp_substitute_teacher">Vertretungslehrer:</string>
+        <string name="sp_substitute_subject">Vertretungsfach:</string>
+        <string name="sp_substitute_room">Vertretungsraum:</string>
+        <string name="sp_remark">Bemerkungen:</string>
+        <string name="sub_list_empty">Keine Vertretungen gefunden</string>
+        Forum:
 
-    Einstellungen:
-    Datennutzung:
-    <string name="settings_datausage_information">Hier kannst du die Datennutzung deiner App regulieren. Sollen Fotos sofort geladen werden, oder doch lieber erst beim Anwählen?</string>
-    <string name="settings_datausage_images">Bilder sollen automatisch vorab geladen und angezeigt werden. (erhöht den Datenverbrauch)</string>
-    <string name="settings_datausage_videos">Videos sollen automatisch vorab geladen und angezeigt werden. (erhöht Datenverbrauch massiv)</string>
-    Benachrichtigung:
-    <string name="settings_notification_information">Stelle hier ein, wie oft und zu welchen Zeitpunkten die App dich benachrichtigen soll.</string>
-    <string name="settings_notification_informationen_comment">Achtung: Viele Benachrichtigungen könnten die Laufzeit des Gerätes und die Akkulaufzeit negativ beeinflussen. </string>
-    <string name="settings_notification_general">Benachrichtigungen zulassen</string>
-    <string name="settings_notification_schedules_all">Die App soll mich zu jedem Termin erinnern.</string>
-    <string name="settings_notification_schedules__selected">Die App soll mich nur an Termine erinnern, die mich betreffen. (Auswahl)</string>
-    <string name="settings_notification_subsitute_plan">Bei neuen Vertretungen meiner Klasse/Jahrgangsstufe soll eine Benachrichtigung seitens der App erfolgen.</string>
-    <string name="settings_notification_news">Sobald ein neuer Newsartikel veröffentlicht wird, soll die App mich benachrichtigen. </string>
-    <string name="settings_notification_place_information">Art der Benachrichtigung:</string>
-    <string name="settings_notification_place_comment">Benachrichtigungen dieser Art müssen in den Systemeinstellungen des Handys ebenso aktiviert sein. </string>
-    <string name="settings_notification_place_statusbar">Benachrichtigungen in der Statusleiste anzeigen</string>
-    <string name="settings_notification_place_lockscreen">Benachrichtigungen auf dem Sperrbildschirm anzeigen</string>
-
-
+        EMails:
+        <string name="mail_description">Alle deine E-Mails werden hier aufgelistet, sobald du dich mit deinem WBGym Account in der App angemeldet hast. </string>
+        <string name="mail_description_warning">E-Mails können hier nur gelesen und nicht geschrieben werden!</string>
+        Sonstiges:
 
 </resources>
