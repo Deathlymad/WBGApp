@@ -5,7 +5,7 @@ package com.webteam.wbgapp.wbgapp.util;
  */
 public class Constants {
 
-    public static final String SERVER_URL = "http://beta.wbgym.de/wbgapp/webservice.php";
+    public static final String SERVER_URL = "http://beta.wbgym.de/wbgapp-webservice";
     public static final String BACKROUND_CLASS = "com.webteam.wbgapp.wbgapp.net.BackgroundService";
 
     public static final String NEWS_ARTICLE_DATA = "com.webteam.wbgapp.wbgapp.NEWS";

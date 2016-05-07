@@ -38,7 +38,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:src="@drawable/scan_transparent_white"
+            android:src="@drawable/icon_small"
             android:focusable="false"
             android:adjustViewBounds="false"
             android:foregroundGravity="center"

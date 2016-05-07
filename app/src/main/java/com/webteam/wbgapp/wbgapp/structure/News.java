@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.activity.NewsArticle;
 import com.webteam.wbgapp.wbgapp.activity.WBGApp;
+import com.webteam.wbgapp.wbgapp.net.BackgroundService;
 import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
 import com.webteam.wbgapp.wbgapp.net.IRequest;
 import com.webteam.wbgapp.wbgapp.util.Constants;
@@ -40,7 +41,9 @@ public class News implements IRequest, View.OnClickListener {
             _content = Util.unescUnicode(data.getString("content"));
         } catch(JSONException e) //for some reason JSON couldn't be read data needs to be pulled
         {
-            Intent i = new Intent(Constants.INTENT_GET_NEWS_CONTENT); // move to NewsArticle
+
+            Intent i = new Intent( _context, BackgroundService.class); // move to NewsArticle
+            i.setAction(Constants.INTENT_GET_NEWS_CONTENT);
             i.putExtra("id", _id);
             context.startService(i);
         }
@@ -101,6 +104,7 @@ public class News implements IRequest, View.OnClickListener {
     public void onClick(View v) {
         Intent i = new Intent( _context, NewsArticle.class);
         i.putExtra(Constants.NEWS_ARTICLE_DATA, toString());
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         _context.startActivity(i);
     }
 

@@ -46,11 +46,13 @@ public class NewsListAdapter extends ArrayAdapter<News> {
     public News get(int id)
     {
         int i = 0;
-        while (i < getCount())
+        int max = getCount();
+        while (i < max)
         {
-            if (get(i).getID() == id)
-                return get(i);
-            i++;
+            if (getItem(i).getID() == id)
+                return getItem(i);
+            else
+                i++;
         }
         return null;
     }

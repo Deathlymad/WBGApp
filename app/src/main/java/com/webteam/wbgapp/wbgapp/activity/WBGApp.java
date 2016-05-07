@@ -59,7 +59,8 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
         ((SwipeRefreshLayout)findViewById(R.id.swipe_container)).setOnRefreshListener(this);
 
         ListView list = (ListView)findViewById(android.R.id.list);
-        list.setAdapter(BackgroundService.getNewsAdapter());
+        if (BackgroundService._newsList != null)
+        list.setAdapter(BackgroundService._newsList);
         list.setOnScrollListener(new NewsScrollHandler(this));
     }
 
@@ -100,6 +101,9 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
         i.setAction(Constants.INTENT_GET_NEXT_NEWS);
         i.putExtra("append", false);
         startService(i);
+        ListView list = (ListView)findViewById(android.R.id.list);
+        if (BackgroundService._newsList != null)
+            list.setAdapter(BackgroundService._newsList);
     }
     private void appendList()
     {
@@ -107,5 +111,8 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
         i.setAction(Constants.INTENT_GET_NEXT_NEWS);
         i.putExtra("append", true);
         startService(i);
+        ListView list = (ListView)findViewById(android.R.id.list);
+        if (BackgroundService._newsList != null)
+            list.setAdapter(BackgroundService._newsList);
     }
 }
