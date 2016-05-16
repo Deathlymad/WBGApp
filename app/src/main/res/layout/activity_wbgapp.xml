@@ -14,7 +14,8 @@
         <ListView android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:drawSelectorOnTop="false"/>
+            android:drawSelectorOnTop="false"
+            android:layoutMode="clipBounds" />
         <!-- for the ListView-->
         <TextView
             android:layout_width="match_parent"
@@ -22,6 +23,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/news_error"
             android:id="@android:id/empty"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
     </FrameLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
