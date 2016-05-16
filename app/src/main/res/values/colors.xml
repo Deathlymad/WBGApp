@@ -3,10 +3,13 @@
     <color name="defaultColor">#ffffff</color>
     <color name="headerBackgroundColor">#2f2f2f</color>
     <color name="headerTextColor">#e4e4e4</color>
-    <color name="headlineColor">#6a0204</color>
-    <color name="headlineColor2">#4e0103</color>
+    <!--<color name="headlineColor">#6a0204</color>-->
+    <!--<color name="headlineColor2">#4e0103</color>-->
     <color name="menulevel1">#666666</color>
     <color name="menulevel2">#666666</color>
+
+    <color name="headlineColor">#252423</color>
+    <color name="headlineColor2">#1b1b1a</color>
 
     Default Werte:
     <color name="defaultRed">#FF0000</color>
@@ -17,6 +20,5 @@
     <color name="defaultText">#000000</color>
     <color name="defaultWhite">#FFFFFF</color>
 
-    Other:
     <color name="warning">#CE5454</color>
 </resources>

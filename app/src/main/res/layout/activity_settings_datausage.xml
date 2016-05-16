@@ -8,7 +8,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp">
+        android:paddingTop="55dp">
 
         <Switch
             android:layout_width="wrap_content"

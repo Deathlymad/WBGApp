@@ -9,13 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:paddingTop="50dp">
+        android:paddingTop="55dp">
 
         <ListView android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawSelectorOnTop="false"
-            android:layoutMode="clipBounds" />
+            android:layoutMode="clipBounds"
+            android:fastScrollAlwaysVisible="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:touchscreenBlocksFocus="false" />
         <!-- for the ListView-->
         <TextView
             android:layout_width="match_parent"

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="50dp"
+    android:paddingTop="55dp"
     android:paddingBottom="10dp">
 
     <TextView
@@ -18,7 +18,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp" />
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
