@@ -89,9 +89,8 @@ public class BackgroundService extends IntentService //manages Data
                 case Constants.INTENT_GET_NEXT_NEWS:
                     loadNews(intent.getBooleanExtra("append", true));
                     break;
-
                 case Constants.INTENT_GET_NEWS_CONTENT:
-                        loadNewsData(intent.getIntExtra("id", -1));
+                    loadNewsData(intent.getIntExtra("id", -1));
                     break;
                 case Constants.INTENT_GET_EVENT_CONTENT:
                     loadEventData(intent.getIntExtra("id", -1));
@@ -156,7 +155,7 @@ public class BackgroundService extends IntentService //manages Data
         //pulling from Server if no File Loaded
         if (str == null)
         {
-            str = pullData("events&tstamp=" + Long.toString(_newsList.isEmpty() ? Util.getTStampFromDate(Calendar.getInstance().getTime()) : _newsList.getItem(_newsList.getCount() - 1).getTime()));
+            str = pullData("events&tstamp=" + Long.toString(_eventList.isEmpty() ? Util.getTStampFromDate(Calendar.getInstance().getTime()) : _eventList.getItem(_eventList.getCount() - 1).getTime()));
         }
 
         //Reading JSON
@@ -190,7 +189,7 @@ public class BackgroundService extends IntentService //manages Data
                         sb.append((char) temp[i]);
                 str = sb.toString();
             }
-        } else if (!_newsList.isEmpty() && ! append)updateHandler.post(new Runnable() {
+        } else if (!_newsList.isEmpty() && !append)updateHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     _newsList.clear();
