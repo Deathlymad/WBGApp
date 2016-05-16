@@ -13,9 +13,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-//TODO: Auf Umstellung des Webservices achten! Es wird jetzt der richtige Link zurückgegeben (WBGYM) (Philip)
 //TODO: Design anpassen - Feld "Klasse" jetzt nicht mehr nötig (Malte)
-//TODO: Vertretungsplan für den nächsten Tag ins Menü einbinden + Algorhytmus
+//TODO: Vertretungsplan für den nächsten Tag ins Menü einbinden + Algorithmus
 
 public class SubstitutePlanActivity extends BaseActivity{
     @Override

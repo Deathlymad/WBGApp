@@ -1,17 +1,12 @@
 package com.webteam.wbgapp.wbgapp.structure;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.activity.EventArticle;
 import com.webteam.wbgapp.wbgapp.activity.NewsArticle;
 import com.webteam.wbgapp.wbgapp.net.BackgroundService;
-import com.webteam.wbgapp.wbgapp.net.DatabaseHandler;
-import com.webteam.wbgapp.wbgapp.net.IRequest;
 import com.webteam.wbgapp.wbgapp.util.Constants;
 import com.webteam.wbgapp.wbgapp.util.Util;
 
@@ -23,7 +18,7 @@ import java.util.Date;
 /**
  * Created by Deathlymad on 12.03.2016 .
  */
-public class Event implements IRequest, View.OnClickListener {
+public class Event implements View.OnClickListener {
     private int _id;
     private Date _startTime, _endTime;
     private String _title;
@@ -46,23 +41,8 @@ public class Event implements IRequest, View.OnClickListener {
             _author = data.getInt("author");
             _teaser = Util.unescUnicode(data.getString("teaser"));
             _location = Util.unescUnicode(data.getString("location"));
-        } catch(JSONException e) //for some reason JSON couldn't be read data needs to be pulled
-        {
-            Intent i = new Intent( _context, BackgroundService.class); // move to NewsArticle
-            i.setAction(Constants.INTENT_GET_EVENT_CONTENT);
-            i.putExtra("id", _id);
-            _context.startService(i);
-        }
-    }
-
-    @Override
-    public String[] getRequest() {
-        return new String[]{"eventcontent&id=" + _id + "&images=false"};
-    }
-
-    @Override
-    public void handleResults(String... result) {
-        String res = result[0];
+        } catch(JSONException ignored) //for some reason JSON couldn't be read data needs to be pulled
+        {}
     }
 
     @Override
@@ -107,8 +87,8 @@ public class Event implements IRequest, View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent( _context, NewsArticle.class);
-        i.putExtra(Constants.NEWS_ARTICLE_DATA, toString());
+        Intent i = new Intent( _context, EventArticle.class);
+        i.putExtra(Constants.EVENT_ARTICLE_DATA, toString());
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         _context.startActivity(i);
     }
@@ -122,5 +102,9 @@ public class Event implements IRequest, View.OnClickListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getTeaser() {
+        return _teaser;
     }
 }
