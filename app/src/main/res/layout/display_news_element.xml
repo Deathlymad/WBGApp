@@ -31,5 +31,5 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:textColor="@color/defaultBlack" />
+        android:textColor="@color/defaultLightgrey" />
 </RelativeLayout>
