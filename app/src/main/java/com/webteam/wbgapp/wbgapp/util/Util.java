@@ -44,7 +44,7 @@ public class Util {
     }
 
     public static String unescUnicode(String str) {
-        return deleteSpecialChars(StringEscapeUtils.unescapeHtml(StringEscapeUtils.unescapeJava(str)));
+        return (StringEscapeUtils.unescapeHtml(StringEscapeUtils.unescapeJava(str)));
     }
     public static String escUnicode(String str) {
         return StringEscapeUtils.escapeJava(StringEscapeUtils.escapeHtml(str));

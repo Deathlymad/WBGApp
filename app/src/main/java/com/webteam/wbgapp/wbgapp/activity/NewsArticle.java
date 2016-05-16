@@ -71,7 +71,7 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String extra = getIntent().getStringExtra(Constants.NEWS_ARTICLE_DATA);
-        JSONObject _extra = null;
+        JSONObject _extra;
         try {
             _extra = new JSONObject(extra);
             _id = _extra.getInt("id");

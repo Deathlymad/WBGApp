@@ -23,13 +23,12 @@ import java.text.ParseException;
  * Created by Deathlymad on 24.03.2016 .
  */
 
-// TODO: Beim Tippen gleich activity anzeigen und dann erst Content laden
 // TODO: Beim runterziehen Liste aktualisieren
 
 public class EventArticle extends BaseActivity implements BackgroundService.UpdateListener {
 
     private int _id = 0;
-    private String _title = "";
+    private String _title = "Läd...";
     private String _teaser = "";
     @Override
     protected String getName() {
@@ -86,7 +85,7 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
         if (temp != null)
         {
             _title = temp.getTitle();
-            _teaser = temp.getTeaser();
+            _teaser = temp.getTitle(); //TODO write Text
 
             ((TextView)findViewById(R.id.event_show_title)).setText(_title);
             ((TextView)findViewById(R.id.event_show_title)).setText(_teaser);

@@ -13,6 +13,7 @@ import com.webteam.wbgapp.wbgapp.util.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,7 +25,6 @@ public class Event implements View.OnClickListener {
     private String _title;
 
     private int _author;
-    private String _teaser;
     private String _location;
 
     private Context _context;
@@ -39,7 +39,6 @@ public class Event implements View.OnClickListener {
             _startTime = Util.getDateFromTStamp(data.getLong("startTime"));
             _endTime = Util.getDateFromTStamp(data.getLong("endTime"));
             _author = data.getInt("author");
-            _teaser = Util.unescUnicode(data.getString("teaser"));
             _location = Util.unescUnicode(data.getString("location"));
         } catch(JSONException ignored) //for some reason JSON couldn't be read data needs to be pulled
         {}
@@ -58,8 +57,6 @@ public class Event implements View.OnClickListener {
             if (_title != null)
                 obj.put("title", Util.escUnicode(_title));
             obj.put("author", _author);
-            if (_teaser != null)
-                obj.put("teaser", Util.escUnicode(_teaser));
             if (_location != null)
                 obj.put("location", Util.escUnicode(_location));
         } catch (JSONException e) {
@@ -74,7 +71,10 @@ public class Event implements View.OnClickListener {
     }
 
     public long getTime() {
-        return Util.getTStampFromDate(_startTime);
+        if (_startTime != null)
+            return Util.getTStampFromDate(_startTime);
+        else
+            return Util.getTStampFromDate(Calendar.getInstance().getTime());
     }
 
     public String getDateString() {
@@ -97,14 +97,9 @@ public class Event implements View.OnClickListener {
         try {
             JSONObject extData = new JSONObject(s);
             _author = extData.getInt("author");
-            _teaser = Util.unescUnicode(extData.getString("teaser"));
             _location = Util.unescUnicode(extData.getString("location"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getTeaser() {
-        return _teaser;
     }
 }

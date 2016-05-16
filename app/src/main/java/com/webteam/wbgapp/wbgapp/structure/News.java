@@ -21,14 +21,17 @@ public class News implements View.OnClickListener {
     private int _id;
     private Date _date;
     private String _title;
-    private Context _context;
+    private String _teaser;
     private String _content;
+
+    private Context _context;
 
     public News(Context context, JSONObject data) throws JSONException {
         _context = context;
         _id = data.getInt("id");
         _date = Util.getDateFromTStamp(data.getLong("date"));
         _title = Util.unescUnicode(data.getString("headline"));
+        _teaser = Util.unescUnicode(data.getString("teaser"));
     }
 
     @Override
@@ -39,6 +42,7 @@ public class News implements View.OnClickListener {
             obj.put("id", _id);
             obj.put("date", Util.getTStampFromDate(_date));
             obj.put("headline", Util.escUnicode(_title));
+            obj.put("teaser", Util.escUnicode(_teaser));
             obj.put("content", Util.escUnicode(_content));
         } catch (JSONException e) {
             e.printStackTrace();
