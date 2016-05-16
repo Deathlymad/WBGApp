@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.util.Constants;
 import com.webteam.wbgapp.wbgapp.util.Util;
 
 import org.json.JSONException;
@@ -18,7 +19,6 @@ import java.text.ParseException;
  * Created by Deathlymad on 24.03.2016 .
  */
 
-//TODO: Aritkel untereinander anzeigen
 // TODO: Beim Tippen gleich activity anzeigen und dann erst Content laden
 // TODO: Beim runterziehen Liste aktualisieren
 
@@ -42,7 +42,7 @@ public class EventArticle extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String extra = getIntent().getStringExtra(EventSchedule.requestTitle);
+        String extra = getIntent().getStringExtra(Constants.EVENT_ARTICLE_DATA);
         JSONObject _extra = null;
         try {
             _extra = new JSONObject(extra);

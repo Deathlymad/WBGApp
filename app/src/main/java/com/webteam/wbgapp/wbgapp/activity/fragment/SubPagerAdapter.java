@@ -4,22 +4,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.webteam.wbgapp.wbgapp.net.BackgroundService;
 import com.webteam.wbgapp.wbgapp.net.SubPlanLoader;
 import com.webteam.wbgapp.wbgapp.structure.SubstitutePlan;
+import com.webteam.wbgapp.wbgapp.util.Constants;
 
 /**
  * Created by Deathlymad on 10.04.2016.
  */
-public class SubPagerAdapter extends FragmentStatePagerAdapter implements SubPlanLoader.SubPlanUpdateFinished {
+public class SubPagerAdapter extends FragmentStatePagerAdapter implements BackgroundService.UpdateListener {
 
     SubstitutePlan plan = null;
 
     public SubPagerAdapter(FragmentManager fm) {
         super(fm);
-        SubPlanLoader loader = new SubPlanLoader();
-        loader.schedulePull();
-        loader.registerOnUpdateFinished(this);
-        loader.start();
+        BackgroundService.registerUpdate(this);
     }
 
     @Override
@@ -35,7 +34,12 @@ public class SubPagerAdapter extends FragmentStatePagerAdapter implements SubPla
     }
 
     @Override
-    public void onUpdate(SubstitutePlan plan) {
-        this.plan = plan;
+    public void onUpdate(String Type) {
+            this.plan = BackgroundService.getSubPlan();
+    }
+
+    @Override
+    public String getUpdateType() {
+        return Constants.INTENT_GET_SUB_PLAN;
     }
 }

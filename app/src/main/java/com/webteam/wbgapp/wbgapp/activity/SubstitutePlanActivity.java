@@ -1,10 +1,13 @@
 package com.webteam.wbgapp.wbgapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.activity.fragment.SubPagerAdapter;
+import com.webteam.wbgapp.wbgapp.net.BackgroundService;
+import com.webteam.wbgapp.wbgapp.util.Constants;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,7 +17,7 @@ import java.io.IOException;
 //TODO: Design anpassen - Feld "Klasse" jetzt nicht mehr nötig (Malte)
 //TODO: Vertretungsplan für den nächsten Tag ins Menü einbinden + Algorhytmus
 
-public class SubstitutePlanActivity extends BaseActivity {
+public class SubstitutePlanActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
@@ -22,6 +25,9 @@ public class SubstitutePlanActivity extends BaseActivity {
         ViewPager pager = (ViewPager)findViewById(R.id.sub_plan_swipe_view);
         if (pager != null)
             pager.setAdapter(new SubPagerAdapter(getSupportFragmentManager()));
+        Intent i = new Intent( this, BackgroundService.class); // move to NewsArticle
+        i.setAction(Constants.INTENT_GET_SUB_PLAN);
+        startService(i);
     }
 
     @Override

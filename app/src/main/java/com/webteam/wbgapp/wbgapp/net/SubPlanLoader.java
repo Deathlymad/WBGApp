@@ -81,7 +81,7 @@ public class SubPlanLoader extends Thread {
         }
         return  sb.toString();
     }
-
+/*
     private void pullSubPlans() throws IOException, JSONException, ParserConfigurationException, SAXException, ParseException {
         JSONObject planURLs = new JSONObject(Util.unescUnicode(getSubPlanURLs())); //check if URLS exist (weekend and stuffs)
 
@@ -214,4 +214,5 @@ public class SubPlanLoader extends Thread {
             }
         }
     }
+    */
 }

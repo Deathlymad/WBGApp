@@ -40,11 +40,25 @@ public class EventListAdapter extends ArrayAdapter<Event> {
 
         Event _event = getItem(position);
 
-        TextView _teaser = (TextView)v.findViewById(R.id.article_element_title);
+        TextView _teaser = (TextView)v.findViewById(R.id.event_element_title);
         _teaser.setText(_event.getTitle());
 
-        TextView _teaserDate = (TextView)v.findViewById(R.id.article_element_date);
-        _teaserDate.setText(_event.getDateString());
+        //TextView _teaserDate = (TextView)v.findViewById(R.id.article_element_date);
+        //_teaserDate.setText(_event.getDateString());
         return v;
+    }
+
+    public Event get(int id)
+    {
+        int i = 0;
+        int max = getCount();
+        while (i < max)
+        {
+            if (getItem(i).getID() == id)
+                return getItem(i);
+            else
+                i++;
+        }
+        return null;
     }
 }

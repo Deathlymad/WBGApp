@@ -43,7 +43,7 @@ public class NewsArticle extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //TODO: Too Slow
         String extra = getIntent().getStringExtra(Constants.NEWS_ARTICLE_DATA);
         JSONObject _extra = null;
         try {
@@ -60,7 +60,7 @@ public class NewsArticle extends BaseActivity {
 
         try {
             ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + Util.getStringFromTStamp(Long.parseLong(_extra.getString("date"))));
-            ((TextView)findViewById(R.id.show_article_text)).setText(new JSONObject(Util.unescUnicode(_extra.getString("content"))).getString("text"));
+            ((TextView)findViewById(R.id.show_article_text)).setText(Util.unescUnicode(_extra.getString("content")));
         } catch (JSONException e) {
             e.printStackTrace();
         }

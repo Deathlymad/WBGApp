@@ -1,5 +1,7 @@
 package com.webteam.wbgapp.wbgapp.structure;
 
+import android.content.SharedPreferences;
+
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -18,9 +20,13 @@ public class Account {
     private final String _pwHash;
 
 
-    public Account(String user, String pw) {
+    public Account(String user, String pw, SharedPreferences mem) {
         _username = user;
         _pwHash = encryptPassword(pw);
+        mem.edit().putString("user", _username);
+        mem.edit().putString("pass", _pwHash);
+
+        mem.edit().apply();
     }
 
     public String getName() {

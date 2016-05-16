@@ -27,7 +27,11 @@ import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class WBGApp
+        extends BaseActivity
+        implements SwipeRefreshLayout.OnRefreshListener,
+            BackgroundService.UpdateListener
+        {
 
     private class NewsScrollHandler implements AbsListView.OnScrollListener
     {
@@ -52,6 +56,18 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
     }
 
     @Override
+    public void onUpdate(String Type) {
+        ListView list = (ListView) findViewById(android.R.id.list);
+        if (list != null && list.getAdapter() == null)
+            list.setAdapter(BackgroundService._newsList);
+    }
+
+    @Override
+    public String getUpdateType() {
+        return Constants.INTENT_GET_NEXT_NEWS;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState)
     {
         setContentView(R.layout.activity_wbgapp);
@@ -59,8 +75,6 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
         ((SwipeRefreshLayout)findViewById(R.id.swipe_container)).setOnRefreshListener(this);
 
         ListView list = (ListView)findViewById(android.R.id.list);
-        if (BackgroundService._newsList != null)
-        list.setAdapter(BackgroundService._newsList);
         list.setOnScrollListener(new NewsScrollHandler(this));
     }
 
@@ -73,7 +87,7 @@ public class WBGApp extends BaseActivity implements SwipeRefreshLayout.OnRefresh
     protected void save(FileOutputStream file) throws IOException {
         JSONArray arr = new JSONArray();
         NewsListAdapter _newsStack = (NewsListAdapter) ((ListView)findViewById(android.R.id.list)).getAdapter();
-        if (!_newsStack.isEmpty())
+        if ( _newsStack != null && !_newsStack.isEmpty())
             for (int i = 0; i < _newsStack.getCount(); i++)
                 arr.put(_newsStack.getItem(i).toString());
         file.write(arr.toString().getBytes());
