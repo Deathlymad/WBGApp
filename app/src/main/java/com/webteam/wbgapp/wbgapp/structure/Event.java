@@ -19,6 +19,7 @@ import java.util.Date;
 /**
  * Created by Deathlymad on 12.03.2016 .
  */
+//TODO finish event display (malte)
 public class Event {
     private int _id;
     private Date _startTime, _endTime;
@@ -27,7 +28,7 @@ public class Event {
     private int _author;
     private String _location;
 
-    public Event(Context applicationContext, JSONObject data) throws JSONException {
+    public Event(JSONObject data) throws JSONException {
         _id = data.getInt("id");
         _title = Util.unescUnicode(data.getString("title"));
 
@@ -71,10 +72,6 @@ public class Event {
             return Util.getTStampFromDate(_startTime);
         else
             return Util.getTStampFromDate(Calendar.getInstance().getTime());
-    }
-
-    public String getDateString() {
-        return Util.getStringFromDate(_startTime);
     }
 
     public int getID() {

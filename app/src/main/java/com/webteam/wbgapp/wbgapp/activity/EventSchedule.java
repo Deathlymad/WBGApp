@@ -64,7 +64,7 @@ public class EventSchedule
     @Override
     public void onUpdate(String Type) {
         ListView list = (ListView) findViewById(android.R.id.list);
-        if (list != null && list.getAdapter() == null && BackgroundService._eventList != null) {
+        if (list != null && BackgroundService._eventList != null) {
             list.setAdapter(BackgroundService._eventList);
             list.deferNotifyDataSetChanged();
         }
@@ -77,7 +77,6 @@ public class EventSchedule
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         BackgroundService.registerUpdate(this);
         setContentView(R.layout.activity_wbgapp);
         super.onCreate(savedInstanceState);

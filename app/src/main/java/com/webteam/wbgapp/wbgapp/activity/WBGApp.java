@@ -62,7 +62,7 @@ public class WBGApp
     @Override
     public void onUpdate(String Type) {
         ListView list = (ListView) findViewById(android.R.id.list);
-        if (list != null && list.getAdapter() == null && BackgroundService._newsList != null) {
+        if (list != null && BackgroundService._newsList != null) {
             list.setAdapter(BackgroundService._newsList);
             list.deferNotifyDataSetChanged();
         }

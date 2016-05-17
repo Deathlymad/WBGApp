@@ -34,6 +34,9 @@ import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 /**
  * Created by Deathlymad on 07.05.2016.
  */
+
+//TODO check Event Order
+//TODO improve state retainment
 public class BackgroundService extends IntentService //manages Data
 {
     public static SubstitutePlan getSubPlan() {
@@ -161,8 +164,9 @@ public class BackgroundService extends IntentService //manages Data
         //Reading JSON
         if (!str.isEmpty()) {
             JSONArray arr = new JSONArray(str);
-            for (int i = 0; i < 10; i++) {
-                final Event data = new Event(getApplicationContext(), new JSONObject(arr.getString(i)));
+
+            for (int i = arr.length() - 1; i >= 0; i--) {
+                final Event data = new Event( new JSONObject(arr.getString(i)));
                 updateHandler.post(new Runnable() {
                     @Override
                     public void run() {
