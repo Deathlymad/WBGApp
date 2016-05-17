@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * Created by Deathlymad on 12.03.2016 .
  */
-public class Event implements View.OnClickListener {
+public class Event {
     private int _id;
     private Date _startTime, _endTime;
     private String _title;
@@ -27,13 +27,9 @@ public class Event implements View.OnClickListener {
     private int _author;
     private String _location;
 
-    private Context _context;
-
     public Event(Context applicationContext, JSONObject data) throws JSONException {
         _id = data.getInt("id");
         _title = Util.unescUnicode(data.getString("title"));
-
-        _context = applicationContext;
 
         try {
             _startTime = Util.getDateFromTStamp(data.getLong("startTime"));
@@ -85,12 +81,11 @@ public class Event implements View.OnClickListener {
         return _id;
     }
 
-    @Override
     public void onClick(View v) {
-        Intent i = new Intent( _context, EventArticle.class);
+        Intent i = new Intent( v.getContext(), EventArticle.class);
         i.putExtra(Constants.EVENT_ARTICLE_DATA, toString());
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        _context.startActivity(i);
+        v.getContext().startActivity(i);
     }
 
     public void setExtData(String s) {

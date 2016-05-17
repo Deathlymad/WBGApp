@@ -24,8 +24,6 @@ public class EventListAdapter extends ArrayAdapter<Event> {
         super(context, resource, textViewResourceId, objects);
     }
 
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -39,7 +37,6 @@ public class EventListAdapter extends ArrayAdapter<Event> {
 
 
         Event _event = getItem(position);
-        v.setOnClickListener(_event);
 
         TextView _teaser = (TextView)v.findViewById(R.id.event_element_title);
         _teaser.setText(_event.getTitle());

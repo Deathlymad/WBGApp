@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.net.BackgroundService;
 import com.webteam.wbgapp.wbgapp.structure.Event;
+import com.webteam.wbgapp.wbgapp.structure.News;
 import com.webteam.wbgapp.wbgapp.util.Constants;
 
 import org.json.JSONArray;
@@ -25,8 +28,6 @@ import java.io.IOException;
 public class EventSchedule
         extends BaseActivity
         implements
-            SwipeRefreshLayout.OnRefreshListener,
-            View.OnClickListener,
             BackgroundService.UpdateListener {
 
     private class EventScrollHandler implements AbsListView.OnScrollListener {
@@ -49,11 +50,24 @@ public class EventSchedule
         }
     }
 
+    private class EventClickHandler implements ListView.OnItemClickListener
+    {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Event n = (Event)parent.getItemAtPosition(position);
+            n.onClick(view);
+        }
+    }
+
+
     @Override
     public void onUpdate(String Type) {
         ListView list = (ListView) findViewById(android.R.id.list);
-        if (list != null && list.getAdapter() == null)
+        if (list != null && list.getAdapter() == null && BackgroundService._eventList != null) {
             list.setAdapter(BackgroundService._eventList);
+            list.deferNotifyDataSetChanged();
+        }
     }
 
     @Override
@@ -63,18 +77,17 @@ public class EventSchedule
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        BackgroundService.registerUpdate(this);
         setContentView(R.layout.activity_wbgapp);
         super.onCreate(savedInstanceState);
-        View layout = findViewById(R.id.swipe_container);
-        if (layout != null)
-            ((SwipeRefreshLayout) layout).setOnRefreshListener(this);
-
 
         ListView list = (ListView) findViewById(android.R.id.list);
         if (list == null)
             throw new NullPointerException("Event List couldn't be Resolved.");
-        BackgroundService.registerUpdate(this);
         list.setOnScrollListener(new EventScrollHandler(this));
+        list.setItemsCanFocus(false);
+        list.setOnItemClickListener(new EventClickHandler());
     }
 
     @Override
@@ -95,37 +108,6 @@ public class EventSchedule
     protected void load(FileInputStream file) throws IOException {
         regenerateList();
     }
-
-    @Override
-    public void onRefresh() {
-        SwipeRefreshLayout layout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
-        if (layout == null)
-            throw new NullPointerException("No RefreshLayout");
-        layout.setRefreshing(true);
-        if (!layout.canChildScrollUp()) {
-            regenerateList();
-        }
-        layout.setRefreshing(false);
-    }
-
-    @Override
-    public void onClick(View v) {
-        TextView entry = (TextView) v;
-        Event article = null;
-        for (int i = 0; i < BackgroundService._eventList.getCount(); i++) //probably needs faster approach
-        {
-            String a = BackgroundService._eventList.getItem(i).getTitle();
-            String b = entry.getText().toString();
-            if (a.equals(b))
-                article = BackgroundService._eventList.getItem(i);
-        }
-        if (article != null) {
-            Intent i = new Intent(this, EventArticle.class);
-            i.putExtra(Constants.EVENT_ARTICLE_DATA, article.toString());
-            startActivity(i);
-        }
-    }
-
 
     private void regenerateList()
     {

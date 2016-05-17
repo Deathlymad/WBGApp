@@ -60,7 +60,7 @@ public class BackgroundService extends IntentService //manages Data
 
     public BackgroundService()
     {
-        super("BackgroundUpdarter - DefaultConstruction");
+        super("BackgroundUpdater - DefaultConstruction");
     }
 
     public BackgroundService(String name) {
@@ -71,7 +71,7 @@ public class BackgroundService extends IntentService //manages Data
     protected void onHandleIntent(Intent intent) {
 
         if (_newsList == null)
-            _newsList = new NewsListAdapter( this, R.layout.display_news_element, R.id.article_element_title, new ArrayList<News>());
+            _newsList = new NewsListAdapter( getApplicationContext(), R.layout.display_news_element, R.id.article_element_title, new ArrayList<News>());
         if (_eventList == null)
             _eventList = new EventListAdapter(this, R.layout.display_news_element, R.id.article_element_title, new ArrayList<Event>());
         try {
@@ -206,7 +206,7 @@ public class BackgroundService extends IntentService //manages Data
         if (!str.isEmpty()) {
             JSONArray arr = new JSONArray(str);
             for (int i = 0; i < 10; i++) {
-                final News data = new News(getApplicationContext(), new JSONObject(arr.getString(i)));
+                final News data = new News( new JSONObject(arr.getString(i)));
                 updateHandler.post(new Runnable() {
                     @Override
                     public void run() {

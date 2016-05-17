@@ -32,6 +32,7 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
     protected String getName() {
         return _title;
     }
+
     @Override
     protected boolean needsFile()
     {
@@ -43,13 +44,13 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
         News temp = BackgroundService._newsList.get(_id);
         if (temp != null)
         {
-            _title = temp.getTitle();
             _date = temp.getDateString();
             _content = temp.getContent();
 
+
+
             ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + _date);
             ((TextView)findViewById(R.id.show_article_text)).setText(Util.unescUnicode(_content));
-            setTitle(_title);
         }
     }
 
@@ -59,17 +60,13 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
     }
 
     @Override
-    protected void save(FileOutputStream file) throws IOException {
-
-    }
+    protected void save(FileOutputStream file) throws IOException {}
 
     @Override
-    protected void load(FileInputStream file) throws IOException {
-
-    }
+    protected void load(FileInputStream file) throws IOException {}
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //save data in News
         String extra = getIntent().getStringExtra(Constants.NEWS_ARTICLE_DATA);
         JSONObject _extra;
         try {
@@ -81,7 +78,7 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
                 _content = _extra.getString("content");
             } catch (JSONException ignored) {
                 BackgroundService.registerUpdate(this);
-                Intent i = new Intent(this, BackgroundService.class); // move to NewsArticle
+                Intent i = new Intent(this, BackgroundService.class);
                 i.setAction(Constants.INTENT_GET_NEWS_CONTENT);
                 i.putExtra("id", _id);
                 this.startService(i);

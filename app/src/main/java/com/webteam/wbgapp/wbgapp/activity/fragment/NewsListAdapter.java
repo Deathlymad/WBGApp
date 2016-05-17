@@ -32,7 +32,6 @@ public class NewsListAdapter extends ArrayAdapter<News> {
         }
 
         News _news = getItem(position);
-        v.setOnClickListener(_news);
 
         TextView _teaser = (TextView)v.findViewById(R.id.article_element_title);
         _teaser.setText(_news.getTitle());

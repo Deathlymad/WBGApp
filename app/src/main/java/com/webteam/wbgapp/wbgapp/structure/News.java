@@ -17,17 +17,14 @@ import java.util.Date;
 /**
  * Created by Deathlymad on 16.01.2016.
  */
-public class News implements View.OnClickListener {
+public class News {
     private int _id;
     private Date _date;
     private String _title;
     private String _teaser;
     private String _content;
 
-    private Context _context;
-
-    public News(Context context, JSONObject data) throws JSONException {
-        _context = context;
+    public News( JSONObject data) throws JSONException {
         _id = data.getInt("id");
         _date = Util.getDateFromTStamp(data.getLong("date"));
         _title = Util.unescUnicode(data.getString("headline"));
@@ -70,12 +67,11 @@ public class News implements View.OnClickListener {
         _content = data;
     }
 
-    @Override
     public void onClick(View v) {
-        Intent i = new Intent( _context, NewsArticle.class);
+        Intent i = new Intent( v.getContext(), NewsArticle.class);
         i.putExtra(Constants.NEWS_ARTICLE_DATA, toString());
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        _context.startActivity(i);
+        v.getContext().startActivity(i);
     }
 
     public int getID() {
