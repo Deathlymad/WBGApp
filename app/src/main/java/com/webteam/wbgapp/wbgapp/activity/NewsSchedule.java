@@ -2,39 +2,28 @@ package com.webteam.wbgapp.wbgapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.net.BackgroundService;
-import com.webteam.wbgapp.wbgapp.structure.Event;
 import com.webteam.wbgapp.wbgapp.structure.News;
 import com.webteam.wbgapp.wbgapp.util.Constants;
 
-import org.json.JSONArray;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-/**
- * Created by Deathlymad on 24.03.2016 .
- */
-public class EventSchedule
+public class NewsSchedule
         extends BaseActivity
-        implements
-            BackgroundService.UpdateListener {
+        implements BackgroundService.UpdateListener
+        {
 
-    private class EventScrollHandler implements AbsListView.OnScrollListener {
+    private class NewsScrollHandler implements AbsListView.OnScrollListener
+    {
 
-        private EventSchedule ref = null;
+        private NewsSchedule ref = null;
 
-        public EventScrollHandler(EventSchedule reference) {
+        public NewsScrollHandler(NewsSchedule reference)
+        {
             ref = reference;
         }
 
@@ -50,68 +39,62 @@ public class EventSchedule
         }
     }
 
-    private class EventClickHandler implements ListView.OnItemClickListener
+    private class NewsClickHandler implements ListView.OnItemClickListener
     {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Event n = (Event)parent.getItemAtPosition(position);
+            News n = (News)parent.getItemAtPosition(position);
             n.onClick(view);
         }
     }
 
-
     @Override
     public void onUpdate(String Type) {
         ListView list = (ListView) findViewById(android.R.id.list);
-        if (list != null && BackgroundService._eventList != null) {
-            list.setAdapter(BackgroundService._eventList);
+        if (list != null && BackgroundService._newsList != null) {
+            list.setAdapter(BackgroundService._newsList);
             list.deferNotifyDataSetChanged();
         }
     }
 
     @Override
     public String getUpdateType() {
-        return Constants.INTENT_GET_NEXT_EVENT;
+        return Constants.INTENT_GET_NEXT_NEWS;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         BackgroundService.registerUpdate(this);
         setContentView(R.layout.activity_wbgapp);
         super.onCreate(savedInstanceState);
 
-        ListView list = (ListView) findViewById(android.R.id.list);
+        ListView list = (ListView)findViewById(android.R.id.list);
         if (list == null)
-            throw new NullPointerException("Event List couldn't be Resolved.");
-        list.setOnScrollListener(new EventScrollHandler(this));
+            throw new NullPointerException("couldn't fine News ListView");
+        list.setOnScrollListener(new NewsScrollHandler(this));
         list.setItemsCanFocus(false);
-        list.setOnItemClickListener(new EventClickHandler());
+        list.setOnItemClickListener(new NewsClickHandler());
     }
 
     @Override
     protected String getName() {
-        return "Events";
+        return "News";
     }
 
     private void regenerateList()
     {
         Intent i = new Intent( this, BackgroundService.class); // move to NewsArticle
-        i.setAction(Constants.INTENT_GET_NEXT_EVENT);
+        i.setAction(Constants.INTENT_GET_NEXT_NEWS);
         i.putExtra("append", false);
         startService(i);
-        ListView list = (ListView)findViewById(android.R.id.list);
-        if (BackgroundService._eventList != null)
-            list.setAdapter(BackgroundService._eventList);
     }
     private void appendList()
     {
         Intent i = new Intent( this, BackgroundService.class); // move to NewsArticle
-        i.setAction(Constants.INTENT_GET_NEXT_EVENT);
+        i.setAction(Constants.INTENT_GET_NEXT_NEWS);
         i.putExtra("append", true);
         startService(i);
-        ListView list = (ListView)findViewById(android.R.id.list);
-        if (BackgroundService._eventList != null)
-            list.setAdapter(BackgroundService._eventList);
     }
 }

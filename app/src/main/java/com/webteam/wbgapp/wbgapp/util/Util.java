@@ -14,16 +14,6 @@ public class Util {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
-    public static int readInt(String name, JSONObject obj) throws JSONException
-    {
-        String nbr = obj.getString(name);
-
-        if (nbr == null || nbr.equals(""))
-            return 0;
-        else
-            return Integer.parseInt(nbr);
-    }
-
     public static String getStringFromTStamp(long date) {
         return dateFormat.format(getDateFromTStamp(date));
     }

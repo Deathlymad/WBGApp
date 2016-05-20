@@ -13,10 +13,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-//TODO: Design anpassen - Feld "Klasse" jetzt nicht mehr nötig (Malte)
 //TODO: Vertretungsplan für den nächsten Tag ins Menü einbinden + Algorithmus
 
 public class SubstitutePlanActivity extends BaseActivity{
+
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
@@ -34,12 +34,4 @@ public class SubstitutePlanActivity extends BaseActivity{
         return getString(R.string.substitute_plan_title);
     }
 
-    @Override
-    protected void save(FileOutputStream file) throws IOException {
-    }
-
-    @Override
-    protected void load(FileInputStream file) throws IOException {
-
-    }
 }

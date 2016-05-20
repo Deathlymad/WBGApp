@@ -101,7 +101,6 @@ public class SubstitutePlan {
     }
 
     private List<SubstituteEntry> _plan;
-    private ArrayList<Integer> classSort;
     private Date _date;
 
     public SubstitutePlan(JSONObject data) throws JSONException, ParseException {
@@ -117,7 +116,7 @@ public class SubstitutePlan {
         JSONArray substitutions = data.getJSONArray("vertretung");
         for (int i = 0; i < substitutions.length(); i++)
         {
-            _plan.add(new SubstituteEntry(substitutions.getJSONObject(i)));
+            _plan.add(new SubstituteEntry(new JSONObject(Util.unescUnicode(substitutions.getString(i)))));
         }
     }
 
@@ -135,5 +134,30 @@ public class SubstitutePlan {
             }
 
         return entrys;
+    }
+
+    public String toString()
+    {
+        try {
+            JSONObject subData = new JSONObject();
+
+            JSONObject dateStruct = new JSONObject();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(_date);
+            dateStruct.put("tag", cal.get(Calendar.DAY_OF_MONTH));
+            dateStruct.put("monat", cal.get(Calendar.MONTH));
+            dateStruct.put("jahr", cal.get(Calendar.YEAR));
+
+            JSONArray subs = new JSONArray();
+            for (SubstituteEntry entry : _plan)
+                subs.put(entry.pack().toString());
+
+            subData .put("@attributes", dateStruct)
+                    .put("vertretung", subs);
+            return subData.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }

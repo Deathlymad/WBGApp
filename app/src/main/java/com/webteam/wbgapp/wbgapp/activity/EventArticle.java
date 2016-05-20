@@ -23,8 +23,6 @@ import java.text.ParseException;
  * Created by Deathlymad on 24.03.2016 .
  */
 
-// TODO: Beim runterziehen Liste aktualisieren
-
 public class EventArticle extends BaseActivity implements BackgroundService.UpdateListener {
 
     private int _id = 0;
@@ -33,20 +31,6 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
     @Override
     protected String getName() {
         return _title;
-    }
-
-    @Override
-    protected boolean needsFile()
-    { return false;}
-
-    @Override
-    protected void save(FileOutputStream file) throws IOException {
-
-    }
-
-    @Override
-    protected void load(FileInputStream file) throws IOException {
-
     }
 
     @Override
@@ -85,7 +69,7 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
         if (temp != null)
         {
             _title = temp.getTitle();
-            _teaser = temp.getTitle(); //TODO write Text
+            _teaser = temp.getTitle();
 
             ((TextView)findViewById(R.id.event_show_title)).setText(_title);
             ((TextView)findViewById(R.id.event_show_title)).setText(_teaser);

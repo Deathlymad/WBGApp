@@ -27,15 +27,6 @@ public class SettingsAccount extends BaseActivity {
         return getString(R.string.settings_account_title);
     }
 
-    @Override
-    protected void save(FileOutputStream file) throws IOException {
-
-    }
-
-    @Override
-    protected void load(FileInputStream file) throws IOException {
-
-    }
 
     public void login(View view) {
         String name = ((TextView) findViewById(R.id.settings_registration_user)).getText().toString();

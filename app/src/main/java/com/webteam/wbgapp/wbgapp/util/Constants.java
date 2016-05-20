@@ -22,6 +22,13 @@ public class Constants {
     public static final String INTENT_GET_NEXT_NEWS = "GetNews";
     public static final String INTENT_GET_NEWS_CONTENT = "GetNewsData";
 
+
+    public static final String INTENT_SAVE_SUB_PLAN = "SaveSub";
+    public static final String INTENT_SAVE_NEXT_SUB_PLAN = "SaveNextSub";
+    public static final String INTENT_SAVE_NEWS = "SaveNews";
+    public static final String INTENT_SAVE_EVENTS = "SaveEvents";
+
+    public static final String INTENT_RELEASE_MEMORY = "ReleaseMem";
     //File Data Locations
     public static final String FILE_EVENT = "chachedEvents.bin";
     public static final String FILE_NEWS = "chachedNews.bin";

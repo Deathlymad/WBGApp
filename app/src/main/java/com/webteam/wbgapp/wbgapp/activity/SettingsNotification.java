@@ -20,15 +20,6 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
         return getString(R.string.settings_notifications_title);
     }
 
-    @Override
-    protected void save(FileOutputStream file) throws IOException {
-
-    }
-
-    @Override
-    protected void load(FileInputStream file) throws IOException {
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceBundle) {
@@ -54,7 +45,7 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
             temp.setOnCheckedChangeListener(this);      //TODO: Schedules need to be implemented
         temp = ((Switch) findViewById(R.id.notification_schedules_selected_on_off));
             temp.setChecked(settings.getBoolean("notificationSchedulesSelect", false));
-            temp.setOnCheckedChangeListener(this); //TODO: needs to be fully implemented
+            temp.setOnCheckedChangeListener(this);
         temp = ((Switch) findViewById(R.id.notification_substitute_plan_on_off));
             temp.setChecked(settings.getBoolean("notificationSubstitution", false));
             temp.setOnCheckedChangeListener(this);

@@ -3,6 +3,7 @@ package com.webteam.wbgapp.wbgapp.net;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.activity.fragment.EventListAdapter;
@@ -18,8 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
@@ -52,7 +54,8 @@ public class BackgroundService extends IntentService //manages Data
     static private ArrayList<UpdateListener> Listeners = new ArrayList<>();
     public static void registerUpdate( UpdateListener listener)
     {
-        Listeners.add(listener);
+        if (!Listeners.contains( listener))
+            Listeners.add(listener);
     }
 
     static SubstitutePlan _today, _tomorrow;
@@ -68,6 +71,47 @@ public class BackgroundService extends IntentService //manages Data
 
     public BackgroundService(String name) {
         super(name);
+    }
+
+    public void releaseMemory()
+    {
+        try {
+            if (_today != null)
+            {
+                saveSubPlan();
+                _today = null;
+            }
+            if (_tomorrow != null)
+            {
+                saveNextSubPlan();
+                _tomorrow  = null;
+            }
+
+            if (_eventList != null && !_eventList.isEmpty())
+            {
+                saveEvents();
+                updateHandler.post(new Runnable() {
+                    @Override
+                    public void run() { _eventList.clear(); }
+                });
+            }
+
+            if (_newsList != null && !_newsList.isEmpty())
+            {
+                saveNews();
+                updateHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        _newsList.clear();
+                    }
+                });
+            }
+
+
+            System.gc();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -86,6 +130,7 @@ public class BackgroundService extends IntentService //manages Data
                 case Constants.INTENT_GET_NEXT_SUB_PLAN:
                     loadNextSubPlan();
                     break;
+
                 case Constants.INTENT_GET_NEXT_EVENT:
                     loadEvents(intent.getBooleanExtra("append", true));
                     break;
@@ -98,8 +143,24 @@ public class BackgroundService extends IntentService //manages Data
                 case Constants.INTENT_GET_EVENT_CONTENT:
                     loadEventData(intent.getIntExtra("id", -1));
                     break;
+
+                case Constants.INTENT_SAVE_SUB_PLAN:
+                    saveSubPlan();
+                    break;
+                case Constants.INTENT_SAVE_NEXT_SUB_PLAN:
+                    saveNextSubPlan();
+                    break;
+                case Constants.INTENT_SAVE_EVENTS:
+                    saveEvents();
+                    break;
+                case Constants.INTENT_SAVE_NEWS:
+                    saveNews();
+                    break;
+
+                case Constants.INTENT_RELEASE_MEMORY:
+                    releaseMemory();
+                    break;
             }
-            update(intent.getAction());
         } catch (IOException | JSONException | ParseException e) {
             e.printStackTrace();
         }
@@ -119,36 +180,76 @@ public class BackgroundService extends IntentService //manages Data
         return sb.toString();
     }
 
+    private void saveSubPlan() throws IOException {
+        FileOutputStream file = openFileOutput("SubPlanCache.bin", MODE_PRIVATE);
+        file.write(_today.toString().getBytes());
+    }
 
     private void loadSubPlan() throws JSONException, ParseException, IOException {
-        String data = pullData("vertretungsplan");
-        int split = data.indexOf("#####");
 
-        _today =  new SubstitutePlan(new JSONObject(data.substring(0, split)));
-        _tomorrow =  new SubstitutePlan(new JSONObject(data.substring(split + 5)));
+        try { //TODO use File checks instead
+            FileInputStream file = openFileInput("SubPlanCache.bin");
+            byte temp[] = new byte[65535];
+            int bytes = file.read(temp);
+            if (bytes <= 2)
+                throw new FileNotFoundException("");
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes; i++)
+                if (temp[i] != 0)
+                    sb.append((char) temp[i]);
+            _today = new SubstitutePlan(new JSONObject(sb.toString()));
+        } catch (FileNotFoundException e)
+        {
+            String data = pullData("vertretungsplan");
+            int split = data.indexOf("#####");
+
+            _today =  new SubstitutePlan(new JSONObject(data.substring(0, split)));
+            _tomorrow =  new SubstitutePlan(new JSONObject(data.substring(split + 5)));
+        }
+        update(Constants.INTENT_GET_SUB_PLAN);
+    }
+
+    private void saveNextSubPlan() throws IOException {
+        FileOutputStream file = openFileOutput("NextSubPlanCache.bin", MODE_PRIVATE);
+        file.write(_tomorrow.toString().getBytes());
     }
 
     private void loadNextSubPlan() throws JSONException, ParseException
     {
         _tomorrow =  new SubstitutePlan(new JSONObject());
+        update(Constants.INTENT_GET_NEXT_SUB_PLAN);
+    }
+
+    private void saveEvents() throws IOException {
+        FileOutputStream file = openFileOutput("EventCache.bin", MODE_PRIVATE);
+        JSONArray arr = new JSONArray();
+        if (!_eventList.isEmpty())
+            for (int i = 0; i < _eventList.getCount(); i++)
+                arr.put(_eventList.getItem(i).toString());
+        file.write(arr.toString().getBytes());
     }
 
     private void loadEvents(boolean append) throws IOException, JSONException {
         String str = null;
 
         //clearing _eventList if Necessary load File
-        if (_eventList.isEmpty() && !append &&  new File(getFilesDir().getPath() + Constants.FILE_EVENT).exists()) {
-            FileInputStream file = new FileInputStream(getFilesDir().getPath() + Constants.FILE_EVENT);
-            byte temp[] = new byte[65535];
-            int bytes = file.read(temp);
-            if (bytes <= 2)
-                return;
-            StringBuilder sb = new StringBuilder();
-            for(int i = 0; i < bytes; i++)
-                if (temp[i]!= 0)
-                    sb.append((char)temp[i]);
-            str = sb.toString();
-        } else if (!_eventList.isEmpty() && ! append)updateHandler.post(new Runnable() {
+        if (_eventList.isEmpty()) {
+            try {
+                FileInputStream file = openFileInput("EventCache.bin");
+                byte temp[] = new byte[65535];
+                int bytes = file.read(temp);
+                if (bytes <= 2)
+                    return;
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < bytes; i++)
+                    if (temp[i] != 0)
+                        sb.append((char) temp[i]);
+                str = sb.toString();
+            } catch (FileNotFoundException expected)
+            {
+                Log.i("EventLoader", "couldn't open Cache File will try to download.");
+            }
+            } else if (!_eventList.isEmpty() && ! append)updateHandler.post(new Runnable() {
             @Override
             public void run() {
                 _eventList.clear();
@@ -174,24 +275,38 @@ public class BackgroundService extends IntentService //manages Data
                     }
                 });
             }
+            update(Constants.INTENT_GET_NEXT_EVENT);
         }
+    }
+
+    private void saveNews() throws IOException {
+        FileOutputStream file = openFileOutput("NewsCache.bin", MODE_PRIVATE);
+        JSONArray arr = new JSONArray();
+        if ( _newsList != null && !_newsList.isEmpty())
+            for (int i = 0; i < _newsList.getCount(); i++)
+                arr.put(_newsList.getItem(i).toString());
+        file.write(arr.toString().getBytes());
     }
 
     private void loadNews(boolean append) throws IOException, JSONException {
 
         String str = null;
-
         //clearing _newsList if Necessary load File
-        if (_newsList.isEmpty() && !append &&  new File(getFilesDir().getPath() + Constants.FILE_NEWS).exists()) {
-            FileInputStream file = new FileInputStream(getFilesDir().getPath() + "/" + Constants.FILE_NEWS);
-            byte temp[] = new byte[65535];
-            int bytes = file.read(temp);
-            if (bytes > 2) {
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < bytes; i++)
-                    if (temp[i] != 0)
-                        sb.append((char) temp[i]);
-                str = sb.toString();
+        if (_newsList.isEmpty()) {
+            try {
+                FileInputStream file = openFileInput("NewsCache.bin");
+                byte temp[] = new byte[65535];
+                int bytes = file.read(temp);
+                if (bytes > 2) {
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < bytes; i++)
+                        if (temp[i] != 0)
+                            sb.append((char) temp[i]);
+                    str = sb.toString();
+                }
+            } catch (FileNotFoundException expected)
+            {
+                Log.i("NewsLoader", "couldn't open Cache File will try to download.");
             }
         } else if (!_newsList.isEmpty() && !append)updateHandler.post(new Runnable() {
                 @Override
@@ -218,6 +333,7 @@ public class BackgroundService extends IntentService //manages Data
                     }
                 });
             }
+            update(Constants.INTENT_GET_NEXT_NEWS);
         }
     }
 
@@ -226,7 +342,10 @@ public class BackgroundService extends IntentService //manages Data
             throw new IllegalArgumentException("News ID Data couldn't be resolved");
 
         String data = pullData("eventcontent&id=" + id + "&images=false");
-        _eventList.get(id).setExtData(data);
+        if (data != "") {
+            _eventList.get(id).setExtData(data);
+            update(Constants.INTENT_GET_EVENT_CONTENT);
+        }
     }
 
     private void loadNewsData(int id) throws IOException, JSONException {
@@ -240,7 +359,10 @@ public class BackgroundService extends IntentService //manages Data
         for (int i = 0; i < contentData.length(); i++)
             build.append(contentData.getJSONObject(i).getString("text"));
 
-        _newsList.get(id).setContent(build.toString());
+        if (build.length() > 0) {
+            _newsList.get(id).setContent(build.toString());
+            update(Constants.INTENT_GET_NEWS_CONTENT);
+        }
     }
 
     private void update(final String type)

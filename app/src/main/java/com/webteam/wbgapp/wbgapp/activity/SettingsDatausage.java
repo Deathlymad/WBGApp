@@ -15,21 +15,12 @@ import java.io.IOException;
 /**
  * Created by malte on 21.01.2016.
  */
-public class SettingsDatausage extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class SettingsDatausage extends BaseActivity implements CompoundButton.OnCheckedChangeListener{
     @Override
     protected String getName() {
         return getString(R.string.settings_datausage_title);
     }
 
-    @Override
-    protected void save(FileOutputStream file) throws IOException {
-
-    }
-
-    @Override
-    protected void load(FileInputStream file) throws IOException {
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceBundle) {
@@ -43,7 +34,6 @@ public class SettingsDatausage extends BaseActivity implements CompoundButton.On
         temp = ((Switch) findViewById(R.id.data_videos_on_off));
             temp.setChecked(settings.getBoolean("loadVideos", false));
             temp.setOnCheckedChangeListener(this);
-        findViewById(R.id.button_invalidate).setOnClickListener(this);
     }
 
     @Override
@@ -58,10 +48,5 @@ public class SettingsDatausage extends BaseActivity implements CompoundButton.On
                 break;
         }
         settings.apply();
-    }
-
-    @Override
-    public void onClick(View v) {
-        invalidateChaches();
     }
 }

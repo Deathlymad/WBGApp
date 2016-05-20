@@ -34,12 +34,6 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
     }
 
     @Override
-    protected boolean needsFile()
-    {
-        return false;
-    }
-
-    @Override
     public void onUpdate(String Type) {
         News temp = BackgroundService._newsList.get(_id);
         if (temp != null)
@@ -58,12 +52,6 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
     public String getUpdateType() {
         return Constants.INTENT_GET_NEWS_CONTENT;
     }
-
-    @Override
-    protected void save(FileOutputStream file) throws IOException {}
-
-    @Override
-    protected void load(FileInputStream file) throws IOException {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //save data in News
