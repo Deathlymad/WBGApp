@@ -37,8 +37,6 @@ import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
  * Created by Deathlymad on 07.05.2016.
  */
 
-//TODO check Event Order
-//TODO improve state retainment
 public class BackgroundService extends IntentService //manages Data
 {
     public static SubstitutePlan getSubPlan() {
@@ -187,7 +185,7 @@ public class BackgroundService extends IntentService //manages Data
 
     private void loadSubPlan() throws JSONException, ParseException, IOException {
 
-        try { //TODO use File checks instead
+        try {
             FileInputStream file = openFileInput("SubPlanCache.bin");
             file.mark(0);
             byte temp[] = new byte[file.read()];
