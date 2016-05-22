@@ -2,6 +2,7 @@ package com.webteam.wbgapp.wbgapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
@@ -44,7 +45,7 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
 
 
             ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + _date);
-            ((TextView)findViewById(R.id.show_article_text)).setText(Util.unescUnicode(_content));
+            ((TextView)findViewById(R.id.show_article_text)).setText(Html.fromHtml(Util.unescUnicode(_content)));
         }
     }
 

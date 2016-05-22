@@ -72,7 +72,7 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
             _teaser = temp.getTitle();
 
             ((TextView)findViewById(R.id.event_show_title)).setText(_title);
-            ((TextView)findViewById(R.id.event_show_title)).setText(_teaser);
+            //((TextView)findViewById(R.id.event_show_title)).setText(_teaser);
             setTitle(_title);
         }
     }
