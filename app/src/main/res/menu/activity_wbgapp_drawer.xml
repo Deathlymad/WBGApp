@@ -41,17 +41,6 @@
             </menu>
         </item>
         -->
-        <item android:title="@string/subtitute_plan_section_title" android:textStyle="bold">
-            <menu>
-                <item
-                    android:id="@+id/nav_substitute_plan_today"
-                    android:title="@string/substitute_plan_title_today" />
-                <item
-                    android:id="@+id/nav_substitute_plan_next"
-                    android:title="@string/substitute_plan_title_next" />
-            </menu>
-        </item>
-        <!--
         <item android:title="@string/settings_section_title">
             <menu>
                 <item
@@ -65,7 +54,6 @@
                     android:title="@string/settings_datausage_title" />
             </menu>
         </item>
-        -->
     </group>
 
 </menu>

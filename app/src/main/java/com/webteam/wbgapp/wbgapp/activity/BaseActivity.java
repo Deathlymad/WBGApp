@@ -101,7 +101,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 i = new Intent(this, ForumMessages.class);
                 break;
              */
-            /*
+
             case R.id.nav_settings_account:
                 i = new Intent(this, SettingsAccount.class);
                 break;
@@ -111,7 +111,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.nav_settings_datausage:
                 i = new Intent(this, SettingsDatausage.class);
                 break;
-            */
+
             default:
                 break;
         }

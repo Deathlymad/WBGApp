@@ -56,7 +56,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:textColor="@color/defaultBlack"
-                android:textStyle="italic"
                 android:textIsSelectable="false"
                 android:hint="E-Mail Adresse"/>
 
@@ -88,7 +87,6 @@
             android:layout_below="@+id/settings_registration"
             android:layout_alignParentEnd="true"
             android:textColor="@color/defaultBlack"
-            android:textStyle="italic"
             android:hint="*********"/>
 
     </RelativeLayout>
