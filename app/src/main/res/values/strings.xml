@@ -26,6 +26,9 @@
         News:
         <string name="news_error">News konnten nicht geladen werden.</string>
         Events:
+        <string name="events_location">Ort:</string>
+        <string name="events_from">Von:</string>
+        <string name="events_to">Bis:</string>
 
         Einstellungen:
             Account:

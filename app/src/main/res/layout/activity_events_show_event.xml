@@ -9,13 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="55dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:minHeight="500dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text=""
+            android:text="SV Konferenz"
             android:id="@+id/event_show_title"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
@@ -29,10 +30,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Lädt..."
+            android:text="@string/events_location"
             android:id="@+id/textView3"
-            android:layout_marginTop="40dp"
             android:layout_below="@+id/event_show_title"
-            android:layout_alignStart="@+id/event_show_title" />
+            android:layout_alignStart="@+id/event_show_title"
+            android:layout_marginTop="25dp"
+            android:layout_toStartOf="@+id/show_event_location" />
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Weinberg Gymnasium"
+            android:id="@+id/show_event_location"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignEnd="@+id/event_show_title"
+            android:textColor="@color/defaultText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/events_from"
+            android:id="@+id/textView13"
+            android:layout_below="@+id/textView3"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_marginTop="28dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Samstag 12.05.2016 \n13 Uhr"
+            android:id="@+id/show_event_from"
+            android:layout_alignTop="@+id/textView13"
+            android:layout_alignEnd="@+id/show_event_location"
+            android:layout_toEndOf="@+id/textView3"
+            android:textColor="@color/defaultText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/events_to"
+            android:id="@+id/textView15"
+            android:layout_below="@+id/show_event_from"
+            android:layout_alignStart="@+id/textView13" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Samstag 12.05.2016 \n14:30 Uhr"
+            android:id="@+id/show_event_to"
+            android:layout_alignTop="@+id/textView15"
+            android:layout_alignStart="@+id/show_event_from"
+            android:layout_alignEnd="@+id/show_event_from"
+            android:textColor="@color/defaultText" />
+
     </RelativeLayout>
 </ScrollView>
