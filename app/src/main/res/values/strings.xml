@@ -57,6 +57,8 @@
         <string name="sp_class">Klasse:</string>
         <string name="sp_lesson">Stunde:</string>
         <string name="sp_type">Art:</string>
+        <string name="sp_teacher">Lehrer:</string>
+        <string name="sp_subject">Fach:</string>
         <string name="sp_substitute_teacher">Vertretungslehrer:</string>
         <string name="sp_substitute_subject">Vertretungsfach:</string>
         <string name="sp_substitute_room">Vertretungsraum:</string>
