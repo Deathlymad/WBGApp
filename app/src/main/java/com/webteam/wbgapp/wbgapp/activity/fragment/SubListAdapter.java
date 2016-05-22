@@ -22,6 +22,13 @@ public class SubListAdapter extends ArrayAdapter<String> {
         super(context, resource, textViewResourceId, objects);
     }
 
+    private void readToView(View v, int id, JSONObject obj, String name) throws JSONException {
+        String data = obj.getString(name);
+        if (data.equals("{}"))
+            data = "";
+        ((TextView) v.findViewById(id)).setText(data);
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -35,12 +42,12 @@ public class SubListAdapter extends ArrayAdapter<String> {
 
         try {
             JSONObject obj = new JSONObject(getItem(position));
-            ((TextView) v.findViewById(R.id.TV_class)).setText(obj.getString("klasse"));
-            ((TextView) v.findViewById(R.id.TV_lesson)).setText(obj.getString("stunde"));
-            ((TextView) v.findViewById(R.id.TV_type)).setText(obj.getString("art"));
-            ((TextView) v.findViewById(R.id.TV_substituteteacher)).setText(obj.getString("vertretungslehrer"));
-            ((TextView) v.findViewById(R.id.TV_substituteroom)).setText(obj.getString("vertretungsraum"));
-            ((TextView) v.findViewById(R.id.TV_substitute_subject)).setText(obj.getString("vertretungsfach"));
+            readToView( v, R.id.TV_class, obj, "klasse");
+            readToView( v, R.id.TV_lesson, obj, "stunde");
+            readToView( v, R.id.TV_type, obj, "art");
+            readToView( v, R.id.TV_substituteteacher, obj, "vertretungslehrer");
+            readToView( v, R.id.TV_substituteroom, obj, "vertretungsraum");
+            readToView( v, R.id.TV_substitute_subject, obj, "vertretungsfach");
         } catch (JSONException e) {
             e.printStackTrace();
         }

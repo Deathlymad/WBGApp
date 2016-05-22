@@ -20,7 +20,7 @@ import java.text.ParseException;
  * Created by Deathlymad on 24.03.2016 .
  */
 
-public class EventArticle extends BaseActivity implements BackgroundService.UpdateListener, View.OnClickListener {
+public class EventArticle extends BaseActivity implements BackgroundService.UpdateListener{
 
     private int _id = 0;
     private String _title = "Läd...";
@@ -64,9 +64,6 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_show_event);
 
-        findViewById(R.id.event_add_to_cal).setOnClickListener(this);
-        findViewById(R.id.event_add_to_cal).setClickable(true);
-
         ((TextView)findViewById(R.id.show_event_title)).setText(_title);
     }
 
@@ -97,13 +94,5 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
     @Override
     public String getUpdateType() {
         return Constants.INTENT_GET_EVENT_CONTENT;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.event_add_to_cal)
-        {
-
-        }
     }
 }

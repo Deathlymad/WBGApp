@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="SV Konferenz"
+            android:text="Läd...."
             android:id="@+id/show_event_title"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
@@ -41,7 +41,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Weinberg Gymnasium"
+            android:text="Läd...."
             android:id="@+id/show_event_location"
             android:layout_alignBottom="@+id/textView3"
             android:layout_alignEnd="@+id/show_event_title"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Samstag 12.05.2016 \n13 Uhr"
+            android:text="Läd...."
             android:id="@+id/show_event_from"
             android:layout_alignTop="@+id/textView13"
             android:layout_alignEnd="@+id/show_event_location"
@@ -81,21 +81,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Samstag 12.05.2016 \n14:30 Uhr"
+            android:text="Läd...."
             android:id="@+id/show_event_to"
             android:layout_alignTop="@+id/textView15"
             android:layout_alignStart="@+id/show_event_from"
             android:layout_alignEnd="@+id/show_event_from"
             android:textColor="@color/defaultText" />
 
-        <Button
+        <!-- <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/event_add_to_cal"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/show_event_to" />
+            android:layout_alignEnd="@+id/show_event_to" /> -->
 
     </RelativeLayout>
 </ScrollView>

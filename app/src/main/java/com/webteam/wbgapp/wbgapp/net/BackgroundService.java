@@ -187,18 +187,15 @@ public class BackgroundService extends IntentService //manages Data
 
         try {
             FileInputStream file = openFileInput("SubPlanCache.bin");
-            file.mark(0);
-            byte temp[] = new byte[file.read()];
-            if (file.markSupported())
-                file.reset();
-            int bytes = file.read(temp);
-            if (bytes <= 2)
-                throw new FileNotFoundException("");
+            byte[] buffer = new byte[65535];
+
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < bytes; i++)
-                if (temp[i] != 0)
-                    sb.append((char) temp[i]);
-            _today = new SubstitutePlan(new JSONObject(sb.toString()));
+            while (-1 != file.read(buffer)) {
+                sb.append(new String(buffer, "UTF-8"));
+            }
+            String str = sb.toString();
+            str.trim();
+            _today = new SubstitutePlan(new JSONObject(str));
         } catch (FileNotFoundException e)
         {
             String data = pullData("vertretungsplan");
