@@ -189,7 +189,10 @@ public class BackgroundService extends IntentService //manages Data
 
         try { //TODO use File checks instead
             FileInputStream file = openFileInput("SubPlanCache.bin");
-            byte temp[] = new byte[65535];
+            file.mark(0);
+            byte temp[] = new byte[file.read()];
+            if (file.markSupported())
+                file.reset();
             int bytes = file.read(temp);
             if (bytes <= 2)
                 throw new FileNotFoundException("");
@@ -236,15 +239,14 @@ public class BackgroundService extends IntentService //manages Data
         if (_eventList.isEmpty()) {
             try {
                 FileInputStream file = openFileInput("EventCache.bin");
-                byte temp[] = new byte[65535];
-                int bytes = file.read(temp);
-                if (bytes <= 2)
-                    return;
+                byte[] buffer = new byte[65535];
+
                 StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < bytes; i++)
-                    if (temp[i] != 0)
-                        sb.append((char) temp[i]);
+                while (-1 != file.read(buffer)) {
+                    sb.append(new String(buffer, "UTF-8"));
+                }
                 str = sb.toString();
+                str.trim();
             } catch (FileNotFoundException expected)
             {
                 Log.i("EventLoader", "couldn't open Cache File will try to download.");
@@ -253,11 +255,12 @@ public class BackgroundService extends IntentService //manages Data
             @Override
             public void run() {
                 _eventList.clear();
+                _eventList.notifyDataSetChanged();
             }
         });
 
         //pulling from Server if no File Loaded
-        if (str == null)
+        if (str == null || str.charAt(1) == ']')
         {
             str = pullData("events&tstamp=" + Long.toString(_eventList.isEmpty() ? Util.getTStampFromDate(Calendar.getInstance().getTime()) : _eventList.getItem(_eventList.getCount() - 1).getTime()));
         }
@@ -272,6 +275,7 @@ public class BackgroundService extends IntentService //manages Data
                     @Override
                     public void run() {
                         _eventList.add(data);
+                        _eventList.notifyDataSetChanged();
                     }
                 });
             }
@@ -295,15 +299,13 @@ public class BackgroundService extends IntentService //manages Data
         if (_newsList.isEmpty()) {
             try {
                 FileInputStream file = openFileInput("NewsCache.bin");
-                byte temp[] = new byte[65535];
-                int bytes = file.read(temp);
-                if (bytes > 2) {
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < bytes; i++)
-                        if (temp[i] != 0)
-                            sb.append((char) temp[i]);
-                    str = sb.toString();
+                byte[] buffer = new byte[65535];
+
+                StringBuilder sb = new StringBuilder();
+                while (-1 != file.read(buffer)) {
+                    sb.append(new String(buffer, "UTF-8"));
                 }
+                str = sb.toString();
             } catch (FileNotFoundException expected)
             {
                 Log.i("NewsLoader", "couldn't open Cache File will try to download.");
@@ -312,6 +314,7 @@ public class BackgroundService extends IntentService //manages Data
                 @Override
                 public void run() {
                     _newsList.clear();
+                    _eventList.notifyDataSetChanged();
                 }
             });
 
@@ -324,12 +327,13 @@ public class BackgroundService extends IntentService //manages Data
         //Reading JSON
         if (!str.isEmpty()) {
             JSONArray arr = new JSONArray(str);
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < arr.length(); i++) {
                 final News data = new News( new JSONObject(arr.getString(i)));
                 updateHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         _newsList.add(data);
+                        _eventList.notifyDataSetChanged();
                     }
                 });
             }

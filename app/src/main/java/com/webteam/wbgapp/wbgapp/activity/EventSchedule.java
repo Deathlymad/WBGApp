@@ -64,9 +64,8 @@ public class EventSchedule
     @Override
     public void onUpdate(String Type) {
         ListView list = (ListView) findViewById(android.R.id.list);
-        if (list != null && BackgroundService._eventList != null) {
+        if (list != null && BackgroundService._eventList != null && list.getAdapter() == null) {
             list.setAdapter(BackgroundService._eventList);
-            list.deferNotifyDataSetChanged();
         }
     }
 
@@ -100,9 +99,6 @@ public class EventSchedule
         i.setAction(Constants.INTENT_GET_NEXT_EVENT);
         i.putExtra("append", false);
         startService(i);
-        ListView list = (ListView)findViewById(android.R.id.list);
-        if (BackgroundService._eventList != null)
-            list.setAdapter(BackgroundService._eventList);
     }
     private void appendList()
     {
@@ -110,8 +106,5 @@ public class EventSchedule
         i.setAction(Constants.INTENT_GET_NEXT_EVENT);
         i.putExtra("append", true);
         startService(i);
-        ListView list = (ListView)findViewById(android.R.id.list);
-        if (BackgroundService._eventList != null)
-            list.setAdapter(BackgroundService._eventList);
     }
 }
