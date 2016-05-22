@@ -24,10 +24,6 @@
 
     Elemten in/auf Seiten:
         News:
-        <string name="reload_button_news">ältere Artikel laden</string>
-        <string name="reload_button_events">weitere Events laden</string>
-        <string name="loading_error">Es konnten keine Inhalte zu diesem Artikel geladen werden. </string>
-        <string name="showmedia">Zu diesem Artikel sind Bilder/Videos vorhanden. Tippe hier, um die Elemente anzuzeigen.</string>
         <string name="news_error">News konnten nicht geladen werden.</string>
         Events:
 

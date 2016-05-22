@@ -42,7 +42,8 @@
             android:layout_below="@+id/show_article_date_infos"
             android:layout_marginTop="20dp"
             android:layout_alignStart="@+id/show_article_date_infos"
-            android:layout_alignEnd="@+id/show_article_date_infos" />
+            android:layout_alignEnd="@+id/show_article_date_infos"
+            android:textColor="@color/defaultText" />
 
     </RelativeLayout>
 </ScrollView>
