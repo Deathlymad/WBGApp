@@ -2,10 +2,10 @@ package com.webteam.wbgapp.wbgapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
-import com.webteam.wbgapp.wbgapp.activity.fragment.EventListAdapter;
 import com.webteam.wbgapp.wbgapp.net.BackgroundService;
 import com.webteam.wbgapp.wbgapp.structure.Event;
 import com.webteam.wbgapp.wbgapp.util.Constants;
@@ -14,20 +14,18 @@ import com.webteam.wbgapp.wbgapp.util.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.ParseException;
 
 /**
  * Created by Deathlymad on 24.03.2016 .
  */
 
-public class EventArticle extends BaseActivity implements BackgroundService.UpdateListener {
+public class EventArticle extends BaseActivity implements BackgroundService.UpdateListener, View.OnClickListener {
 
     private int _id = 0;
     private String _title = "Läd...";
-    private String _teaser = "";
+    private String _location = "";
+    protected String _startTime, _endTime;
     @Override
     protected String getName() {
         return _title;
@@ -41,16 +39,23 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
         try {
             _extra = new JSONObject(extra);
             _id = _extra.getInt("id");
-            _title = _extra.getString("title");
+            _title = Util.unescUnicode(_extra.getString("title"));
             try {
-                _teaser = _extra.getString("teaser");
-                if (_teaser == "")
-                    throw new JSONException("");
+                _location = Util.unescUnicode(_extra.getString("location"));
+                if (_location == "")
+                    _location = "Weinberg Gymnasium Kleinmachnow";
+                ((TextView)findViewById(R.id.show_event_title)).setText(_location);
+                _startTime = Util.getDateString(Util.getDateFromString(_extra.getString("startTime")));
+                ((TextView)findViewById(R.id.show_event_from)).setText(_startTime);
+                _endTime = Util.getDateString(Util.getDateFromString(_extra.getString("endTime")));
+                ((TextView)findViewById(R.id.show_event_to)).setText(_endTime);
             } catch (JSONException ignored) {
                 Intent i = new Intent(this, BackgroundService.class); // move to NewsArticle
                 i.setAction(Constants.INTENT_GET_EVENT_CONTENT);
                 i.putExtra("id", _id);
                 this.startService(i);
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -59,8 +64,10 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_show_event);
 
-        ((TextView)findViewById(R.id.event_show_title)).setText(_title);
-        ((TextView)findViewById(R.id.event_show_title)).setText(_teaser);
+        findViewById(R.id.event_add_to_cal).setOnClickListener(this);
+        findViewById(R.id.event_add_to_cal).setClickable(true);
+
+        ((TextView)findViewById(R.id.show_event_title)).setText(_title);
     }
 
     @Override
@@ -69,16 +76,34 @@ public class EventArticle extends BaseActivity implements BackgroundService.Upda
         if (temp != null)
         {
             _title = temp.getTitle();
-            _teaser = temp.getTitle();
-
-            ((TextView)findViewById(R.id.event_show_title)).setText(_title);
-            //((TextView)findViewById(R.id.event_show_title)).setText(_teaser);
+            ((TextView)findViewById(R.id.show_event_title)).setText(_title);
             setTitle(_title);
+            try {
+                JSONObject _data = new JSONObject(temp.toString());
+                _location = _data.getString("location");
+                if (_location == "")
+                    _location = "Weinberg Gymnasium Kleinmachnow";
+                ((TextView)findViewById(R.id.show_event_location)).setText(_location);
+                _startTime = Util.getDateString(Util.getDateFromTStamp(_data.getLong("startTime")));
+                ((TextView)findViewById(R.id.show_event_from)).setText(_startTime);
+                _endTime = Util.getDateString(Util.getDateFromTStamp(_data.getLong("endTime")));
+                ((TextView)findViewById(R.id.show_event_to)).setText(_endTime);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public String getUpdateType() {
         return Constants.INTENT_GET_EVENT_CONTENT;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.event_add_to_cal)
+        {
+
+        }
     }
 }

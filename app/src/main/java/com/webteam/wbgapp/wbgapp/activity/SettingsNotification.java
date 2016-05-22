@@ -34,9 +34,6 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
         temp = ((Switch) findViewById(R.id.notification_news_on_off));
             temp.setChecked(settings.getBoolean("notificationNews", false));
             temp.setOnCheckedChangeListener(this);
-        temp = ((Switch) findViewById(R.id.notification_place_lockscreen_on_off));
-            temp.setChecked(settings.getBoolean("notificationLockscreen", false));
-            temp.setOnCheckedChangeListener(this);
         temp = ((Switch) findViewById(R.id.notification_place_statusbar_on_off));
             temp.setChecked(settings.getBoolean("notificationStatusbar", false));
             temp.setOnCheckedChangeListener(this);
@@ -60,9 +57,6 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
                 break;
             case R.id.notification_news_on_off:
                 settings.putBoolean("notificationNews", isChecked);
-                break;
-            case R.id.notification_place_lockscreen_on_off:
-                settings.putBoolean("notificationLockscreen", isChecked);
                 break;
             case R.id.notification_place_statusbar_on_off:
                 settings.putBoolean("notificationStatusbar", isChecked);

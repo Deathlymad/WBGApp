@@ -6,7 +6,9 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,5 +40,12 @@ public class Util {
     }
     public static String escUnicode(String str) {
         return StringEscapeUtils.escapeJava(StringEscapeUtils.escapeHtml(str));
+    }
+
+    public static String getDateString(Date date)
+    {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        return c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) + " " + getStringFromDate(date);
     }
 }

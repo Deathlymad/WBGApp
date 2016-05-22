@@ -35,7 +35,6 @@ public class Event {
         try {
             _startTime = Util.getDateFromTStamp(data.getLong("startTime"));
             _endTime = Util.getDateFromTStamp(data.getLong("endTime"));
-            _author = data.getInt("author");
             _location = Util.unescUnicode(data.getString("location"));
         } catch(JSONException ignored) //for some reason JSON couldn't be read data needs to be pulled
         {}
@@ -47,13 +46,12 @@ public class Event {
         JSONObject obj = new JSONObject();
         try {
             obj.put("id", _id);
+            if (_title != null)
+                obj.put("title", Util.escUnicode(_title));
             if (_startTime != null)
                 obj.put("startTime", Util.getTStampFromDate(_startTime));
             if (_endTime != null)
                 obj.put("endTime", Util.getTStampFromDate(_endTime));
-            if (_title != null)
-                obj.put("title", Util.escUnicode(_title));
-            obj.put("author", _author);
             if (_location != null)
                 obj.put("location", Util.escUnicode(_location));
         } catch (JSONException e) {
@@ -88,8 +86,9 @@ public class Event {
     public void setExtData(String s) {
         try {
             JSONObject extData = new JSONObject(s);
-            _author = extData.getInt("author");
             _location = Util.unescUnicode(extData.getString("location"));
+            _startTime = Util.getDateFromTStamp(extData.getLong("startTime"));
+            _endTime = Util.getDateFromTStamp(extData.getLong("endTime"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

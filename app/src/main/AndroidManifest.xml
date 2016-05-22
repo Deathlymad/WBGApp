@@ -3,6 +3,7 @@
     package="com.webteam.wbgapp.wbgapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:name=".activity.WBGApp"

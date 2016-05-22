@@ -108,9 +108,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.nav_settings_notifications:
                 i = new Intent(this, SettingsNotification.class);
                 break;
-            case R.id.nav_settings_datausage:
-                i = new Intent(this, SettingsDatausage.class);
-                break;
+            //case R.id.nav_settings_datausage:
+                //i = new Intent(this, SettingsDatausage.class);
+                //break;
 
             default:
                 break;
