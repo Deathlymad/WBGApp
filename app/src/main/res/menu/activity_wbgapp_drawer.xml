@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
-
         <item
             android:id="@+id/nav_news"
             android:title="@string/newsfeed_title"
@@ -59,6 +56,4 @@
                     android:title="@string/settings_datausage_title" /> -->
             </menu>
         </item>
-    </group>
-
 </menu>
