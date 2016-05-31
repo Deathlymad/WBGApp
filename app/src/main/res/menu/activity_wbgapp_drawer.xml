@@ -5,15 +5,18 @@
 
         <item
             android:id="@+id/nav_news"
-            android:title="@string/newsfeed_title" />
+            android:title="@string/newsfeed_title"
+            android:icon="@drawable/ic_nav_news"/>
 
         <item
             android:id="@+id/nav_events"
-            android:title="@string/events_title" />
+            android:title="@string/events_title"
+            android:icon="@drawable/ic_nav_events"/>
 
         <item
             android:id="@+id/nav_substitute_plan"
-            android:title="@string/substitute_plan_title" />
+            android:title="@string/substitute_plan_title"
+            android:icon="@drawable/ic_nav_sp_2"/>
 
         <!--
         <item
@@ -45,10 +48,12 @@
             <menu>
                 <item
                     android:id="@+id/nav_settings_account"
-                    android:title="@string/settings_account_title" />
+                    android:title="@string/settings_account_title"
+                    android:icon="@drawable/ic_nav_settings_account"/>
                 <item
                     android:id="@+id/nav_settings_notifications"
-                    android:title="@string/settings_notifications_title" />
+                    android:title="@string/settings_notifications_title"
+                    android:icon="@drawable/ic_nav_settings_notifications_2" />
                <!-- <item
                     android:id="@+id/nav_settings_datausage"
                     android:title="@string/settings_datausage_title" /> -->
