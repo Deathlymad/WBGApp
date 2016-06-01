@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Willkommen!"
+            android:text="WILLKOMMEN!"
             android:id="@+id/textView7"
             android:layout_alignParentTop="false"
             android:layout_alignParentStart="true"
