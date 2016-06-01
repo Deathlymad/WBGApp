@@ -90,6 +90,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.nav_events:
                 i = new Intent(this, EventSchedule.class);
                 break;
+            case R.id.nav_home:
+                i = new Intent(this, HomeScreen.class);
+                break;
             /*
             case R.id.mail_inbox:
                 i = new Intent(this, MailInbox.class);

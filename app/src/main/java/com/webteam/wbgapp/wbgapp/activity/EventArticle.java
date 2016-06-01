@@ -23,7 +23,7 @@ import java.text.ParseException;
 public class EventArticle extends BaseActivity implements BackgroundService.UpdateListener{
 
     private int _id = 0;
-    private String _title = "Läd...";
+    private String _title = "Lädt...";
     private String _location = "";
     protected String _startTime, _endTime;
     @Override
