@@ -41,6 +41,7 @@
         <string name="events_location">Ort:</string>
         <string name="events_from">Von:</string>
         <string name="events_to">Bis:</string>
+        <string name="events_save">In Kalender speichern</string>
 
         Einstellungen:
             Account:

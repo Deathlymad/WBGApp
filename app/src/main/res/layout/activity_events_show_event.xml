@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="55dp"
-        android:paddingBottom="10dp" >
+        android:paddingBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,6 +86,16 @@
             android:layout_alignStart="@+id/show_event_from"
             android:layout_alignEnd="@+id/show_event_from"
             android:textColor="@color/defaultText" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/events_save"
+            android:id="@+id/button"
+            android:layout_below="@+id/textView15"
+            android:layout_alignRight="@+id/show_event_to"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp" />
 
         <!-- <Button
             android:layout_width="wrap_content"
