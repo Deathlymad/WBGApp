@@ -12,27 +12,29 @@
         android:src="@drawable/ic_notification" />
 
     <TextView
-        android:layout_width="180dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Titel...."
+        android:text="Neuer Vertretungsplan"
         android:id="@+id/n_title"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/n_icon"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/defaultBlack" />
+        android:textColor="@color/defaultBlack"
+        android:layout_toEndOf="@+id/n_icon" />
 
     <TextView
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Weiterer Text ............................."
+        android:text="Der neue Vertretungsplan wurde hochgeladen! \n Schau ihn dir jetzt an."
         android:id="@+id/n_description"
         android:textColor="@color/DefaultDargrey"
         android:layout_below="@+id/n_title"
         android:layout_alignStart="@+id/n_title"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:layout_alignEnd="@+id/n_time"
+        android:layout_alignBottom="@+id/n_icon" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,5 +45,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:textColor="@color/DefaultDargrey" />
 </RelativeLayout>
