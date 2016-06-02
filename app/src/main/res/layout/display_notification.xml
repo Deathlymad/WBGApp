@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/icon"
+        android:id="@+id/n_icon"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/ic_notification" />
@@ -18,7 +18,7 @@
         android:text="Titel...."
         android:id="@+id/n_title"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/icon"
+        android:layout_toEndOf="@+id/n_icon"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/defaultBlack" />
