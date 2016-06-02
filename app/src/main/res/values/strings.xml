@@ -22,6 +22,18 @@
     <string name="settings_notifications_title">Benachrichtigungseinstellungen</string>
     <string name="settings_datausage_title">Datennutzung</string>
 
+    Benachrichtungs Texte:
+    <string name="new_events_title">Neuer Termin vorhanden</string> <!-- News Artikel erschienen -->
+    <string name="new_events_description">Es ist mindestens ein neuer Termin vorhanden.</string>
+    <string name="new_news_title">Neuer News Artikel</string>  <!-- Event findet statt -->
+    <string name="new_news_description">Es ist ein neuer News Artikel erschienen!</string>
+    <string name="new_supstitute_title">Vertretungsplan</string> <!-- Neuer Vertretungsplan -->
+    <string name="new_supstitute_description">Der neue Vertretungsplan wurde hochgeladen.</string>
+    <string name="new_message_title">Neue Nachricht</string> <!-- Neue Nachricht der Developer auf dem HomeScreen -->
+    <string name="new_message_description">Du hast eine neue Nachricht von den Entwicklern erhalten!</string>
+    <string name="new_mail_title">Neue E-Mail</string> <!-- Neue EMail vorhanden -->
+    <string name="new_mail_description">Du hast eine neue EMail bekommen!</string>
+
     Elemten in/auf Seiten:
         News:
         <string name="news_error">News konnten nicht geladen werden.</string>
