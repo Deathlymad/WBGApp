@@ -26,7 +26,7 @@ public class SubListAdapter extends ArrayAdapter<String> {
         String data = obj.getString(name);
         if (data.equals("{}"))
             data = "";
-        ((TextView) v.findViewById(id)).setText(data);
+         ((TextView) v.findViewById(id)).setText(data);
     }
 
     @Override
