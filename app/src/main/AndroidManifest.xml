@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.HomeScreen"></activity>
         <activity
             android:name=".activity.SubstitutePlanActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
@@ -31,7 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.EventSchedule"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.HomeScreen"></activity>
+
 
         <!--<activity android:name=".activity.forum.ForumMessages"
             android:theme="@style/AppTheme.NoActionBar"></activity>

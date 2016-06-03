@@ -35,7 +35,6 @@
             android:layout_below="@+id/textView9"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="20dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp" />
 
@@ -43,101 +42,83 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_notification_general"
-            android:id="@+id/notification_general_on_off"
+            android:id="@+id/n_general"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:checked="true"
             android:layout_below="@+id/textView10"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:enabled="true"
-            />
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_notification_news"
-            android:id="@+id/notification_news_on_off"
-            android:layout_below="@+id/notification_general_on_off"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="5dp" />
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_notification_schedules_all"
-            android:id="@+id/notification_schedules_all_on_off"
-            android:layout_below="@+id/notification_news_on_off"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp" />
-
-        <!-- TODO: Wird das hier noch gebraucht? -->
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_notification_schedules__selected"
-            android:id="@+id/notification_schedules_selected_on_off"
-            android:layout_below="@+id/notification_schedules_all_on_off"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp" />
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_notification_subsitute_plan"
-            android:id="@+id/notification_substitute_plan_on_off"
-            android:layout_below="@+id/notification_schedules_selected_on_off"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_alignEnd="@+id/textView10"
+            android:layout_marginTop="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/settings_notification_place_information"
+            android:text="@string/settings_notification_text"
             android:id="@+id/textView11"
-            android:layout_below="@+id/notification_substitute_plan_on_off"
-            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/n_general"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="5dp" />
 
-        <TextView
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/settings_notification_place_comment"
-            android:id="@+id/textView12"
+            android:text="@string/settings_notification_news"
+            android:id="@+id/n_news"
             android:layout_below="@+id/textView11"
-            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignEnd="@+id/n_general"
             android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginLeft="20dp"
+            android:switchPadding="5dp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_notification_events"
+            android:id="@+id/n_events"
+            android:layout_below="@+id/n_news"
+            android:layout_alignStart="@+id/n_news"
+            android:layout_alignEnd="@+id/n_news"
+            android:layout_marginTop="15dp"
+            android:switchPadding="5dp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_notification_messages"
+            android:id="@+id/n_messages"
+            android:layout_below="@+id/n_events"
+            android:layout_alignStart="@+id/n_events"
+            android:layout_alignEnd="@+id/n_events"
+            android:layout_marginTop="15dp"
+            android:switchPadding="5dp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_notification_mail"
+            android:id="@+id/n_mail"
+            android:layout_below="@+id/n_messages"
+            android:layout_alignStart="@+id/n_messages"
+            android:layout_marginTop="15dp"
+            android:layout_alignEnd="@+id/n_messages"
+            android:switchPadding="5dp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_notification_supstitute"
+            android:id="@+id/n_supstitue"
+            android:layout_below="@+id/n_mail"
+            android:layout_alignStart="@+id/n_mail"
+            android:layout_alignEnd="@+id/n_mail"
+            android:layout_marginTop="15dp"
+            android:switchPadding="5dp" />
+
+        <!-- TODO: Wird das hier noch gebraucht? -->
 
         <!--<Switch
             android:layout_width="wrap_content"
@@ -152,17 +133,6 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="40dp" /> -->
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_notification_place_statusbar"
-            android:id="@+id/notification_place_statusbar_on_off"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_below="@+id/textView12"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 </ScrollView>

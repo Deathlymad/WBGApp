@@ -18,8 +18,8 @@ public class Notification {
     public Notification(String _text, Activity sender, Class<BaseActivity> activityClass)
     {
         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(sender)
-            .setSmallIcon(R.drawable.icon_small)
-            .setContentTitle("WBGApp Notification")
+            .setSmallIcon(R.drawable.app_icon)
+            .setContentTitle("WBGApp Benachrichtigung")
             .setContentText(_text);
 
         Intent resultIntent = new Intent(sender, activityClass);

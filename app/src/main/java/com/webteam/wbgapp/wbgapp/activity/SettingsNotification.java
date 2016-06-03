@@ -28,22 +28,22 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
 
         Switch temp;
         SharedPreferences settings = getSettings();
-        temp = ((Switch) findViewById(R.id.notification_general_on_off));
+        temp = ((Switch) findViewById(R.id.n_general));
             temp.setChecked(settings.getBoolean("notificationGeneral", true));
             temp.setOnCheckedChangeListener(this);
-        temp = ((Switch) findViewById(R.id.notification_news_on_off));
+        temp = ((Switch) findViewById(R.id.n_news));
             temp.setChecked(settings.getBoolean("notificationNews", false));
             temp.setOnCheckedChangeListener(this);
-        temp = ((Switch) findViewById(R.id.notification_place_statusbar_on_off));
-            temp.setChecked(settings.getBoolean("notificationStatusbar", false));
+        temp = ((Switch) findViewById(R.id.n_events));
+            temp.setChecked(settings.getBoolean("notificationEvents", false));
             temp.setOnCheckedChangeListener(this);
-        temp = ((Switch) findViewById(R.id.notification_schedules_all_on_off));
-            temp.setChecked(settings.getBoolean("notificationSchedules", false));
-            temp.setOnCheckedChangeListener(this);      //TODO: Schedules need to be implemented
-        temp = ((Switch) findViewById(R.id.notification_schedules_selected_on_off));
-            temp.setChecked(settings.getBoolean("notificationSchedulesSelect", false));
+        temp = ((Switch) findViewById(R.id.n_messages));
+            temp.setChecked(settings.getBoolean("notificationMessages", false));
             temp.setOnCheckedChangeListener(this);
-        temp = ((Switch) findViewById(R.id.notification_substitute_plan_on_off));
+        temp = ((Switch) findViewById(R.id.n_mail));
+            temp.setChecked(settings.getBoolean("notificationMail", false));
+            temp.setOnCheckedChangeListener(this);
+        temp = ((Switch) findViewById(R.id.n_supstitue));
             temp.setChecked(settings.getBoolean("notificationSubstitution", false));
             temp.setOnCheckedChangeListener(this);
     }
@@ -52,22 +52,22 @@ public class SettingsNotification extends BaseActivity implements CompoundButton
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         SharedPreferences.Editor settings = getSettings().edit();
         switch (buttonView.getId()) {
-            case R.id.notification_general_on_off:
+            case R.id.n_general:
                 settings.putBoolean("notificationGeneral", isChecked);
                 break;
-            case R.id.notification_news_on_off:
+            case R.id.n_news:
                 settings.putBoolean("notificationNews", isChecked);
                 break;
-            case R.id.notification_place_statusbar_on_off:
-                settings.putBoolean("notificationStatusbar", isChecked);
+            case R.id.n_events:
+                settings.putBoolean("notificationEvents", isChecked);
                 break;
-            case R.id.notification_schedules_all_on_off:
-                settings.putBoolean("notificationSchedules", isChecked);
+            case R.id.n_messages:
+                settings.putBoolean("notificationMessages", isChecked);
                 break;
-            case R.id.notification_schedules_selected_on_off:
-                settings.putBoolean("notificationSchedulesSelect", isChecked);
+            case R.id.n_mail:
+                settings.putBoolean("notificationMail", isChecked);
                 break;
-            case R.id.notification_substitute_plan_on_off:
+            case R.id.n_supstitue:
                 settings.putBoolean("notificationSubstitution", isChecked);
                 break;
         }
