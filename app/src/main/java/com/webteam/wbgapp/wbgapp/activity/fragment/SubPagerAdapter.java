@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.webteam.wbgapp.wbgapp.net.BackgroundService;
-import com.webteam.wbgapp.wbgapp.net.SubPlanLoader;
 import com.webteam.wbgapp.wbgapp.structure.SubstitutePlan;
 import com.webteam.wbgapp.wbgapp.util.Constants;
 

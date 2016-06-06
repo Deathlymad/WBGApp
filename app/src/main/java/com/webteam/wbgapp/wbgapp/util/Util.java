@@ -1,5 +1,9 @@
 package com.webteam.wbgapp.wbgapp.util;
 
+import android.content.Context;
+import android.content.Intent;
+import android.provider.CalendarContract;
+
 import org.apache.commons.lang.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,5 +51,22 @@ public class Util {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         return c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) + " " + getStringFromDate(date);
+    }
+
+    public static void registerEventToCalender(Context context, String title, Date beginTStamp, Date endTStamp, String location, String desc)
+    {
+        Calendar calBegin = Calendar.getInstance();
+        calBegin.setTime(beginTStamp);
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(endTStamp);
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calBegin.getTimeInMillis())
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calEnd.getTimeInMillis())
+                .putExtra(CalendarContract.Events.TITLE, title)
+                .putExtra(CalendarContract.Events.DESCRIPTION, desc)
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, location)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }

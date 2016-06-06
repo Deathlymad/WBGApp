@@ -91,20 +91,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/events_save"
-            android:id="@+id/button"
+            android:id="@+id/show_event_button"
             android:layout_below="@+id/textView15"
             android:layout_alignRight="@+id/show_event_to"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="10dp" />
-
-        <!-- <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/event_add_to_cal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/show_event_to" /> -->
 
     </RelativeLayout>
 </ScrollView>

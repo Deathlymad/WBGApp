@@ -11,22 +11,21 @@ import android.support.v7.app.NotificationCompat;
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.activity.BaseActivity;
 
-/**
- * Created by Deathlymad on 22.03.2016 .
- */
+//might be redundant
+@Deprecated
 public class Notification {
-    public Notification(String _text, Activity sender, Class<BaseActivity> activityClass)
+    public Notification(String _text, Activity sender, Class< ? extends Activity> activityClass)
     {
         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(sender)
             .setSmallIcon(R.drawable.app_icon)
-            .setContentTitle("WBGApp Benachrichtigung")
+            .setContentTitle("WBGApp Notification")
             .setContentText(_text);
 
         Intent resultIntent = new Intent(sender, activityClass);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(sender);
 
-        stackBuilder.addParentStack(activityClass);
+        stackBuilder.addParentStack(sender);
 
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent =
