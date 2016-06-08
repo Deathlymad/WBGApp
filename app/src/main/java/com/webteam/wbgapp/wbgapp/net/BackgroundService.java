@@ -199,7 +199,7 @@ public class BackgroundService extends IntentService //manages Data
         } catch (FileNotFoundException e)
         {
             String data = pullData("vertretungsplan");
-            int split = data.indexOf("#####");
+            int split = data.indexOf("#####");  // grins :-)
 
             _today =  new SubstitutePlan(new JSONObject(data.substring(0, split)));
             _tomorrow =  new SubstitutePlan(new JSONObject(data.substring(split + 5)));
