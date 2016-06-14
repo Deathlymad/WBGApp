@@ -22,9 +22,8 @@ public class Account {
 
     public Account(String user, String pw, SharedPreferences mem) {
         _username = user;
-        _pwHash = encryptPassword(pw);
-        mem.edit().putString("user", _username);
-        mem.edit().putString("pass", _pwHash);
+        _pwHash = encrypt(pw);
+        mem.edit().putString("login", getLogin());
 
         mem.edit().apply();
     }
@@ -33,7 +32,12 @@ public class Account {
         return _name;
     }
 
-    private String encryptPassword(String password) {
+    public String getLogin()
+    {
+        return "&username=" + _username + "&password=" + _pwHash;
+    }
+
+    private static String encrypt(String password) {
         String sha1 = "";
         try {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");

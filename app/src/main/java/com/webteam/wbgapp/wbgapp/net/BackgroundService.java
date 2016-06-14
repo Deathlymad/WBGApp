@@ -2,10 +2,12 @@ package com.webteam.wbgapp.wbgapp.net;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.activity.BaseActivity;
 import com.webteam.wbgapp.wbgapp.activity.fragment.EventListAdapter;
 import com.webteam.wbgapp.wbgapp.activity.fragment.NewsListAdapter;
 import com.webteam.wbgapp.wbgapp.structure.Event;
@@ -27,6 +29,7 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
@@ -155,6 +158,10 @@ public class BackgroundService extends IntentService //manages Data
                     saveNews();
                     break;
 
+                case Constants.INTENT_CHECK_LOGIN:
+                    verifyLogin();
+                    break;
+
                 case Constants.INTENT_RELEASE_MEMORY:
                     releaseMemory();
                     break;
@@ -166,7 +173,17 @@ public class BackgroundService extends IntentService //manages Data
 
     private String pullData(String req) throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
-        String link = Constants.SERVER_URL + "?task=" + req;
+        String link;
+        if (req.equalsIgnoreCase("vertretungsplan") || req.equalsIgnoreCase("login"))
+        {
+            String login = getSharedPreferences("Settings", MODE_PRIVATE).getString("login", "");
+            if (login.length() > 0)
+                link = Constants.SERVER_URL + "?task=" + req + login;
+            else
+                return "false";
+        }
+        else
+        link = Constants.SERVER_URL + "?task=" + req;
         HttpGet request = new HttpGet( link);
         HttpResponse response = client.execute(request);
         StringBuilder sb = new StringBuilder();
@@ -178,15 +195,21 @@ public class BackgroundService extends IntentService //manages Data
         return sb.toString();
     }
 
+    private void verifyLogin() throws IOException
+    {
+        if ( !(pullData("login").equalsIgnoreCase("true")))
+            getSharedPreferences("Settings", MODE_PRIVATE).edit().putString("login", null).commit();
+    }
+
     private void saveSubPlan() throws IOException {
-        FileOutputStream file = openFileOutput("SubPlanCache.bin", MODE_PRIVATE);
+        FileOutputStream file = openFileOutput(Constants.FILE_SUB_PLAN, MODE_PRIVATE);
         file.write(_today.toString().getBytes());
     }
 
     private void loadSubPlan() throws JSONException, ParseException, IOException {
 
         try {
-            FileInputStream file = openFileInput("SubPlanCache.bin");
+            FileInputStream file = openFileInput(Constants.FILE_SUB_PLAN);
             byte[] buffer = new byte[65535];
 
             StringBuilder sb = new StringBuilder();
@@ -199,7 +222,9 @@ public class BackgroundService extends IntentService //manages Data
         } catch (FileNotFoundException e)
         {
             String data = pullData("vertretungsplan");
-            int split = data.indexOf("#####");  // grins :-)
+            if (data.equalsIgnoreCase("false"))
+                return;
+            int split = data.indexOf("#####");
 
             _today =  new SubstitutePlan(new JSONObject(data.substring(0, split)));
             _tomorrow =  new SubstitutePlan(new JSONObject(data.substring(split + 5)));
@@ -233,7 +258,7 @@ public class BackgroundService extends IntentService //manages Data
         //clearing _eventList if Necessary load File
         if (_eventList.isEmpty()) {
             try {
-                FileInputStream file = openFileInput("EventCache.bin");
+                FileInputStream file = openFileInput(Constants.FILE_EVENT);
                 byte[] buffer = new byte[65535];
 
                 StringBuilder sb = new StringBuilder();
@@ -293,7 +318,7 @@ public class BackgroundService extends IntentService //manages Data
         //clearing _newsList if Necessary load File
         if (_newsList.isEmpty()) {
             try {
-                FileInputStream file = openFileInput("NewsCache.bin");
+                FileInputStream file = openFileInput(Constants.FILE_NEWS);
                 byte[] buffer = new byte[65535];
 
                 StringBuilder sb = new StringBuilder();
@@ -341,7 +366,7 @@ public class BackgroundService extends IntentService //manages Data
             throw new IllegalArgumentException("News ID Data couldn't be resolved");
 
         String data = pullData("eventcontent&id=" + id + "&images=false");
-        if (data != "") {
+        if (!data.equals("")) {
             _eventList.get(id).setExtData(data);
             update(Constants.INTENT_GET_EVENT_CONTENT);
         }
@@ -367,7 +392,7 @@ public class BackgroundService extends IntentService //manages Data
     private void update(final String type)
     {
         for (final UpdateListener listener: Listeners) {
-            if (listener.getUpdateType() == type)
+            if (listener.getUpdateType().equals(type))
             {
                 updateHandler.post(new Runnable() {
                     @Override

@@ -28,8 +28,11 @@ public class Constants {
     public static final String INTENT_SAVE_NEWS = "SaveNews";
     public static final String INTENT_SAVE_EVENTS = "SaveEvents";
 
+    public static final String INTENT_CHECK_LOGIN = "CheckLogin";
+
     public static final String INTENT_RELEASE_MEMORY = "ReleaseMem";
     //File Data Locations
     public static final String FILE_EVENT = "chachedEvents.bin";
     public static final String FILE_NEWS = "chachedNews.bin";
+    public static final String FILE_SUB_PLAN = "SubPlanCache.bin";
 }
