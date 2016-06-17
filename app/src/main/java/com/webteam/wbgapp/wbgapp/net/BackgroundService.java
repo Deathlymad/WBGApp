@@ -176,7 +176,7 @@ public class BackgroundService extends IntentService //manages Data
         String link;
         if (req.equalsIgnoreCase("vertretungsplan") || req.equalsIgnoreCase("login"))
         {
-            String login = getSharedPreferences("Settings", MODE_PRIVATE).getString("login", "");
+            String login = getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE).getString("login", "");
             if (login.length() > 0)
                 link = Constants.SERVER_URL + "?task=" + req + login;
             else

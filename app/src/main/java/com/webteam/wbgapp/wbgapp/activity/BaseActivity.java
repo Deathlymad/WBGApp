@@ -128,6 +128,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     protected SharedPreferences getSettings()
     {
-        return getSharedPreferences("Settings", MODE_PRIVATE);
+        return getApplicationContext().getSharedPreferences("Settings", MODE_PRIVATE);
     }
 }

@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 public class Account {
 
     private final String _username;
-    private String _email;
+    private String _email; //read data from JSON
     private Integer _grade;
     private Integer _formselector;
     private String _name;
@@ -23,9 +23,7 @@ public class Account {
     public Account(String user, String pw, SharedPreferences mem) {
         _username = user;
         _pwHash = encrypt(pw);
-        mem.edit().putString("login", getLogin());
-
-        mem.edit().apply();
+        mem.edit().putString("login", getLogin()).apply();
     }
 
     public String getName() {
@@ -43,7 +41,19 @@ public class Account {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
             crypt.reset();
             crypt.update(password.getBytes("UTF-8"));
-            sha1 = new String(crypt.digest());
+            byte[] digest = crypt.digest();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < digest.length; i++) {
+                if ((0xff & digest[i]) < 0x10) {
+                    sb.append("0").append(Integer.toHexString((0xFF & digest[i])));
+                } else {
+                    sb.append(Integer.toHexString(0xFF & digest[i]));
+                }
+            }
+
+            sha1 = sb.toString();
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
