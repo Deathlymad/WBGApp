@@ -20,6 +20,11 @@
             android:title="@string/substitute_plan_title"
             android:icon="@drawable/ic_nav_sp_2"/>
 
+        <item
+            android:id="@+id/nav_forum"
+            android:title="@string/forum_title"
+            android:icon="@drawable/ic_nav_news"/>
+
 
         <!--
         <item

@@ -76,6 +76,7 @@
         <string name="sp_remark">Bemerkungen:</string>
         <string name="sub_list_empty">Keine Vertretungen gefunden</string>
         Forum:
+        <string name="forum_title">Forum</string>
 
         EMails:
         <string name="mail_description">Alle deine E-Mails werden hier aufgelistet, sobald du dich mit deinem WBGym Account in der App angemeldet hast. </string>

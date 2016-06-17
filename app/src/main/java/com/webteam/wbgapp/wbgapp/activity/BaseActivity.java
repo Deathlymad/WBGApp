@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.activity.forum.ForumActivity;
 
 /**
  * Created by Deathlymad on 23.01.2016 .
@@ -81,6 +82,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 break;
             case R.id.nav_substitute_plan:
                 i = new Intent(this, SubstitutePlanActivity.class);
+                break;
+            case R.id.nav_forum:
+                i = new Intent(this, ForumActivity.class);
                 break;
             /*
             case R.id.nav_schedule:
