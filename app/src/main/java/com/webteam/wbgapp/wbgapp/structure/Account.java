@@ -2,6 +2,12 @@ package com.webteam.wbgapp.wbgapp.structure;
 
 import android.content.SharedPreferences;
 
+import com.webteam.wbgapp.wbgapp.net.BackgroundService;
+import com.webteam.wbgapp.wbgapp.util.Constants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -10,10 +16,10 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by Deathlymad on 16.01.2016 .
  */
-public class Account {
+public class Account implements BackgroundService.UpdateListener{
 
     private final String _username;
-    private String _email; //read data from JSON
+    private String _email;
     private Integer _grade;
     private Integer _formselector;
     private String _name;
@@ -23,7 +29,8 @@ public class Account {
     public Account(String user, String pw, SharedPreferences mem) {
         _username = user;
         _pwHash = encrypt(pw);
-        mem.edit().putString("login", getLogin()).apply();
+
+        mem.edit().putString("login", getLogin()).commit();
     }
 
     public String getName() {
@@ -60,4 +67,23 @@ public class Account {
         return sha1;
     }
 
+    @Override
+    public void onUpdate(String Type) {
+        JSONObject data = BackgroundService._accData;
+        _email = _username + "@wbgym.de";
+        try{
+            _name = data.getString("name");
+            _grade = data.getInt("grade");
+            _formselector = data.getInt("formselector");
+        }catch(JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public String getUpdateType() {
+        return Constants.INTENT_CHECK_LOGIN;
+    }
 }

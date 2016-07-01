@@ -62,6 +62,7 @@ public class BackgroundService extends IntentService //manages Data
     static SubstitutePlan _today, _tomorrow;
     public static EventListAdapter _eventList;
     public static NewsListAdapter _newsList;
+    public static JSONObject _accData;//needs better solution
 
     private static final Handler updateHandler = new Handler();
 
@@ -195,9 +196,12 @@ public class BackgroundService extends IntentService //manages Data
         return sb.toString();
     }
 
-    private void verifyLogin() throws IOException
+    private void verifyLogin() throws IOException, JSONException
     {
-        if ( !(pullData("login").equalsIgnoreCase("true")))
+        _accData = new JSONObject(pullData("login"));
+        if (_accData.getBoolean("login"))
+            update(Constants.INTENT_CHECK_LOGIN);
+        else
             getSharedPreferences("Settings", MODE_PRIVATE).edit().putString("login", null).commit();
     }
 
@@ -224,10 +228,8 @@ public class BackgroundService extends IntentService //manages Data
             String data = pullData("vertretungsplan");
             if (data.equalsIgnoreCase("false"))
                 return;
-            int split = data.indexOf("#####");
 
-            _today =  new SubstitutePlan(new JSONObject(data.substring(0, split)));
-            _tomorrow =  new SubstitutePlan(new JSONObject(data.substring(split + 5)));
+            _today =  new SubstitutePlan(new JSONObject(data));//errors
         }
         update(Constants.INTENT_GET_SUB_PLAN);
     }
@@ -286,7 +288,7 @@ public class BackgroundService extends IntentService //manages Data
         }
 
         //Reading JSON
-        if (!str.isEmpty()) {
+        if (!str.equals("")) {
             JSONArray arr = new JSONArray(str);
 
             for (int i = arr.length() - 1; i >= 0; i--) {
@@ -345,7 +347,7 @@ public class BackgroundService extends IntentService //manages Data
         }
 
         //Reading JSON
-        if (!str.isEmpty()) {
+        if (!str.equals("")) {
             JSONArray arr = new JSONArray(str);
             for (int i = 0; i < arr.length(); i++) {
                 final News data = new News( new JSONObject(arr.getString(i)));

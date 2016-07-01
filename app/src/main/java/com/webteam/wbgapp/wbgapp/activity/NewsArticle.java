@@ -39,10 +39,10 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
         News temp = BackgroundService._newsList.get(_id);
         if (temp != null)
         {
-            _date = temp.getDateString();
-            _content = temp.getContent();
-
-
+            if (_date.equals(""))
+                _date = temp.getDateString();
+            if (_content.equals(""))
+                _content = temp.getContent();
 
             ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + _date);
             ((TextView)findViewById(R.id.show_article_text)).setText(Html.fromHtml(Util.unescUnicode(_content)));
@@ -82,6 +82,6 @@ public class NewsArticle extends BaseActivity implements BackgroundService.Updat
         ((TextView)findViewById(R.id.show_article_title)).setText(_title);
 
         ((TextView)findViewById(R.id.show_article_date_infos)).setText("Geschrieben am " + _date);
-        ((TextView)findViewById(R.id.show_article_text)).setText(Util.unescUnicode(_content));
+        ((TextView)findViewById(R.id.show_article_text)).setText(Html.fromHtml(Util.unescUnicode(_content)));
     }
 }

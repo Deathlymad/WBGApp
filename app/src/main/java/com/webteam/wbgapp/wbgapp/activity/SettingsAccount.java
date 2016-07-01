@@ -1,12 +1,15 @@
 package com.webteam.wbgapp.wbgapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.webteam.wbgapp.wbgapp.R;
+import com.webteam.wbgapp.wbgapp.net.BackgroundService;
 import com.webteam.wbgapp.wbgapp.structure.Account;
+import com.webteam.wbgapp.wbgapp.util.Constants;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,7 +40,12 @@ public class SettingsAccount extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         String name = ((TextView) findViewById(R.id.settings_registration_user)).getText().toString();
         String pw = ((TextView) findViewById(R.id.settings_registration_password)).getText().toString();
+        if (name.contains("@"))
+            name = name.substring(0, name.indexOf("@"));
         currAcc = new Account(name, pw, getSettings());
+        Intent i = new Intent( this, BackgroundService.class); // move to NewsArticle
+        i.setAction(Constants.INTENT_CHECK_LOGIN);
+        startService(i);
     }
 
     public static boolean isLoggedIn()
