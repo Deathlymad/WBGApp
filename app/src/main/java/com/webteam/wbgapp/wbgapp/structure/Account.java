@@ -3,12 +3,14 @@ package com.webteam.wbgapp.wbgapp.structure;
 import android.content.SharedPreferences;
 
 import com.webteam.wbgapp.wbgapp.net.BackgroundService;
+import com.webteam.wbgapp.wbgapp.net.EMailClient;
 import com.webteam.wbgapp.wbgapp.util.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,12 +27,15 @@ public class Account implements BackgroundService.UpdateListener{
     private String _name;
     private final String _pwHash;
 
+    EMailClient mails;
 
     public Account(String user, String pw, SharedPreferences mem) {
         _username = user;
         _pwHash = encrypt(pw);
 
-        mem.edit().putString("login", getLogin()).commit();
+        mem.edit().putString("login", getLogin()).apply();
+        mem.edit().putString("user", _username).apply();
+        mem.edit().putString("pw", _pwHash).apply();
     }
 
     public String getName() {
@@ -75,15 +80,23 @@ public class Account implements BackgroundService.UpdateListener{
             _name = data.getString("name");
             _grade = data.getInt("grade");
             _formselector = data.getInt("formselector");
-        }catch(JSONException e)
+            mails = new EMailClient(this);
+        }catch(JSONException | IOException e)
         {
             e.printStackTrace();
         }
-
     }
 
     @Override
     public String getUpdateType() {
         return Constants.INTENT_CHECK_LOGIN;
+    }
+
+    public String getEMail() {
+        return _email;
+    }
+
+    public String getPassword() {
+        return _pwHash;
     }
 }

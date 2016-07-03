@@ -1,5 +1,7 @@
 package com.webteam.wbgapp.wbgapp.net;
 
+import com.webteam.wbgapp.wbgapp.structure.Account;
+
 import org.apache.commons.net.pop3.*;
 
 import java.io.IOException;
@@ -12,11 +14,11 @@ import java.nio.CharBuffer;
 public class EMailClient {
     private POP3Client client;
 
-    EMailClient(String user, String pw) throws IOException
+    public EMailClient(Account login) throws IOException
     {
         client = new POP3Client();
-        client.connect("w00b1389.kasserver.com");
-        client.login(user, pw);
+        client.connect("pop3.wbgym.de");
+        client.login(login.getEMail(), login.getPassword());
     }
 
     public POP3MessageInfo[] getEMailData() throws IOException

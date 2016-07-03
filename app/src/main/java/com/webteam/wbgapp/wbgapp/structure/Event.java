@@ -25,7 +25,6 @@ public class Event {
     private Date _startTime, _endTime;
     private String _title;
 
-    private int _author;
     private String _location;
 
     public Event(JSONObject data) throws JSONException {

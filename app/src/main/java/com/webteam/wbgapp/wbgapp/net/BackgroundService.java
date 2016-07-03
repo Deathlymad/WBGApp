@@ -202,7 +202,11 @@ public class BackgroundService extends IntentService //manages Data
         if (_accData.getBoolean("login"))
             update(Constants.INTENT_CHECK_LOGIN);
         else
-            getSharedPreferences("Settings", MODE_PRIVATE).edit().putString("login", null).commit();
+        {
+            getSharedPreferences("Settings", MODE_PRIVATE).edit().putString("login", null).apply();
+            getSharedPreferences("Settings", MODE_PRIVATE).edit().putString("user", null).apply();
+            getSharedPreferences("Settings", MODE_PRIVATE).edit().putString("pw", null).apply();
+        }
     }
 
     private void saveSubPlan() throws IOException {
