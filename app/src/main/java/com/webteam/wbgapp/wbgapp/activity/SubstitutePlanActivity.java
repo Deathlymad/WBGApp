@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 //TODO: Vertretungsplan für den nächsten Tag ins Menü einbinden
-//TODO: Weitere Vertretungarten einbinden und anzeigen lassen
 
 public class SubstitutePlanActivity extends BaseActivity{
 

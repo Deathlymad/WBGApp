@@ -75,7 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         int id = item.getItemId();
         Intent i = null;
 
-        //TODO: Vertretungsplan für den nächsten Tag einbinden.
+        //TODO: Vertretungsplan für den nächsten Tag einbinden. (Webservice funktioniert)
         switch (id) {
             case R.id.nav_news:
                 i = new Intent(this, NewsSchedule.class);
