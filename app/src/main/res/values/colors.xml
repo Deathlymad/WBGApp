@@ -19,4 +19,7 @@
     <color name="defaultWhite">#FFFFFF</color>
 
     <color name="warning">#CE5454</color>
+
+    <!-- Homescreen colors -->
+    <color name="hs_app_title">#003b6f</color>
 </resources>

@@ -1,6 +1,7 @@
 <resources>
     Allgemeines:
     <string name="app_name">WbgApp</string>
+    <string name="app_title">Weinberg App</string>
     <string name="action_login">Anmelden</string>
     <string name="settings_general_title">Login</string>
 
