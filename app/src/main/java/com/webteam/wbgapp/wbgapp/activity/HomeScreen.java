@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.webteam.wbgapp.wbgapp.R;
 
 /**
- * Created by Deathlymad on 01.06.2016.
+ * Created by metze on 01.06.2016.
  */
 public class HomeScreen extends BaseActivity {
     protected String getName(){
