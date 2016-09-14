@@ -60,7 +60,8 @@
             android:marginTop="0dp"
             android:padding="5dp"
             android:background="@color/hs_bg_container_newversion"
-            android:layout_below="@+id/hs_container_appinfos">
+            android:layout_below="@+id/hs_container_appinfos"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -89,6 +90,13 @@
             android:background="@color/hs_bg_container_messages"
             android:layout_below="@+id/hs_container_newversion">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="@string/hs_messages_title"
+                android:textColor="@color/hs_messages_title"/>
         </RelativeLayout>
     </RelativeLayout>
 </ScrollView>

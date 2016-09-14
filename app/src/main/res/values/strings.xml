@@ -40,6 +40,7 @@
         HomeScreen:
         <string name="hs_newversion_text">Es ist eine neue Version der Weinberg App verfügbar! \nJetzt herunterladen!</string>
         <string name="hs_newversion_text2">Deine Version: 0_XXX123456789Xib \nVerfügbare Version: 0_YYY123456789Yib</string>
+        <string name="hs_messages_title">Nachrichten der Entwickler</string>
         News:
         <string name="news_error">News konnten nicht geladen werden.</string>
         Events:

@@ -21,10 +21,14 @@
     <color name="warning">#CE5454</color>
 
     <!-- Homescreen colors -->
+    <!-- Background -->
     <color name="hs_app_title">#003b6f</color>
     <color name="hs_bg_container_infos">#d6e0cc</color>
     <color name="hs_bg_container_appinfos">#eee1ee</color>
-    <color name="hs_bg_container_messages">#ccd6e0</color>
+    <color name="hs_bg_container_messages">#dee8f0</color>
     <color name="hs_bg_container_newversion">#f9d9dc</color>
     <color name="hs_bg_container_newversion_text">#b43440</color>
+    <!-- Text -->
+    <color name="hs_messages_title">#4e5861</color>
+
 </resources>
