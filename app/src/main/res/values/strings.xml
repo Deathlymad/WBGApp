@@ -39,7 +39,7 @@
     Elemten in/auf Seiten:
         HomeScreen:
         <string name="hs_newversion_text">Es ist eine neue Version der Weinberg App verfügbar! \nJetzt herunterladen!</string>
-        <string name="hs_newversion_text2">Deine Version: XXX123456789X \nVerfügbare Version: </string>
+        <string name="hs_newversion_text2">Deine Version: XXX123456789X \nVerfügbare Version: YYY123456789Y</string>
         News:
         <string name="news_error">News konnten nicht geladen werden.</string>
         Events:
