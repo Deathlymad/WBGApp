@@ -79,7 +79,7 @@ public class NewsSchedule
 
     @Override
     protected String getName() {
-        return "News";
+        return "Neuigkeiten";
     }
 
     private void regenerateList()

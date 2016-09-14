@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:aid="http://schemas.android.com/tools">
     Allgemeines:
     <string name="app_name">WbgApp</string>
     <string name="app_title">Weinberg App</string>
@@ -6,8 +6,9 @@
     <string name="settings_general_title">Login</string>
 
     Nav Titles:
+    <string name="homescreen">Startseite</string>
     <string name="newsfeed_title">Neuigkeiten</string>
-    <string name="events_title">Events</string>
+    <string name="events_title">Termine</string>
     <string name="substitute_plan_title">Vertretungsplan</string>
     <string name="subtitute_plan_section_title">Vertretungsplan für...</string>
     <string name="substitute_plan_title_today">Heute</string>
@@ -36,6 +37,9 @@
     <string name="new_mail_description">Du hast eine neue EMail bekommen!</string>
 
     Elemten in/auf Seiten:
+        HomeScreen:
+        <string name="hs_newversion_text">Es ist eine neue Version der Weinberg App verfügbar! \nJetzt herunterladen!</string>
+        <string name="hs_newversion_text2">Deine Version: XXX123456789X \nVerfügbare Version: </string>
         News:
         <string name="news_error">News konnten nicht geladen werden.</string>
         Events:
@@ -43,7 +47,6 @@
         <string name="events_from">Von:</string>
         <string name="events_to">Bis:</string>
         <string name="events_save">In Kalender speichern</string>
-
         Einstellungen:
             Account:
             <string name="settings_registration_desc">Melde dich hier mit deiner WbGym E-Mail an, damit die App gesicherte Inhalte freischalten kann. (z.B. den Vertretungsplan)\nDie Anmeldung erfolgt einmalig und wird dann gespeichert.</string>
@@ -77,7 +80,7 @@
         <string name="sp_remark">Bemerkungen:</string>
         <string name="sub_list_empty">Keine Vertretungen gefunden</string>
         Forum:
-        <string name="forum_title">Forum</string>
+        <string name="forum_title_main">Forum - Startseite</string>
 
         EMails:
         <string name="mail_description">Alle deine E-Mails werden hier aufgelistet, sobald du dich mit deinem WBGym Account in der App angemeldet hast. </string>

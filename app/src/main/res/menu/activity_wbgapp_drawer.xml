@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item
             android:id="@+id/nav_home"
-            android:title="Home"
+            android:title="@string/homescreen"
             android:icon="@drawable/ic_nav_home" />
 
         <item
@@ -22,7 +22,7 @@
 
         <item
             android:id="@+id/nav_forum"
-            android:title="@string/forum_title"
+            android:title="@string/forum_title_main"
             android:icon="@drawable/ic_nav_forum"/>
 
 

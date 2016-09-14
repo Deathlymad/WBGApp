@@ -1,6 +1,7 @@
 package com.webteam.wbgapp.wbgapp.activity.forum;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 
 import com.webteam.wbgapp.wbgapp.R;
 import com.webteam.wbgapp.wbgapp.activity.BaseActivity;
@@ -17,9 +18,8 @@ public class ForumActivity extends BaseActivity {
         setContentView(R.layout.activity_forum_main);
 
     }
-
     @Override
     protected String getName() {
-        return "Forum Main";
+        return getString(R.string.forum_title_main);
     }
 }

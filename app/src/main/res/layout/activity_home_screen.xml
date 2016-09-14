@@ -23,5 +23,72 @@
             android:textColor="@color/hs_app_title"
             android:textSize="33dp"
             android:textStyle="bold" />
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:margin="0dp"
+            android:padding="5dp"
+            android:layout_below="@+id/tv_app_name"
+            android:layout_alignParentStart="true"
+            android:background="@color/hs_bg_container_infos"
+            android:minHeight="100dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/hs_container_infos">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/hs_bg_container_appinfos"
+            android:margin="0dp"
+            android:padding="5dp"
+            android:minHeight="100dp"
+            android:margin_top="0dp"
+            android:id="@+id/hs_container_appinfos"
+            android:layout_below="@+id/hs_container_infos">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hs_container_newversion"
+            android:margin="0dp"
+            android:marginTop="0dp"
+            android:padding="5dp"
+            android:background="@color/hs_bg_container_newversion"
+            android:layout_below="@+id/hs_container_appinfos">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/hs_bg_container_newversion_text"
+                android:text="@string/hs_newversion_text"
+                android:textSize="15dp"
+                android:id="@+id/hs_newversion_text"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/defaultGrey"
+                android:text="@string/hs_newversion_text2"
+                android:textSize="10dp"
+                android:layout_below="@+id/hs_newversion_text"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hs_container_messages"
+            android:margin="0dp"
+            android:marginTop="0dp"
+            android:padding="5dp"
+            android:minHeight="500dp"
+            android:background="@color/hs_bg_container_messages"
+            android:layout_below="@+id/hs_container_newversion">
+
+        </RelativeLayout>
     </RelativeLayout>
 </ScrollView>

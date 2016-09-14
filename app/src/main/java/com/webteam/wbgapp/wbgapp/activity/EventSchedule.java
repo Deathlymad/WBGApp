@@ -90,7 +90,7 @@ public class EventSchedule
 
     @Override
     protected String getName() {
-        return "Events";
+        return "Termine";
     }
 
     private void regenerateList()

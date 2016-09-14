@@ -9,14 +9,14 @@ import com.webteam.wbgapp.wbgapp.R;
  */
 public class HomeScreen extends BaseActivity {
     protected String getName(){
-        return "HomeScreen";
+        return "WBGApp - Startseite";
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_wbgapp);
+        setContentView(R.layout.activity_home_screen);
     }
 
 }

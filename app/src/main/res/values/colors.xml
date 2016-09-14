@@ -22,4 +22,9 @@
 
     <!-- Homescreen colors -->
     <color name="hs_app_title">#003b6f</color>
+    <color name="hs_bg_container_infos">#d6e0cc</color>
+    <color name="hs_bg_container_appinfos">#eee1ee</color>
+    <color name="hs_bg_container_messages">#ccd6e0</color>
+    <color name="hs_bg_container_newversion">#f9d9dc</color>
+    <color name="hs_bg_container_newversion_text">#b43440</color>
 </resources>
